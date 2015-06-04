@@ -21,12 +21,13 @@ namespace GetRid.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
+
             context.Products.AddOrUpdate(
               p => p.Id,
               new Product { Name = "Couch", Description = "Leather"},
               new Product { Name = "Fridge", Description = "Fischer & P"}
             );
-
+            
         }
     }
 }

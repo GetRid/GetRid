@@ -10,7 +10,7 @@ namespace GetRid.Models
         public int Id { get; set; }
         public string Suburb { get; set; }
         public virtual List<Product> Products { get; set; }
-        public virtual List<ApplicationUser> Users { get; set; } 
+        public virtual List<ApplicationUser> Users { get; set; }
         //dbGeography?
     }
 }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(GetRid.Startup))]
-
+[assembly: OwinStartupAttribute(typeof(GetRid.Startup))]
 namespace GetRid
 {
     public partial class Startup
