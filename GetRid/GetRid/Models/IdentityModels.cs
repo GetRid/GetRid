@@ -33,5 +33,7 @@ namespace GetRid.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<GetRid.Models.Product> Products { get; set; }
     }
 }
