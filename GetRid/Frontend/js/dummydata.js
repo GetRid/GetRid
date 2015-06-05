@@ -6,30 +6,36 @@ testData = [
     "description": "Random Words",
     "location": "Te Aro",
     "category": "Household Appliances",
-    "image": "http://placehold.it/320x150"
+    "image": "https://www.topclasscarpentry.com/images/thumbnails/Fridges-Freezers/deluxe-frost-free-american-fridge-freezer-open_300.jpg"
   },
   {
     "name": "Frezer",
     "description": "More Random Words",
     "location": "Te Aro",
     "category": "Household Appliances",
-    "image": "http://placehold.it/320x150"
+    "image": "http://placehold.it/300x100"
   }
 ]
+
 
 
 $(document).on('click', '#tester', function(e){
   e.preventDefault();
   var $things = testData
-  console.log($things)
-  console.log(testData)
   for (var i=0; i<testData.length; i+=1){
+    function listView(){
+      this.name = ko.observable(testData[i].name)
+      this.image = ko.observable(testData[i].image)
 
-    $('#appender').append(
-      testData[i].name + '<br>'
 
 
-      )
+    }
+    ko.applyBindings(new listView());
+
+
+    // $('#appender').append(
+    //   testData[i].name + '<br>'
+      // )
   };
 
 });
