@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+
 ko.applyBindings({
   testData: [
     {
@@ -6,7 +8,7 @@ ko.applyBindings({
       "description": "Random Words",
       "location": "Te Aro",
       "category": "Household Appliances",
-      "image": "https://www.topclasscarpentry.com/images/thumbnails/Fridges-Freezers/deluxe-frost-free-american-fridge-freezer-open_300.jpg"
+      "image": "http://carvalhoscleaning.com/wp-content/uploads/2012/06/fridge-1.jpg"
     },
     {
       "name": "Frezer",
@@ -14,6 +16,13 @@ ko.applyBindings({
       "location": "Te Aro",
       "category": "Household Appliances",
       "image": "http://thefreezerguide.com/wp-content/uploads/2012/10/frigidaire-ffc0923dw-chest-freezer.jpg"
+    },
+    {
+      "name": "Oven",
+      "description": "More Random Words",
+      "location": "Te Aro",
+      "category": "Household Appliances",
+      "image": "http://www.mustknowhow.com/wp-content/uploads/2010/05/fff37f7a-5e1d-49f7-b12f-7f2899effb0b_300.jpg"
     }
   ]
 });
