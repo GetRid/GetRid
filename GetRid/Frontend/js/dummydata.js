@@ -6,14 +6,14 @@ testData = [
     "description": "Random Words",
     "location": "Te Aro",
     "category": "Household Appliances",
-    "image": "http://startbootstrap.com/assets/img/templates/portfolio-item.jpg"
+    "image": "http://placehold.it/320x150"
   },
   {
     "name": "Frezer",
     "description": "More Random Words",
     "location": "Te Aro",
     "category": "Household Appliances",
-    "image": "http://startbootstrap.com/assets/img/templates/portfolio-item.jpg"
+    "image": "http://placehold.it/320x150"
   }
 ]
 
