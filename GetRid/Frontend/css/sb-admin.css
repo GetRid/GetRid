@@ -24,7 +24,7 @@ body {
 #page-wrapper {
     width: 100%;
     padding: 0;
-    background-color: #fff;
+    background-color: #8A99A6;
 }
 
 .huge {
@@ -46,6 +46,7 @@ body {
 
 .top-nav {
     padding: 0 15px;
+    background-color: #EDEDED;
 }
 
 .top-nav>li {
@@ -66,7 +67,7 @@ body {
 .top-nav>.open>a:hover,
 .top-nav>.open>a:focus {
     color: #fff;
-    background-color: blue;
+    background-color: #8A99A6;
 }
 
 .top-nav>.open>.dropdown-menu {
@@ -236,11 +237,12 @@ ul.alert-dropdown {
 
  .item-image {
     display: block;
-    width: 250px;
+    max-height: 200px;
+    max-width: 200px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
  }
 
   .flash-image {
@@ -248,8 +250,8 @@ ul.alert-dropdown {
     width: 150px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
  }
 
 
@@ -271,4 +273,6 @@ ul.alert-dropdown {
     margin-top: 20px;
     margin-bottom: 20px;
  }
+
+
 

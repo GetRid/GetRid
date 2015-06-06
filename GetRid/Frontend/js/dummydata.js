@@ -13,7 +13,7 @@ $(document).ready(function() {
       "description": "More Random Words",
       "location": "Te Aro",
       "category": "Household Appliances",
-      "image": "http://thefreezerguide.com/wp-content/uploads/2012/10/frigidaire-ffc0923dw-chest-freezer.jpg"
+      "image": "http://beautifulkitchensblog.co.uk/wp-content/uploads/2013/04/WBA33992-NFC-IX-fridge-freezer-Whirlpool.jpg"
     },
     {
       "name": "Oven",
@@ -21,6 +21,13 @@ $(document).ready(function() {
       "location": "Te Aro",
       "category": "Household Appliances",
       "image": "http://ecx.images-amazon.com/images/I/71mdsLdw2-L._SL1500_.jpg"
+    },
+        {
+      "name": "TV",
+      "description": "This is a Cool TV!",
+      "location": "Petone",
+      "category": "Household Appliances",
+      "image": "http://www.fotoagent.dk/single_picture/11174/138/medium/DENVER_DFT-4219.jpg"
     }
   ]
 

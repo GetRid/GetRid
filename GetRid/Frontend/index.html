@@ -265,6 +265,28 @@
 
                 </div>
                 <!-- /.row -->
+                <ul class="nav top-nav">
+                    <li>
+                        <a data-bind="click: $root.browseNearYou"><i class="fa fa-location-arrow"></i></a>
+                    </li>
+                    <li>
+                        <a data-bind="click: $root.goToDisplay"><i class="fa fa-globe"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i></a>
+                        <ul id="demo" class="dropdown-menu">
+                            <li>
+                                <a href="#"><i class="fa fa-home"></i> Household</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-meh-o"></i> Furniture</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a data-bind="click: $root.goToGetRid"><i class="fa fa-trash-o"></i></a>
+                    </li>
+                </ul>
 
             </div>
             <!-- /.container-fluid -->
