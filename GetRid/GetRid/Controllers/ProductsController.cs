@@ -16,6 +16,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GetRid.Controllers
 {
+
     public class ProductsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -93,6 +94,7 @@ namespace GetRid.Controllers
                 var user = manager.FindById(id);
                 product.User = user;
                 product.Location = user.Location;
+                //product.Category = new Category(){CategoryType = product.Category};
                 
 
                 db.Products.Add(product);
