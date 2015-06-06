@@ -153,6 +153,22 @@
                         </div>
                     </div>
 
+                    <!-- SIGN UP / SIGN IN FORM -->
+                    <div data-bind="visible: showGetRidForm"> <!-- data-bind="with: getRidData" -->
+                        <div class="row item-text">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <h2>Get / Rid</h2>
+                                <form action="#" method="post">
+                                    <p><input type="text" placeholder="Username"></p>
+                                    <p><input type="password" placeholder="Password"></p>
+                                    <p><input type="submit" value="Login" class="btn btn-primary"></p>
+                                    <p><input type="submit" value="Sign Up" class="btn btn-primary"></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SIGN UP / SIGN IN FORM END-->
+
                     <!-- ITEMS LIST -->
                     <table class="items" data-bind="with: chosenDisplayData">
                         <thead><tr>
