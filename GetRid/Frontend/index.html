@@ -43,18 +43,32 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">GetRid <i class="fa fa-toggle-on"></i></a>
+                <a class="navbar-brand" href="index.html">GetRid <i class="fa fa-fw fa-dashboard"></i></a>
                 <i class="fa fa-trash-o"></i>
             </div>
             <!-- Top Menu Items -->
-            <ul data-bind="foreach: displays" class="nav navbar-right top-nav">
+            <ul class="nav navbar-right top-nav">
                 <li>
-                   <a href="#"><i data-bind="attr: {class: $data.icon }, click: $root.goToDisplay"></i></a>
+                    <a data-bind="click: $root.browseNearYou"><i class="fa fa-location-arrow"></i></a>
                 </li>
-<!--                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                </li> -->
-<!--                 <li class="dropdown">
+                <li>
+                    <a data-bind="click: $root.goToDisplay"><i class="fa fa-globe"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i></a>
+                    <ul id="demo" class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-home"></i> Household</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-meh-o"></i> Furniture</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a data-bind="click: $root.goToGetRid"><i class="fa fa-trash-o"></i></a>
+                </li>
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Jono Bolo<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
@@ -71,19 +85,16 @@
                             <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
-                </li> -->
+                </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul data-bind="foreach: displays" class="nav navbar-nav side-nav">
+                <ul class="nav navbar-nav side-nav">
                     <li>
-                       <a href="#"><i data-bind="attr: {class: $data.icon }, text: $data.label, click: $root.goToDisplay"></i></a>
-                    </li>
-<!--                     <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a data-bind="click: $root.browseNearYou"><i class="fa fa-location-arrow"></i> Browse Near You</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-location-arrow"></i> Search Location</a>
+                        <a data-bind="click: $root.goToDisplay"><i class="fa fa-globe"></i>Search Locations</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-shopping-cart"></i> Search Categories <i class="fa fa-fw fa-caret-down"></i></a>
@@ -97,14 +108,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-trash-o"></i> Get rid of stuff</a>
+                        <a data-bind="click: $root.goToGetRid"><i class="fa fa-trash-o"></i> Get rid of stuff</a>
                     </li>
                     <li>
-                        <a id="swipe" href="#"><i class="fa fa-fw fa-desktop"></i> SWIPE Test Button</a>
+                        <a id="list" href="#"><i class="fa fa-fw fa-wrench"></i> Help</a>
                     </li>
-                    <li>
-                        <a id="list" href="#"><i class="fa fa-fw fa-wrench"></i> LIST Test Button</a>
-                    </li> -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -203,6 +211,23 @@
                         </div>
                     </div>
                     <!--ITEM DETAILS DISPLAY END-->
+
+                    <!-- GET RID FORM -->
+                    <div data-bind="visible: showGetRidForm"> <!-- data-bind="with: getRidData" -->
+                        <div class="row item-text">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <form action="#" method="post">
+                                    <input type="text" placeholder="Item Name">
+                                    <input type="text" placeholder="Category">
+                                    <input type="text" placeholder="Location">
+                                    <input type="text" placeholder="Image">
+                                    <input type="textarea" placeholder="Description">
+                                    <input type="submit" value="Submit" class="btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- GET RID FORM END-->
 
                     <!--CONTACT DISPLAY -->
 <!--                     <div data-bind="with: makeContact">
