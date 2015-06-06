@@ -235,6 +235,10 @@
     <Compile Include="Migrations\201506060338028_ProductAddBackForiegnKeys.Designer.cs">
       <DependentUpon>201506060338028_ProductAddBackForiegnKeys.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506060411532_ChangedUnsure.cs" />
+    <Compile Include="Migrations\201506060411532_ChangedUnsure.Designer.cs">
+      <DependentUpon>201506060411532_ChangedUnsure.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -328,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506060338028_ProductAddBackForiegnKeys.resx">
       <DependentUpon>201506060338028_ProductAddBackForiegnKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506060411532_ChangedUnsure.resx">
+      <DependentUpon>201506060411532_ChangedUnsure.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
