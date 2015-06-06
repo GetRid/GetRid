@@ -34,7 +34,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-bind="visible: showNavBar">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -43,93 +43,30 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">GetRid <i class="fa fa-toggle-on"></i></a>
-                <i class="fa fa-trash-o"></i>
+<!--                 <a class="navbar-brand" href="index.html">GetRid <i class="fa fa-fw fa-dashboard"></i></a> -->
+                <img class="logo-long" src="img/GetRidLong.png">
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
+                <li>
+                    <a data-bind="click: $root.browseNearYou"><i class="fa fa-location-arrow"></i></a>
+                </li>
+                <li>
+                    <a data-bind="click: $root.goToDisplay"><i class="fa fa-globe"></i></a>
+                </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading">
-                                            <strong>Jono Bolo</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i></a>
+                    <ul id="demo" class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-home"></i> Household</a>
                         </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading">
-                                            <strong>Jono Bolo</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading">
-                                            <strong>Jono Bolo</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
+                        <li>
+                            <a href="#"><i class="fa fa-meh-o"></i> Furniture</a>
                         </li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
+                <li>
+                    <a data-bind="click: $root.goToGetRid"><i class="fa fa-trash-o"></i></a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Jono Bolo<b class="caret"></b></a>
@@ -154,10 +91,10 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a data-bind="click: $root.browseNearYou"><i class="fa fa-location-arrow"></i> Browse Near You</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-location-arrow"></i> Search Location</a>
+                        <a data-bind="click: $root.goToDisplay"><i class="fa fa-globe"></i>Search Locations</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-shopping-cart"></i> Search Categories <i class="fa fa-fw fa-caret-down"></i></a>
@@ -171,13 +108,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-trash-o"></i> Get rid of stuff</a>
+                        <a data-bind="click: $root.goToGetRid"><i class="fa fa-trash-o"></i> Get rid of stuff</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-desktop"></i> Another Random Thing</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-wrench"></i> More Random</a>
+                        <a id="list" href="#"><i class="fa fa-fw fa-wrench"></i> Help</a>
                     </li>
                 </ul>
             </div>
@@ -190,20 +124,144 @@
 
                 <!-- Page Heading -->
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            GetRid
-                            <small>Get rid of stuff for free...</small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-trash-o"></i></i> Get rid of stuff
-                            </li>
-                        </ol>
+
+
+                    <!-- DISPLAYS -->
+<!--                     <ul data-bind="foreach: displays" style="list-style: none">
+                         <li>
+                            <a data-bind="text: $data, click: $root.goToDisplay"></a>
+                         </li>
+                    </ul> -->
+
+                    <!-- SPLASH SCREEN -->
+                    <div data-bind="visible: showSplashScreen">
+                        <div class="row">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <div class="thumbnail item-text">
+                                    <img class="flash-image" src="img/GetRidCircle.png" alt="">
+                                    <p><button class="btn btn-primary">LOGIN</button></p>
+                                    <p><button class="btn btn-primary">SIGNUP</button></p>
+                                    <div class="caption">
+                                    </div>
+                                    <div class="ratings">
+                                        <a data-bind="click: $root.browseNearYou"><h1><i class="fa fa-location-arrow"></i> </h1></a>
+                                        <a data-bind="click: $root.browseNearYou"><h4>Browse Near You </h4></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- SIGN UP / SIGN IN FORM -->
+                    <div data-bind="visible: showGetRidForm"> <!-- data-bind="with: getRidData" -->
+                        <div class="row item-text">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <img class="logo-name" src="img/GetRidName.png">
+                                <form action="#" method="post">
+                                    <p><input type="text" placeholder="Username"></p>
+                                    <p><input type="password" placeholder="Password"></p>
+                                    <p><input type="submit" value="Login" class="btn btn-primary"></p>
+                                    <p><input type="submit" value="Sign Up" class="btn btn-primary"></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SIGN UP / SIGN IN FORM END-->
+
+                    <!-- ITEMS LIST -->
+                    <table class="items" data-bind="with: chosenDisplayData">
+                        <thead><tr>
+                            <th>Name</th><th>Description</th><th>Location</th><th>Category</th>
+                        </tr></thead>
+                        <tbody data-bind="foreach: testData">
+                            <tr data-bind="click: $root.goToItem">
+                                <td data-bind="text: name"></td>
+                                <td data-bind="text: description"></td>
+                                <td data-bind="text: location"></td>
+                                <td data-bind="text: category"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <!--INDIVIDUAL ITEM -->
+                    <div data-bind="with: chosenIndividualData">
+                        <div class="row">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <div class="thumbnail">
+                                    <h1 class="item-text" data-bind="text: name"></h1>
+                                    <img data-bind="attr: {src: image }" alt="">
+                                    <div class="caption">
+
+                                        <h4 class="item-text"><a href="#">5 km away</a>
+                                        </h4>
+                                    </div>
+                                    <div class="ratings">
+                                        <a data-bind="click: $root.treasure"><i class="fa fa-star"></i> Treasure</a>
+                                        <a data-bind="click: $root.trash" class="pull-right">Trash <i class="fa fa-trash-o"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--INDIVIDUAL ITEM END-->
+
+                    <!--ITEM DETAILS DISPLAY -->
+                    <div data-bind="with: chosenIndividualDetails">
+                        <div class="row">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <div class="thumbnail">
+                                    <img data-bind="attr: {src: image }" alt="">
+                                    <div class="caption">
+                                        <h3 class="item-text" data-bind="text: name"></h3>
+                                        <h4 class="item-text" data-bind="text: description"</h4>
+                                    </div>
+                                    <div class="ratings">
+                                        <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left"></i> Back </a>
+                                        <a data-bind="click: $root.makeContact" class="pull-right">Get <i class="fa fa-shopping-cart"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--ITEM DETAILS DISPLAY END-->
+
+                    <!-- GET RID FORM -->
+                    <div data-bind="visible: showGetRidForm"> <!-- data-bind="with: getRidData" -->
+                        <div class="row item-text">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <img class="logo-circles" src="img/GetRidCircles.png">
+                                <form action="#" method="post">
+                                    <p><input type="text" placeholder="Item Name"></p>
+                                    <p><input type="text" placeholder="Category"></p>
+                                    <p><input type="text" placeholder="Location"></p>
+                                    <p><input type="text" placeholder="Image"></p>
+                                    <p><input type="textarea" placeholder="Description"></p>
+                                    <p><input type="submit" value="Submit" class="btn btn-primary"></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- GET RID FORM END-->
+
+                    <!--CONTACT DISPLAY -->
+<!--                     <div data-bind="with: makeContact">
+                        <div class="row">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <div class="thumbnail">
+
+                                        <h3 class="item-text" data-bind="text: name"></h3>
+                                        <h1>Message Owner</h1>
+                                    </div>
+                                    <div class="ratings">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!--CONTACT END-->
+
                 </div>
                 <!-- /.row -->
 
@@ -218,9 +276,11 @@
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+    <script type='text/javascript' src='js/knockout-3.3.0.js'></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/dummydata.js"></script>
 
 </body>
 
