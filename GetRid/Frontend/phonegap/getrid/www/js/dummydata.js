@@ -35,6 +35,7 @@ $(document).ready(function() {
   function appViewModel(){
     var self = this;
     self.showSplashScreen = ko.observable(true);
+    self.showSignInSignUpForm = ko.observable(false);
     self.showGetRidForm = ko.observable(false);
     self.showNavBar = ko.observable(false);
     //self.displays = ['All', 'Categories', 'Location', 'Get Rid'];
@@ -53,6 +54,16 @@ $(document).ready(function() {
 
 
     //Behaviours
+    self.signIn = function(display) {
+      self.showSplashScreen(false);
+      self.showSignInSignUpForm(true);
+    }
+
+    self.signUp = function(display) {
+      self.showSplashScreen(false);
+      self.showSignInSignUpForm(true);
+    }
+
     self.browseNearYou = function(display) {
       self.showSplashScreen(false);
       self.showNavBar(true);

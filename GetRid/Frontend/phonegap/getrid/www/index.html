@@ -140,8 +140,8 @@
 
                                 <div class="thumbnail item-text">
                                     <img class="flash-image" src="img/GetRidCircle.png" alt="">
-                                    <p><button class="btn btn-primary">LOGIN</button></p>
-                                    <p><button class="btn btn-primary">SIGNUP</button></p>
+                                    <p><button data-bind="click: $root.signIn" class="btn btn-primary">LOGIN</button></p>
+                                    <p><button data-bind="click: $root.signUp" class="btn btn-primary">SIGNUP</button></p>
                                     <div class="caption">
                                     </div>
                                     <div class="ratings">
@@ -154,7 +154,7 @@
                     </div>
 
                     <!-- SIGN UP / SIGN IN FORM -->
-                    <div data-bind="visible: showGetRidForm"> <!-- data-bind="with: getRidData" -->
+                    <div data-bind="visible: showSignInSignUpForm"> <!-- data-bind="with: getRidData" -->
                         <div class="row item-text">
                             <div class="col-sm-4 col-lg-4 col-md-4">
                                 <img class="logo-name" src="img/GetRidName.png">
