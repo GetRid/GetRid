@@ -8,7 +8,7 @@
 
 body {
     margin-top: 100px;
-    background-color: #f5f5f5;
+    /*background-color: #f5f5f5;*/
 }
 
 @media(min-width:768px) {
@@ -24,7 +24,7 @@ body {
 #page-wrapper {
     width: 100%;
     padding: 0;
-    background-color: #fff;
+    background-color: #8A99A6;
 }
 
 .huge {
@@ -46,6 +46,7 @@ body {
 
 .top-nav {
     padding: 0 15px;
+    background-color: #EDEDED;
 }
 
 .top-nav>li {
@@ -66,7 +67,7 @@ body {
 .top-nav>.open>a:hover,
 .top-nav>.open>a:focus {
     color: #fff;
-    background-color: #000;
+    background-color: #8A99A6;
 }
 
 .top-nav>.open>.dropdown-menu {
@@ -225,3 +226,53 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+
+.item-text {
+    text-align: center;
+}
+
+.thumbnail {
+    height: 400px;
+}
+
+ .item-image {
+    display: block;
+    max-height: 200px;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+ }
+
+  .flash-image {
+    display: block;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+ }
+
+
+  .logo-circles {
+    width: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+ }
+
+   .logo-name {
+    width: 150px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+ }
+
+    .logo-long {
+    width: 130px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+ }
+
+
+
