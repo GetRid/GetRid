@@ -29,6 +29,7 @@ $(document).ready(function() {
     var self = this;
     self.showSplashScreen = ko.observable(true);
     self.showGetRidForm = ko.observable(false);
+    self.showNavBar = ko.observable(false);
     //self.displays = ['All', 'Categories', 'Location', 'Get Rid'];
 
     self.displays = [{label : "All"},
@@ -47,6 +48,7 @@ $(document).ready(function() {
     //Behaviours
     self.browseNearYou = function(display) {
       self.showSplashScreen(false);
+      self.showNavBar(true);
       self.goToDisplay(display);
     }
 
