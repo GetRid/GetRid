@@ -27,16 +27,38 @@ $(document).ready(function() {
 
 function appViewModel(){
   var self = this;
-  self.displays = ['All', 'Categories', 'Location', 'Get Rid'];
+  self.showSplashScreen = ko.observable(true);
+  //self.displays = ['All', 'Categories', 'Location', 'Get Rid'];
+
+  self.displays = [{label : "All",
+                    icon: "fa fa-globe"
+                   },
+                   {label : "Category",
+                    icon: "fa fa-folder-open-o"
+                   },
+                   {label : "Search Location",
+                    icon: "fa fa-location-arrow"
+                   },
+                   {label : "Get Rid",
+                    icon: "fa fa-trash-o"
+                   }];
   self.chosenDisplayId = ko.observable();
   self.chosenDisplayData = ko.observable();
   self.chosenIndividualData = ko.observable();
-  self.chosenIndividualDetails =ko.observable();
+  self.chosenIndividualDetails = ko.observable();
+  self.makeContact = ko.observable();
+
 
   //Behaviours
+  self.browseNearYou = function(display) {
+    self.showSplashScreen(false);
+    self.goToDisplay(display);
+  }
+
   self.goToDisplay = function(display) {
     self.chosenDisplayId(display)
     self.chosenIndividualData(null);
+    self.chosenIndividualDetails(null);
     //$.get('/items#####', {param: all}, self.chosenDisplayData)
     self.chosenDisplayData(testData);
     self.goToItem(testData[0]);
@@ -61,10 +83,14 @@ function appViewModel(){
   self.goToDetails = function(item){
     self.chosenIndividualData(null);
     self.chosenIndividualDetails(item)
-
   }
 
-  self.goToDisplay('All');
+  // self.makeContact = function(item){
+  //   self.chosenIndividualDetails(null)
+  //   self.makeContact(item)
+  // }
+
+  //self.goToDisplay('All');
   //self.goToItem(testData[0]);
 
 }; //End of appViewModel
