@@ -41,7 +41,10 @@ function appViewModel(){
                    },
                    {label : "Get Rid",
                     icon: "fa fa-trash-o"
-                   }];
+                   },
+                   {label : "jbolo",
+                    icon  : "fa fa-fw fa-user"}
+                  ];
   self.chosenDisplayId = ko.observable();
   self.chosenDisplayData = ko.observable();
   self.chosenIndividualData = ko.observable();
