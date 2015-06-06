@@ -174,10 +174,10 @@
                         <a href="#"><i class="fa fa-trash-o"></i> Get rid of stuff</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-desktop"></i> Another Random Thing</a>
+                        <a id="swipe" href="#"><i class="fa fa-fw fa-desktop"></i> SWIPE Test Button</a>
                     </li>
                     <li>
-                        <a id="tester" href="#"><i class="fa fa-fw fa-wrench"></i> Random Test Button</a>
+                        <a id="list" href="#"><i class="fa fa-fw fa-wrench"></i> LIST Test Button</a>
                     </li>
                 </ul>
             </div>
@@ -205,29 +205,72 @@
                         </ol>
                     </div>
 
-                    <!--NEW DIV -->
+                    <!-- DISPLAYS -->
+                    <ul data-bind="foreach: displays" style="list-style: none">
+                         <li>
+                            <a data-bind="text: $data, click: $root.goToDisplay"></a>
+                         </li>
+                    </ul>
 
-                    <div data-bind="foreach: testData" class="row">
-                        <div class="col-sm-4 col-lg-4 col-md-4">
-                            <div class="thumbnail">
-                                <h1 class="item-text" data-bind="text: name"></h1>
-                                <img data-bind="attr: {src: image }" alt="">
-                                <div class="caption">
+                    <!-- ITEMS LIST -->
+                    <table class="items" data-bind="with: chosenDisplayData">
+                        <thead><tr>
+                            <th>Name</th><th>Description</th><th>Location</th><th>Category</th>
+                        </tr></thead>
+                        <tbody data-bind="foreach: testData">
+                            <tr data-bind="click: $root.goToItem">
+                                <td data-bind="text: name"></td>
+                                <td data-bind="text: description"></td>
+                                <td data-bind="text: location"></td>
+                                <td data-bind="text: category"></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                                    <h4 class="item-text"><a href="#">5 km away</a>
-                                    </h4>
-                                </div>
-                                <div class="ratings">
-                                    <p class="pull-right">Trash <i class="fa fa-trash-o"></i></p>
-                                    <p><i class="fa fa-star"></i> Treasure</p>
+
+                    <!--INDIVIDUAL ITEM -->
+                    <div data-bind="with: chosenIndividualData">
+                        <div class="row">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <div class="thumbnail">
+                                    <h1 class="item-text" data-bind="text: name"></h1>
+                                    <img data-bind="attr: {src: image }" alt="">
+                                    <div class="caption">
+
+                                        <h4 class="item-text"><a href="#">5 km away</a>
+                                        </h4>
+                                    </div>
+                                    <div class="ratings">
+                                        <a data-bind="click: $root.treasure"><i class="fa fa-star"></i> Treasure</a>
+                                        <a data-bind="click: $root.trash" class="pull-right">Trash <i class="fa fa-trash-o"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--INDIVIDUAL ITEM END-->
 
-                    <!--NEW DIV END-->
+                    <!--ITEM DETAILS DISPLAY -->
+                    <div data-bind="with: chosenIndividualDetails">
+                        <div class="row">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <div class="thumbnail">
+                                    <img data-bind="attr: {src: image }" alt="">
+                                    <div class="caption">
+                                        <h3 class="item-text" data-bind="text: name"></h3>
+                                        <h4 class="item-text" data-bind="text: description"</h4>
+                                    </div>
+                                    <div class="ratings">
+                                        <a data-bind="click: $root.goToDisplay">Back</a>
+                                        <a class="pull-right">Get</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--ITEM DETAILS DISPLAY END-->
+
                 </div>
-
                 <!-- /.row -->
 
             </div>

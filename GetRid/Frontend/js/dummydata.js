@@ -1,18 +1,15 @@
 $(document).ready(function() {
 
-
-// ko.applyBinding({
-// Use testData: [ to apply ko binding]
   testData = [
     {
       "name": "Fridge",
-      "description": "Random Words",
+      "description": "Random Words fdggshfs dfsgsfg dfss adfdf wretr retrtt rtysry ryryytw serewww fewr cffd sddfse rtttrty ttr qqww ewrr tetytyy",
       "location": "Te Aro",
       "category": "Household Appliances",
       "image": "http://carvalhoscleaning.com/wp-content/uploads/2012/06/fridge-1.jpg"
     },
     {
-      "name": "Frezer",
+      "name": "Freezer",
       "description": "More Random Words",
       "location": "Te Aro",
       "category": "Household Appliances",
@@ -26,15 +23,73 @@ $(document).ready(function() {
       "image": "http://www.mustknowhow.com/wp-content/uploads/2010/05/fff37f7a-5e1d-49f7-b12f-7f2899effb0b_300.jpg"
     }
   ]
+
+
+function appViewModel(){
+  var self = this;
+  self.displays = ['All', 'Categories', 'Location', 'Get Rid'];
+  self.chosenDisplayId = ko.observable();
+  self.chosenDisplayData = ko.observable();
+  self.chosenIndividualData = ko.observable();
+  self.chosenIndividualDetails =ko.observable();
+
+  //Behaviours
+  self.goToDisplay = function(display) {
+    self.chosenDisplayId(display)
+    self.chosenIndividualData(null);
+    //$.get('/items#####', {param: all}, self.chosenDisplayData)
+    self.chosenDisplayData(testData);
+    self.goToItem(testData[0]);
+  };
+
+  self.trash = function(){
+    testData.shift();
+     self.goToItem(testData[0]);
+  }
+
+  self.treasure = function(){
+    self.goToDetails(testData[0]);
+  }
+
+  self.goToItem = function(item) {
+    self.chosenDisplayId(item.display);
+    self.chosenDisplayData(null);
+    //$.get('item', {itemId: testData.id}, self.chosenIndividualData)
+    self.chosenIndividualData(item);
+  }
+
+  self.goToDetails = function(item){
+    self.chosenIndividualData(null);
+    self.chosenIndividualDetails(item)
+
+  }
+
+  self.goToDisplay('All');
+  //self.goToItem(testData[0]);
+
+}; //End of appViewModel
+ko.applyBindings(new appViewModel());
+
+// $(document).on('click', '#list', function(e){
+//   e.preventDefault();
+//    function listView(){
+//     // if (testData.length > 0){
+//     //   testData: ko.observable(true)
+//     //     } else {
+//     //   testData: ko.observable(false)
+//     //     }
+//     testData
+//    }
+//   ko.applyBindings(new listView());
 // });
 
-$(document).on('click', '#tester', function(e){
-  e.preventDefault();
-   function listView(){
-    testData
-   }
-  ko.applyBindings(new listView());
-});
+// $(document).on('click', '#swipe', function(e){
+//   e.preventDefault();
+//     function swipeView(){
+//       swipeTestData
+//     }
+//   ko.applyBindings(new swipeView());
+// });
 
 
 
