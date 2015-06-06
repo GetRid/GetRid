@@ -90,7 +90,7 @@ namespace GetRid.Controllers
                 var id = HttpContext.Current.User.Identity.GetUserId();
                 var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
 
-                product.User = manager.FindById(id);
+                //product.User = manager.FindById(id);
                 
 
                 db.Products.Add(product);
