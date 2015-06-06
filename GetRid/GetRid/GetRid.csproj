@@ -239,6 +239,10 @@
     <Compile Include="Migrations\201506060411532_ChangedUnsure.Designer.cs">
       <DependentUpon>201506060411532_ChangedUnsure.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506060738514_ProductExperiment.cs" />
+    <Compile Include="Migrations\201506060738514_ProductExperiment.Designer.cs">
+      <DependentUpon>201506060738514_ProductExperiment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -335,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506060411532_ChangedUnsure.resx">
       <DependentUpon>201506060411532_ChangedUnsure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506060738514_ProductExperiment.resx">
+      <DependentUpon>201506060738514_ProductExperiment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

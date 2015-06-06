@@ -90,7 +90,9 @@ namespace GetRid.Controllers
                 var id = HttpContext.Current.User.Identity.GetUserId();
                 var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
 
-                product.User = manager.FindById(id);
+                var user = manager.FindById(id);
+                product.User = user;
+                product.Location = user.Location;
                 
 
                 db.Products.Add(product);
@@ -100,6 +102,33 @@ namespace GetRid.Controllers
 
             return InternalServerError();
         }
+
+        //// POST: api/Products/id
+        //[ResponseType(typeof(Product))]
+        //public IHttpActionResult PostReserved(int id)
+        //{
+        //    if (User.Identity.IsAuthenticated)
+        //    {
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(ModelState);
+        //        }
+        //        //product.User
+
+
+        //        var id = HttpContext.Current.User.Identity.GetUserId();
+        //        var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
+
+        //        product.User = manager.FindById(id);
+
+
+        //        db.Products.Add(product);
+        //        db.SaveChanges();
+        //        return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
+        //    }
+
+        //    return InternalServerError();
+        //}
 
         // DELETE: api/Products/5
         [ResponseType(typeof(Product))]
