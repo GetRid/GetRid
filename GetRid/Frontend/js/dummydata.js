@@ -20,7 +20,7 @@ $(document).ready(function() {
       "description": "More Random Words",
       "location": "Te Aro",
       "category": "Household Appliances",
-      "image": "http://www.mustknowhow.com/wp-content/uploads/2010/05/fff37f7a-5e1d-49f7-b12f-7f2899effb0b_300.jpg"
+      "image": "http://ecx.images-amazon.com/images/I/71mdsLdw2-L._SL1500_.jpg"
     }
   ]
 
