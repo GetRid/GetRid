@@ -2,14 +2,24 @@ $(document).ready(function() {
 
   function appViewModel() {
     var self = this;
+
     self.itemData = ko.observable();
+
+    // VIEWS
     self.showSplashScreen = ko.observable(true);
     self.showSignInSignUpForm = ko.observable(false);
     self.showGetRidForm = ko.observable(false);
     self.showNavBar = ko.observable(false);
+    self.showSuccessfulGetRid = ko.observable(false);
 
+    // SIGN IN bindings
     self.UserName = ko.observable();
     self.Password = ko.observable();
+
+    // GET RID bindings
+    self.Name = ko.observable();
+    self.Description = ko.observable();
+    self.Category = ko.observable();
 
     self.displays = [{label : "All"},
                      {label : "Category"},
@@ -17,6 +27,7 @@ $(document).ready(function() {
                      {label : "Get Rid"},
                     ];
 
+    // Display Data bindings
     self.chosenDisplayId = ko.observable();
     self.chosenDisplayData = ko.observable();
     self.chosenIndividualData = ko.observable();
@@ -42,6 +53,24 @@ $(document).ready(function() {
       self.goToDisplay(display);
     }
 
+    self.handleGetRid = function(formElement) {
+      $.ajax("http://getridapi.azurewebsites.net/api/products", {
+            data: ko.toJSON({
+              Name: self.Name,
+              Description: self.Description,
+              Category: self.Category
+            }),
+            type: "post",
+            contentType: "application/json"
+        })
+        .done(function(result) {
+          console.log("REGISTRATION REQUEST DONE: ", data);
+        })
+        .fail(function(result) {
+            console.log("GET RID REQUEST FAILED", result);
+        });
+    }
+
     self.handleSignUp = function(formElement) {
       /* Your data in JSON format - see below */
 
@@ -62,14 +91,7 @@ $(document).ready(function() {
               username: self.UserName,
               Password: self.Password
             });
-          console.log("REGISTRATION REQUESET DONE: ", data);
-
-          // $.ajax("http://getridapi.azurewebsites.net/token", {
-          //   Accept: "*/*",
-          //   type: "post",
-          //   contentType: "application/x-www-form-urlencoded",
-          //   data: data
-          // })
+          console.log("REGISTRATION REQUEST DONE: ", data);
 
           $.ajax({
             type: 'POST',

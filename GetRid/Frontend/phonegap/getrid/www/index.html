@@ -120,9 +120,11 @@
 
                     <!--ITEM DETAILS DISPLAY -->
                     <div data-bind="with: chosenIndividualDetails">
-                        <div class="col-sm-12">
-                            <div class="row">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="thumbnail">
                                 <div class="col-sm-3">
+
                                         <img class="more-info-image" src="http://www.happy-wallpapers.com/wp-content/uploads/2015/06/Grumpy_Cat_No_03.jpg" alt="">
                                         <!-- <img data-bind="attr: {src: image }" alt=""> -->
                                 </div>
@@ -137,28 +139,39 @@
                                     </div>
                                     <div>
                                         <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-5x"></i><br>Back</a>
-                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!--ITEM DETAILS DISPLAY END-->
 
                     <!-- GET RID FORM -->
-                    <div data-bind="visible: showGetRidForm"> <!-- data-bind="with: getRidData" -->
+                    <div data-bind="visible: showGetRidForm">
                         <div class="row item-text">
                             <div class="col-sm-12">
                                 <img class="logo-circles" src="img/GetRidCircles.png">
-                                <form action="#" method="post">
-                                    <p><input type="text" placeholder="Item Name"></p>
-                                    <p><input type="text" placeholder="Category"></p>
-                                    <p><input type="text" placeholder="Location"></p>
-                                    <p><input type="text" placeholder="Image"></p>
-                                    <p><input type="textarea" placeholder="Description"></p>
-                                    <p><input type="submit" value="Submit" class="btn btn-primary"></p>
+                                <form>
+                                    <p><input type="text" data-bind="value: Name" placeholder="Item Name"></p>
+                                    <p><input type="textarea" data-bind="value: Description" placeholder="Description"></p>
+                                    <p><input type="text" data-bind="value: Category" placeholder="Category"></p>
+                                    <!-- <p><input type="text" placeholder="Image"></p> -->
+                                    <p><input type="submit" id="get-rid" data-bind="click: $root.handleGetRid" value="Submit" class="btn btn-primary"></p>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <!-- GET RID FORM END-->
+
+                    <!--SUCESSFUL GET RID SUBMISSION -->
+                    <div data-bind="visible: showSuccessfulGetRid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="thumbnail">
+                                    <h1 class="item-text">Your Item has been successfully added</h1>
+                                    <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-5x"></i><br>Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!--CONTACT DISPLAY -->
 <!--                     <div data-bind="with: makeContact">
