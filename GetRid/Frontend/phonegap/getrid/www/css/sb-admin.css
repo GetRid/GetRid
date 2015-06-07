@@ -24,7 +24,7 @@ body {
 #page-wrapper {
     width: 100%;
     padding: 0;
-    background-color: #8A99A6;
+    background-color: white;
 }
 
 .huge {
@@ -245,6 +245,13 @@ ul.alert-dropdown {
     margin-bottom: auto;
  }
 
+  .more-info-image {
+    display: block;
+    max-height: 100px;
+    max-width: 100px;
+    align: left;
+ }
+
   .flash-image {
     display: block;
     width: 150px;
@@ -277,5 +284,36 @@ ul.alert-dropdown {
  #top-nav {
     background-color: #EDEDED;
 }
+
+.ratings {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+}
+
+.fa {
+    color: black;
+}
+
+.fa-check-circle-o {
+    color: green;
+}
+
+.fa-trash-o {
+    color: red;
+}
+
+.fa-shopping-cart {
+    color: grey;
+}
+
+.fa-arrow-circle-left {
+    color: grey;
+}
+
+
+
+
+
 
 
