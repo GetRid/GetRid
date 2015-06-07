@@ -48,7 +48,7 @@ $(document).ready(function() {
         $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
             data: ko.toJSON({
               UserName: self.UserName,
-              Email: "dummy13@email.com",
+              Email: "dummy22@email.com",
               Suburb: "Mt. Vic",
               Password: self.Password,
               ConfirmPassword: self.Password
@@ -78,8 +78,8 @@ $(document).ready(function() {
           })
           .done(function(result) {
             console.log("TOKEN REQUEST DONE: ", result);
-            self.username(data.UserName)
-            sessionStorage.setItem(tokenKey, data.access_token)
+            //self.username(data.UserName)
+            sessionStorage.setItem("getRidLoginToken", result.access_token)
           })
           .fail(function(result) {
             console.log("TOKEN REQUEST FAILED ", result);
