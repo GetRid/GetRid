@@ -15,7 +15,7 @@ namespace GetRid
         public static void Register(HttpConfiguration config)
         {
             // Enable CORS support, requires a NuGet package (Microsofts API CORS package)
-            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+            //config.EnableCors(new EnableCorsAttribute("*", "*", "*")); - DO NOT USE - PLEASE REFERENCE Startup.Auth
 
             //Converting XML to JSON by default - http://stackoverflow.com/questions/9847564/how-do-i-get-asp-net-web-api-to-return-json-instead-of-xml-using-chrome
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
