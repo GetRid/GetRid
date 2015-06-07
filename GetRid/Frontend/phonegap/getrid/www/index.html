@@ -34,59 +34,14 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-bind="visible: showNavBar">
+        <nav id="top-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-bind="visible: showNavBar">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-<!--                 <a class="navbar-brand" href="index.html">GetRid <i class="fa fa-fw fa-dashboard"></i></a> -->
+
                 <img class="logo-long" src="img/GetRidLong.png">
             </div>
             <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <li>
-                    <a data-bind="click: $root.browseNearYou"><i class="fa fa-location-arrow"></i></a>
-                </li>
-                <li>
-                    <a data-bind="click: $root.goToDisplay"><i class="fa fa-globe"></i></a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i></a>
-                    <ul id="demo" class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-home"></i> Household</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-meh-o"></i> Furniture</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a data-bind="click: $root.goToGetRid"><i class="fa fa-trash-o"></i></a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Jono Bolo<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
@@ -140,13 +95,13 @@
 
                                 <div class="thumbnail item-text">
                                     <img class="flash-image" src="img/GetRidCircle.png" alt="">
-                                    <p><button data-bind="click: $root.signIn" class="btn btn-primary">LOGIN</button></p>
-                                    <p><button data-bind="click: $root.signUp" class="btn btn-primary">SIGNUP</button></p>
+                                    <p><button data-bind="click: $root.signIn" class="btn btn-primary">SIGNIN</button></p>
+                                    <p><button id="signup"data-bind="click: $root.signUp" class="btn btn-primary">SIGNUP</button></p>
                                     <div class="caption">
                                     </div>
                                     <div class="ratings">
                                         <a data-bind="click: $root.browseNearYou"><h1><i class="fa fa-location-arrow"></i> </h1></a>
-                                        <a data-bind="click: $root.browseNearYou"><h4>Browse Near You </h4></a>
+                                        <a id="browseNearYou" data-bind="click: $root.browseNearYou"><h4>Browse Near You </h4></a>
                                     </div>
                                 </div>
                             </div>
@@ -265,6 +220,7 @@
 
                 </div>
                 <!-- /.row -->
+                <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" data-bind="visible: showNavBar">
                 <ul class="nav top-nav">
                     <li>
                         <a data-bind="click: $root.browseNearYou"><i class="fa fa-location-arrow"></i></a>
@@ -287,7 +243,7 @@
                         <a data-bind="click: $root.goToGetRid"><i class="fa fa-trash-o"></i></a>
                     </li>
                 </ul>
-
+            </nav>
             </div>
             <!-- /.container-fluid -->
 
@@ -303,7 +259,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/dummydata.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 

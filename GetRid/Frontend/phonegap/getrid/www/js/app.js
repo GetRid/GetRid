@@ -31,6 +31,19 @@ $(document).ready(function() {
     }
   ]
 
+  $(document).on('click', '#browseNearYou', function(e){
+      e.preventDefault();
+      $.getJSON('/#########', function(data){
+      })
+  })
+
+  $(document).on('click', '#signup', function(e){
+      e.preventDefault();
+      returnedData = ko.toJSON()
+      $.post('/#########', function(returnedData){
+      })
+  })
+
 
   function appViewModel(){
     var self = this;

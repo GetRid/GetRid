@@ -51,7 +51,7 @@ body {
 
 .top-nav>li {
     display: inline-block;
-    float: left;
+
 }
 
 .top-nav>li>a {
@@ -123,7 +123,7 @@ ul.alert-dropdown {
         border: none;
         border-radius: 0;
         overflow-y: auto;
-        background-color: #222;
+        background-color: #EDEDED;
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
@@ -274,5 +274,8 @@ ul.alert-dropdown {
     margin-bottom: 20px;
  }
 
+ #top-nav {
+    background-color: #EDEDED;
+}
 
 
