@@ -8,6 +8,9 @@ $(document).ready(function() {
     self.showGetRidForm = ko.observable(false);
     self.showNavBar = ko.observable(false);
 
+    self.UserName = ko.observable();
+    self.Password = ko.observable();
+
     self.displays = [{label : "All"},
                      {label : "Category"},
                      {label : "Search Location"},
@@ -33,6 +36,57 @@ $(document).ready(function() {
       self.showSignInSignUpForm(true);
     }
 
+    self.handleSignIn = function() {
+      self.showSignInSignUpForm(false);
+      self.showNavBar(true);
+      self.goToDisplay(display);
+    }
+
+    self.handleSignUp = function(formElement) {
+      /* Your data in JSON format - see below */
+
+        $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
+            data: ko.toJSON({
+              UserName: self.UserName,
+              Email: "dummy10@email.com",
+              Suburb: "Mt. Vic",
+              Password: self.Password,
+              ConfirmPassword: self.Password
+            }),
+            type: "post",
+            contentType: "application/json"
+        })
+        .done(function(result) {
+          var data = $.param({
+              "grant_type": "password",
+              "username": self.UserName,
+              "Password": self.Password
+            });
+          console.log("REGISTRATION REQUESET DONE: ", data);
+
+          $.ajax("http://getridapi.azurewebsites.net/token", {
+            Accept: "*/*",
+            type: "post",
+            contentType: "application/x-www-form-urlencoded",
+            data: data
+          })
+          .done(function(result) {
+            console.log("TOKEN REQUEST DONE: ", result);
+          })
+          .fail(function(result) {
+            console.log("TOKEN REQUEST FAILED ", result);
+          })
+        })
+        .fail(function(result) {
+            console.log("REGISTRATION REQUEST FAILED", result);
+        });
+
+      // var jsonData = ko.toJSON(data);
+      // $.post("getridapi.azurewebsites.net/api/Account/Register", data, function(returnedData) {
+      //     // This callback is executed if the post was successful
+      //})
+    }
+
     self.browseNearYou = function(display) {
       self.showSplashScreen(false);
       self.showNavBar(true);
@@ -47,7 +101,6 @@ $(document).ready(function() {
       $.getJSON('http://getridapi.azurewebsites.net/api/products', function(data) {
           self.itemData(data);
           self.chosenDisplayData(self.itemData());
-          console.log(self.itemData()[0]);
           self.goToItem(self.itemData()[0]);
       });
     }
