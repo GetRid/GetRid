@@ -11,14 +11,14 @@ namespace GetRid.Models
     public class Product
     {
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
         public bool Reserved { get; set; }
-        //[Key]
-        //[ForeignKey("Id")]
-        //[Required]
         public virtual ApplicationUser User { get; set; }
-        public virtual Category Category { get; set; }
+        [Required]
+        public virtual string Category { get; set; }
         public virtual Location Location { get; set; }
     }
 }

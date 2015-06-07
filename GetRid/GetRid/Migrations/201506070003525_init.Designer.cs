@@ -7,13 +7,13 @@ namespace GetRid.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class ProductWithUserKey : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ProductWithUserKey));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201506060254127_ProductWithUserKey"; }
+            get { return "201506070003525_init"; }
         }
         
         string IMigrationMetadata.Source
