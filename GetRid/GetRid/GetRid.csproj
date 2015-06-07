@@ -215,29 +215,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506040239411_initTables.cs" />
-    <Compile Include="Migrations\201506040239411_initTables.Designer.cs">
-      <DependentUpon>201506040239411_initTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506050049283_init.cs" />
-    <Compile Include="Migrations\201506050049283_init.Designer.cs">
-      <DependentUpon>201506050049283_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506060250087_testingProductWithNoKeys.cs" />
-    <Compile Include="Migrations\201506060250087_testingProductWithNoKeys.Designer.cs">
-      <DependentUpon>201506060250087_testingProductWithNoKeys.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506060254127_ProductWithUserKey.cs" />
-    <Compile Include="Migrations\201506060254127_ProductWithUserKey.Designer.cs">
-      <DependentUpon>201506060254127_ProductWithUserKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506060338028_ProductAddBackForiegnKeys.cs" />
-    <Compile Include="Migrations\201506060338028_ProductAddBackForiegnKeys.Designer.cs">
-      <DependentUpon>201506060338028_ProductAddBackForiegnKeys.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506060411532_ChangedUnsure.cs" />
-    <Compile Include="Migrations\201506060411532_ChangedUnsure.Designer.cs">
-      <DependentUpon>201506060411532_ChangedUnsure.cs</DependentUpon>
+    <Compile Include="Migrations\201506070003525_init.cs" />
+    <Compile Include="Migrations\201506070003525_init.Designer.cs">
+      <DependentUpon>201506070003525_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -318,23 +298,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506040239411_initTables.resx">
-      <DependentUpon>201506040239411_initTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506050049283_init.resx">
-      <DependentUpon>201506050049283_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506060250087_testingProductWithNoKeys.resx">
-      <DependentUpon>201506060250087_testingProductWithNoKeys.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506060254127_ProductWithUserKey.resx">
-      <DependentUpon>201506060254127_ProductWithUserKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506060338028_ProductAddBackForiegnKeys.resx">
-      <DependentUpon>201506060338028_ProductAddBackForiegnKeys.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506060411532_ChangedUnsure.resx">
-      <DependentUpon>201506060411532_ChangedUnsure.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506070003525_init.resx">
+      <DependentUpon>201506070003525_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

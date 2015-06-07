@@ -328,7 +328,7 @@ namespace GetRid.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Location = new Location(){Suburb = model.Suburb} };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
