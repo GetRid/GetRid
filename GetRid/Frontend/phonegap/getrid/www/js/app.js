@@ -48,7 +48,7 @@ $(document).ready(function() {
         $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
             data: ko.toJSON({
               UserName: self.UserName,
-              Email: "dummy10@email.com",
+              Email: "dummy13@email.com",
               Suburb: "Mt. Vic",
               Password: self.Password,
               ConfirmPassword: self.Password
@@ -58,20 +58,28 @@ $(document).ready(function() {
         })
         .done(function(result) {
           var data = $.param({
-              "grant_type": "password",
-              "username": self.UserName,
-              "Password": self.Password
+              grant_type: 'password',
+              username: self.UserName,
+              Password: self.Password
             });
           console.log("REGISTRATION REQUESET DONE: ", data);
 
-          $.ajax("http://getridapi.azurewebsites.net/token", {
-            Accept: "*/*",
-            type: "post",
-            contentType: "application/x-www-form-urlencoded",
+          // $.ajax("http://getridapi.azurewebsites.net/token", {
+          //   Accept: "*/*",
+          //   type: "post",
+          //   contentType: "application/x-www-form-urlencoded",
+          //   data: data
+          // })
+
+          $.ajax({
+            type: 'POST',
+            url: 'http://getridapi.azurewebsites.net/token',
             data: data
           })
           .done(function(result) {
             console.log("TOKEN REQUEST DONE: ", result);
+            self.username(data.UserName)
+            sessionStorage.setItem(tokenKey, data.access_token)
           })
           .fail(function(result) {
             console.log("TOKEN REQUEST FAILED ", result);
