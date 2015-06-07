@@ -129,7 +129,7 @@
                         <thead><tr>
                             <th>Name</th><th>Description</th><th>Location</th><th>Category</th>
                         </tr></thead>
-                        <tbody data-bind="foreach: testData">
+                        <tbody data-bind="foreach: self.testData">
                             <tr data-bind="click: $root.goToItem">
                                 <td data-bind="text: name"></td>
                                 <td data-bind="text: description"></td>
@@ -145,8 +145,8 @@
                         <div class="row">
                             <div class="col-sm-4 col-lg-4 col-md-4">
                                 <div class="thumbnail">
-                                    <h1 class="item-text" data-bind="text: name"></h1>
-                                    <img class="item-image" data-bind="attr: {src: image }" alt="">
+                                    <h1 class="item-text" data-bind="text: Name"></h1>
+                                    <!-- <img class="item-image" data-bind="attr: {src: image }" alt=""> -->
                                     <div class="caption">
 
                                         <h4 class="item-text"><a href="#">5 km away</a>
@@ -167,10 +167,10 @@
                         <div class="row">
                             <div class="col-sm-4 col-lg-4 col-md-4">
                                 <div class="thumbnail">
-                                    <img data-bind="attr: {src: image }" alt="">
+                                    <!-- <img data-bind="attr: {src: image }" alt=""> -->
                                     <div class="caption">
-                                        <h3 class="item-text" data-bind="text: name"></h3>
-                                        <h4 class="item-text" data-bind="text: description"</h4>
+                                        <h3 class="item-text" data-bind="text: Name"></h3>
+                                        <h4 class="item-text" data-bind="text: Description"</h4>
                                     </div>
                                     <div class="ratings">
                                         <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left"></i> Back </a>

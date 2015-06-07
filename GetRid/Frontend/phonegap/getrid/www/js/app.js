@@ -1,57 +1,60 @@
 $(document).ready(function() {
 
-  testData = [
-    {
-      "name": "Fridge",
-      "description": "Random Words fdggshfs dfsgsfg dfss adfdf wretr retrtt rtysry ryryytw serewww fewr cffd sddfse rtttrty ttr qqww ewrr tetytyy",
-      "location": "Te Aro",
-      "category": "Household Appliances",
-      "image": "http://carvalhoscleaning.com/wp-content/uploads/2012/06/fridge-1.jpg"
-    },
-    {
-      "name": "Freezer",
-      "description": "More Random Words",
-      "location": "Te Aro",
-      "category": "Household Appliances",
-      "image": "http://beautifulkitchensblog.co.uk/wp-content/uploads/2013/04/WBA33992-NFC-IX-fridge-freezer-Whirlpool.jpg"
-    },
-    {
-      "name": "Oven",
-      "description": "More Random Words",
-      "location": "Te Aro",
-      "category": "Household Appliances",
-      "image": "http://ecx.images-amazon.com/images/I/71mdsLdw2-L._SL1500_.jpg"
-    },
-        {
-      "name": "TV",
-      "description": "This is a Cool TV!",
-      "location": "Petone",
-      "category": "Household Appliances",
-      "image": "http://www.fotoagent.dk/single_picture/11174/138/medium/DENVER_DFT-4219.jpg"
-    }
-  ]
+  //testData = []
+  // testData = [
+  //   {
+  //     "name": "Fridge",
+  //     "description": "Random Words fdggshfs dfsgsfg dfss adfdf wretr retrtt rtysry ryryytw serewww fewr cffd sddfse rtttrty ttr qqww ewrr tetytyy",
+  //     "location": "Te Aro",
+  //     "category": "Household Appliances",
+  //     "image": "http://carvalhoscleaning.com/wp-content/uploads/2012/06/fridge-1.jpg"
+  //   },
+  //   {
+  //     "name": "Freezer",
+  //     "description": "More Random Words",
+  //     "location": "Te Aro",
+  //     "category": "Household Appliances",
+  //     "image": "http://beautifulkitchensblog.co.uk/wp-content/uploads/2013/04/WBA33992-NFC-IX-fridge-freezer-Whirlpool.jpg"
+  //   },
+  //   {
+  //     "name": "Oven",
+  //     "description": "More Random Words",
+  //     "location": "Te Aro",
+  //     "category": "Household Appliances",
+  //     "image": "http://ecx.images-amazon.com/images/I/71mdsLdw2-L._SL1500_.jpg"
+  //   },
+  //       {
+  //     "name": "TV",
+  //     "description": "This is a Cool TV!",
+  //     "location": "Petone",
+  //     "category": "Household Appliances",
+  //     "image": "http://www.fotoagent.dk/single_picture/11174/138/medium/DENVER_DFT-4219.jpg"
+  //   }
+  // ]
 
-  $(document).on('click', '#browseNearYou', function(e){
-      e.preventDefault();
-      $.getJSON('/#########', function(data){
-      })
-  })
+  // $(document).on('click', '#browseNearYou', function(e){
+  //     e.preventDefault();
+  //     $.getJSON('http://getridapi.azurewebsites.net/api/products', function(data){
+  //       testData = data
 
-  $(document).on('click', '#signup', function(e){
-      e.preventDefault();
-      returnedData = ko.toJSON()
-      $.post('/#########', function(returnedData){
-      })
-  })
+  //     })
+  // })
+
+  // $(document).on('click', '#signup', function(e){
+  //     e.preventDefault();
+  //     returnedData = ko.toJSON()
+  //     $.post('/#########', function(returnedData){
+  //     })
+  // })
 
 
   function appViewModel(){
     var self = this;
+    self.testData = ko.observable();
     self.showSplashScreen = ko.observable(true);
     self.showSignInSignUpForm = ko.observable(false);
     self.showGetRidForm = ko.observable(false);
     self.showNavBar = ko.observable(false);
-    //self.displays = ['All', 'Categories', 'Location', 'Get Rid'];
 
     self.displays = [{label : "All"},
                      {label : "Category"},
@@ -87,24 +90,27 @@ $(document).ready(function() {
       self.chosenDisplayId(display)
       self.chosenIndividualData(null);
       self.chosenIndividualDetails(null);
-      //$.get('/items#####', {param: all}, self.chosenDisplayData)
-      self.chosenDisplayData(testData);
-      self.goToItem(testData[0]);
+      $.getJSON('http://getridapi.azurewebsites.net/api/products', function(data) {
+          self.testData(data);
+          self.chosenDisplayData(self.testData());
+          console.log(self.testData()[0]);
+          self.goToItem(self.testData()[0]);
+      })
     };
 
     self.trash = function(){
-      testData.shift();
-       self.goToItem(testData[0]);
+      self.testData().shift();
+       self.goToItem(self.testData()[0]);
     }
 
     self.treasure = function(){
-      self.goToDetails(testData[0]);
+      self.goToDetails(self.testData()[0]);
     }
 
     self.goToItem = function(item) {
-      self.chosenDisplayId(item.display);
+      //self.chosenDisplayId(item.display);
       self.chosenDisplayData(null);
-      //$.get('item', {itemId: testData.id}, self.chosenIndividualData)
+      //$.get('item', {itemId: testData().id}, self.chosenIndividualData)
       self.chosenIndividualData(item);
     }
 
@@ -129,7 +135,7 @@ $(document).ready(function() {
     // }
 
     //self.goToDisplay('All');
-    //self.goToItem(testData[0]);
+    //self.goToItem(testData()[0]);
 
   }; //End of appViewModel
   ko.applyBindings(new appViewModel());
