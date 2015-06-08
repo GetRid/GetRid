@@ -95,6 +95,22 @@ $(document).ready(function() {
         });
     }
 
+    self.takePhoto = function(formElement) {
+      navigator.camera.getPicture(onSuccess, onFail, {
+          quality: 100,
+          destinationType: Camera.DestinationType.DATA_URL
+      });
+
+      function onSuccess(imageData) {
+          // here we can upload imageData to the server
+          console.log("image taken", imageData);
+      }
+
+      function onFail(message) {
+          alert('Failed because: ' + message);
+      }
+    }
+
     self.handleSignUp = function(formElement) {
         $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
             data: ko.toJSON({
