@@ -183,8 +183,6 @@ $(document).ready(function() {
     swipeEvent.add( new Hammer.Pan({threshold: 100}))
 
      swipeEvent.on("panleft panright", function(e){
-      e.gesture.preventDefault(true);
-
       if (e.type == "panleft") {
         self.trash();
       } else if (e.type == "panright") {
@@ -194,22 +192,5 @@ $(document).ready(function() {
 
   }; //End of appViewModel
   ko.applyBindings(new appViewModel());
-
-  // // Hammer JS
-  // var imageSwipe = $('#imageSwipe'); //document.getElementById('imageSwipe');
-  // var swipeEvent = new Hammer(imageSwipe);
-  // console.log(imageSwipe);
-  // //console.log(swipeEvent);
-  // swipeEvent.on("panleft panright", function(e){
-  //   console.log("NO!");
-  //   console.log(e);
-  //   if (e.type == panleft) {
-  //     //self.trash();
-  //     console.log("pan left");
-  //   } else if (e.type = panright) {
-  //     //self.treasure();
-  //     console.log("pan right");
-  //   }
-  // });
 
 }); //End of doc ready
