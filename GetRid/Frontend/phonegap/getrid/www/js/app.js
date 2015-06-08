@@ -178,16 +178,15 @@ $(document).ready(function() {
     // }
 
     // Hammer JS
-    var imageSwipe = document.getElementById('imageSwipe'); //$('#imageSwipe');
-    var swipeEvent = new Hammer(imageSwipe);
-    //console.log(imageSwipe);
-    //console.log(swipeEvent);
-    swipeEvent.on("panleft panright", function(ev){
+    imageSwipe = document.getElementById('imageSwipe');
+    swipeEvent = new Hammer(imageSwipe);
+
+     swipeEvent.on("panleft panright", function(e){
       console.log("NO!");
-      console.log(ev);
-      if (e.type == panleft) {
+      console.log(e);
+      if (e.type == "panleft") {
         self.trash();
-      } else if (e.type == panright) {
+      } else if (e.type == "panright") {
         self.treasure();
       }
     });
