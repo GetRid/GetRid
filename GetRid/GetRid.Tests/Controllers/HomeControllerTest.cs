@@ -30,7 +30,7 @@ namespace GetRid.Tests.Controllers
 
             // Act
             //ViewResult result = controller.Index() as ViewResult;
-            productsController.BlobStorage();
+            //productsController.BlobStorage();
             // Assert
             //Assert.IsNotNull(result);
             //Assert.AreEqual("Home Page", result.ViewBag.Title);

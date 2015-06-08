@@ -90,20 +90,16 @@ namespace GetRid.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-                //product.User
-
-
+               
                 var id = HttpContext.Current.User.Identity.GetUserId();
                 var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
 
                 var user = manager.FindById(id);
                 product.User = user;
                 product.Location = user.Location;
-                var blobURL = blobStorage.BlobingTheStorage(product.ImageURL);
-                product.ImageURL = blobURL;
-                //product.Category = new Category(){CategoryType = product.Category};
-                
-
+                //var blobURL = blobStorage.BlobingTheStorage(product.ImageURL);
+                //product.ImageURL = blobURL;
+               
                 db.Products.Add(product);
                 db.SaveChanges();
                 return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
