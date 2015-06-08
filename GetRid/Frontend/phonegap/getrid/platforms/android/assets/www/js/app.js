@@ -1,16 +1,19 @@
 $(document).ready(function() {
 
+  var token = sessionStorage.getItem("getRidLoginToken");
+  var headers = {};
+
   function appViewModel() {
     var self = this;
 
     self.itemData = ko.observable();
 
     // VIEWS
-    self.showSplashScreen = ko.observable(true);
     self.showSignInSignUpForm = ko.observable(false);
     self.showGetRidForm = ko.observable(false);
     self.showNavBar = ko.observable(false);
     self.showSuccessfulGetRid = ko.observable(false);
+    self.showSplashScreen = ko.observable(false);
 
     // SIGN IN bindings
     self.UserName = ko.observable();
@@ -20,6 +23,7 @@ $(document).ready(function() {
     self.Name = ko.observable();
     self.Description = ko.observable();
     self.Category = ko.observable();
+    self.ImageURL = ko.observable()
 
     self.displays = [{label : "All"},
                      {label : "Category"},
@@ -35,7 +39,6 @@ $(document).ready(function() {
     self.makeContact = ko.observable();
     self.getRidData = ko.observable();
 
-
     //Behaviours
     self.signIn = function(display) {
       self.showSplashScreen(false);
@@ -48,21 +51,27 @@ $(document).ready(function() {
     }
 
     self.handleSignIn = function(formElement) {
-      $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
-          data: ko.toJSON({
-            UserName: self.UserName,
-            Password: self.Password,
-          }),
-          type: "post",
-          contentType: "application/json"
+      var data = $.param({
+          grant_type: 'password',
+          username: self.UserName,
+          Password: self.Password
+        });
+
+      $.ajax({
+        type: 'POST',
+        url: 'http://getridapi.azurewebsites.net/token',
+        data: data
       })
       .done(function(result) {
+        console.log("sign in successful.")
+        sessionStorage.setItem("getRidLoginToken", result.access_token);
+        headers.Authorization = 'Bearer ' + result.access_token;
         self.showSignInSignUpForm(false);
         self.showNavBar(true);
-        self.goToDisplay(display);
+        self.goToDisplay("All");
       })
       .fail(function(result) {
-          console.log("REGISTRATION REQUEST FAILED", result);
+          console.log("sign in failed.", result);
       });
     }
 
@@ -74,14 +83,15 @@ $(document).ready(function() {
               Category: self.Category
             }),
             type: "post",
+            headers: headers,
             contentType: "application/json"
         })
         .done(function(result) {
-          console.log("REGISTRATION REQUEST DONE: ", data);
+          console.log("Add product successful.. ", result);
           self.showSuccessfulGetRid(true);
         })
         .fail(function(result) {
-            console.log("GET RID REQUEST FAILED", result);
+            console.log("Add Product FAILED", result);
         });
     }
 
@@ -89,7 +99,7 @@ $(document).ready(function() {
         $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
             data: ko.toJSON({
               UserName: self.UserName,
-              Email: "dummy22@email.com",
+              Email: "dummy30@email.com",
               Suburb: "Mt. Vic",
               Password: self.Password,
               ConfirmPassword: self.Password
@@ -124,6 +134,12 @@ $(document).ready(function() {
         });
     }
 
+    self.handleLogout = function() {
+      console.log("logging out..");
+      sessionStorage.removeItem("getRidLoginToken");
+      self.showSplashScreen(true);
+    }
+
     self.browseNearYou = function(display) {
       self.showSplashScreen(false);
       self.showNavBar(true);
@@ -136,8 +152,16 @@ $(document).ready(function() {
       self.chosenIndividualDetails(null);
 
       $.getJSON('http://getridapi.azurewebsites.net/api/products', function(data) {
+          //console.log(data)
           self.itemData(data);
           self.chosenDisplayData(self.itemData());
+
+          // $.getJSON('http://edafinalprojects.blob.core.windows.net/getrid/2015%20June%2008-05:42:28', function(data) {
+          //     console.log(data);
+          //     self.itemData()[0]["imageAsBase64String"] = data;
+          //     console.log(self.itemData()[0]["imageAsBase64String"]);
+          // });
+
           self.goToItem(self.itemData()[0]);
       });
     }
@@ -159,7 +183,7 @@ $(document).ready(function() {
 
     self.goToDetails = function(item) {
       self.chosenIndividualData(null);
-      self.chosenIndividualDetails(item)
+      self.chosenIndividualDetails(item);
     }
 
     self.goToGetRid = function() {
@@ -172,10 +196,17 @@ $(document).ready(function() {
       self.showGetRidForm(true);
     }
 
-    // self.makeContact = function(item){
-    //   self.chosenIndividualDetails(null)
-    //   self.makeContact(item)
+    // self.makeContact = function(){
+
     // }
+
+    if (token) {
+      headers.Authorization = 'Bearer ' + token;
+      self.browseNearYou("All");
+    }
+    else {
+      self.showSplashScreen(true);
+    }
 
     // Hammer JS
     imageSwipe = document.getElementById('imageSwipe');
@@ -183,8 +214,6 @@ $(document).ready(function() {
     swipeEvent.add( new Hammer.Pan({threshold: 100}))
 
      swipeEvent.on("panleft panright", function(e){
-      //e.gesture.preventDefault(true);
-
       if (e.type == "panleft") {
         self.trash();
       } else if (e.type == "panright") {
@@ -194,22 +223,5 @@ $(document).ready(function() {
 
   }; //End of appViewModel
   ko.applyBindings(new appViewModel());
-
-  // // Hammer JS
-  // var imageSwipe = $('#imageSwipe'); //document.getElementById('imageSwipe');
-  // var swipeEvent = new Hammer(imageSwipe);
-  // console.log(imageSwipe);
-  // //console.log(swipeEvent);
-  // swipeEvent.on("panleft panright", function(e){
-  //   console.log("NO!");
-  //   console.log(e);
-  //   if (e.type == panleft) {
-  //     //self.trash();
-  //     console.log("pan left");
-  //   } else if (e.type = panright) {
-  //     //self.treasure();
-  //     console.log("pan right");
-  //   }
-  // });
 
 }); //End of doc ready
