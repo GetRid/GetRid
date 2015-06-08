@@ -58,8 +58,9 @@ namespace GetRid.Controllers
                 return BadRequest();
             }
 
-            db.Entry(product).State = EntityState.Modified;
-
+            //db.Entry(product).State = EntityState.Modified;
+            var updateProduct = db.Products.Find(id);
+            updateProduct.Reserved = product.Reserved;
             try
             {
                 db.SaveChanges();
