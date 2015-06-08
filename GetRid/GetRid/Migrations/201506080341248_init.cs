@@ -16,6 +16,7 @@ namespace GetRid.Migrations
                         Description = c.String(nullable: false),
                         Reserved = c.Boolean(nullable: false),
                         Category = c.String(nullable: false),
+                        ImageURL = c.String(),
                         Location_Id = c.Int(),
                         User_Id = c.String(maxLength: 128),
                     })

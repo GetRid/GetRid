@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,6 +15,8 @@ using GetRid.Models;
 using GetRid.Results;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace GetRid.Controllers
 {
@@ -79,6 +83,7 @@ namespace GetRid.Controllers
         [ResponseType(typeof(Product))]
         public IHttpActionResult PostProduct(Product product)
         {
+            BlobStorage blobStorage = new BlobStorage();
             if (User.Identity.IsAuthenticated)
             {
                 if (!ModelState.IsValid)
@@ -94,6 +99,8 @@ namespace GetRid.Controllers
                 var user = manager.FindById(id);
                 product.User = user;
                 product.Location = user.Location;
+                var blobURL = blobStorage.BlobingTheStorage(product.ImageURL);
+                product.ImageURL = blobURL;
                 //product.Category = new Category(){CategoryType = product.Category};
                 
 
@@ -161,5 +168,7 @@ namespace GetRid.Controllers
         {
             return db.Products.Count(e => e.Id == id) > 0;
         }
+
+        
     }
 }

@@ -13,7 +13,7 @@ namespace GetRid.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201506070003525_init"; }
+            get { return "201506080341248_init"; }
         }
         
         string IMigrationMetadata.Source

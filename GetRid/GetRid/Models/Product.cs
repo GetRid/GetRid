@@ -20,5 +20,6 @@ namespace GetRid.Models
         [Required]
         public virtual string Category { get; set; }
         public virtual Location Location { get; set; }
+        public string ImageURL { get; set; }
     }
 }
