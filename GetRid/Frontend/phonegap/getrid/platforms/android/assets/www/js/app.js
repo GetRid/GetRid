@@ -195,4 +195,21 @@ $(document).ready(function() {
   }; //End of appViewModel
   ko.applyBindings(new appViewModel());
 
+  // // Hammer JS
+  // var imageSwipe = $('#imageSwipe'); //document.getElementById('imageSwipe');
+  // var swipeEvent = new Hammer(imageSwipe);
+  // console.log(imageSwipe);
+  // //console.log(swipeEvent);
+  // swipeEvent.on("panleft panright", function(e){
+  //   console.log("NO!");
+  //   console.log(e);
+  //   if (e.type == panleft) {
+  //     //self.trash();
+  //     console.log("pan left");
+  //   } else if (e.type = panright) {
+  //     //self.treasure();
+  //     console.log("pan right");
+  //   }
+  // });
+
 }); //End of doc ready
