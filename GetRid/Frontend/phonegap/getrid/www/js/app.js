@@ -51,21 +51,27 @@ $(document).ready(function() {
     }
 
     self.handleSignIn = function(formElement) {
-      $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
-          data: ko.toJSON({
-            UserName: self.UserName,
-            Password: self.Password,
-          }),
-          type: "post",
-          contentType: "application/json"
+      var data = $.param({
+          grant_type: 'password',
+          username: self.UserName,
+          Password: self.Password
+        });
+
+      $.ajax({
+        type: 'POST',
+        url: 'http://getridapi.azurewebsites.net/token',
+        data: data
       })
       .done(function(result) {
+        console.log("sign in successful.")
+        sessionStorage.setItem("getRidLoginToken", result.access_token);
+        headers.Authorization = 'Bearer ' + result.access_token;
         self.showSignInSignUpForm(false);
         self.showNavBar(true);
-        self.goToDisplay(display);
+        self.goToDisplay("All");
       })
       .fail(function(result) {
-          console.log("REGISTRATION REQUEST FAILED", result);
+          console.log("sign in failed.", result);
       });
     }
 
@@ -77,14 +83,15 @@ $(document).ready(function() {
               Category: self.Category
             }),
             type: "post",
+            headers: headers,
             contentType: "application/json"
         })
         .done(function(result) {
-          console.log("REGISTRATION REQUEST DONE: ", data);
+          console.log("Add product successful.. ", result);
           self.showSuccessfulGetRid(true);
         })
         .fail(function(result) {
-            console.log("GET RID REQUEST FAILED", result);
+            console.log("Add Product FAILED", result);
         });
     }
 
@@ -125,6 +132,12 @@ $(document).ready(function() {
         .fail(function(result) {
             console.log("REGISTRATION REQUEST FAILED", result);
         });
+    }
+
+    self.handleLogout = function() {
+      console.log("logging out..");
+      sessionStorage.removeItem("getRidLoginToken");
+      self.showSplashScreen(true);
     }
 
     self.browseNearYou = function(display) {
@@ -181,6 +194,7 @@ $(document).ready(function() {
     // }
 
     if (token) {
+      headers.Authorization = 'Bearer ' + token;
       self.browseNearYou("All");
     }
     else {
