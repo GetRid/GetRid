@@ -47,10 +47,23 @@ $(document).ready(function() {
       self.showSignInSignUpForm(true);
     }
 
-    self.handleSignIn = function() {
-      self.showSignInSignUpForm(false);
-      self.showNavBar(true);
-      self.goToDisplay(display);
+    self.handleSignIn = function(formElement) {
+      $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
+          data: ko.toJSON({
+            UserName: self.UserName,
+            Password: self.Password,
+          }),
+          type: "post",
+          contentType: "application/json"
+      })
+      .done(function(result) {
+        self.showSignInSignUpForm(false);
+        self.showNavBar(true);
+        self.goToDisplay(display);
+      })
+      .fail(function(result) {
+          console.log("REGISTRATION REQUEST FAILED", result);
+      });
     }
 
     self.handleGetRid = function(formElement) {
@@ -65,6 +78,7 @@ $(document).ready(function() {
         })
         .done(function(result) {
           console.log("REGISTRATION REQUEST DONE: ", data);
+          self.showSuccessfulGetRid(true);
         })
         .fail(function(result) {
             console.log("GET RID REQUEST FAILED", result);
@@ -72,8 +86,6 @@ $(document).ready(function() {
     }
 
     self.handleSignUp = function(formElement) {
-      /* Your data in JSON format - see below */
-
         $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
             data: ko.toJSON({
               UserName: self.UserName,
@@ -110,11 +122,6 @@ $(document).ready(function() {
         .fail(function(result) {
             console.log("REGISTRATION REQUEST FAILED", result);
         });
-
-      // var jsonData = ko.toJSON(data);
-      // $.post("getridapi.azurewebsites.net/api/Account/Register", data, function(returnedData) {
-      //     // This callback is executed if the post was successful
-      //})
     }
 
     self.browseNearYou = function(display) {
