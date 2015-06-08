@@ -188,15 +188,15 @@
                     <div data-bind="visible: showGetRidForm">
                         <div class="row item-text">
                             <div class="col-sm-12">
-                                <img class="logo-circles" src="img/GetRidCircles.png">
-                                <form>
+                                <img class="logo-circles" src="img/GetRidCircles.png"><br>
+                                <p><button data-bind="click: $root.takePhoto" value="Take Photo" class="btn btn-primary">Take Photo</button></p>
+                                <form id="get-rid-form">
                                     <p><input type="text" data-bind="value: Name" placeholder="Item Name"></p>
                                     <p><input type="textarea" data-bind="value: Description" placeholder="Description"></p>
                                     <p><input type="text" data-bind="value: Category" placeholder="Category"></p>
                                     <!-- <p><input type="text" placeholder="Image"></p> -->
                                     <p><input type="submit" id="get-rid" data-bind="click: $root.handleGetRid" value="Submit" class="btn btn-primary"></p>
                                 </form>
-                                <button data-bind="click: $root.takePhoto" value="Take Photo" class="btn btn-primary"></button>
                             </div>
                         </div>
                     </div>
