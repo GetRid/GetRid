@@ -180,10 +180,11 @@ $(document).ready(function() {
     // Hammer JS
     imageSwipe = document.getElementById('imageSwipe');
     swipeEvent = new Hammer(imageSwipe);
+    swipeEvent.add( new Hammer.Pan({threshold: 100}))
 
      swipeEvent.on("panleft panright", function(e){
-      console.log("NO!");
-      console.log(e);
+      e.gesture.preventDefault(true);
+
       if (e.type == "panleft") {
         self.trash();
       } else if (e.type == "panright") {
