@@ -16,6 +16,7 @@ $(document).ready(function() {
     self.showNavBar = ko.observable(false);
     self.showSuccessfulGetRid = ko.observable(false);
     self.showSplashScreen = ko.observable(false);
+    self.showMakeContact = ko.observable(false);
 
     // SIGN IN bindings
     self.UserName = ko.observable();
@@ -37,6 +38,7 @@ $(document).ready(function() {
     self.chosenDisplayId = ko.observable();
     self.chosenDisplayData = ko.observable();
     self.chosenIndividualData = ko.observable();
+    self.chosenIndividualDetails = ko.observable();
 
     self.imageDisplay = ko.computed(function(){
       //check what the image type is (jpeg vs png)
@@ -46,7 +48,11 @@ $(document).ready(function() {
         return "data:image/jpeg;base64," + self.chosenIndividualData().ImageURL;
     });
 
-    self.chosenIndividualDetails = ko.observable();
+    self.imageDetailsDisplay = ko.computed(function(){
+      if (self.chosenIndividualDetails() == undefined || self.chosenIndividualDetails().ImageURL == undefined) {return '';}
+        return "data:image/jpeg;base64," + self.chosenIndividualDetails().ImageURL;
+    });
+
     self.makeContact = ko.observable();
     self.getRidData = ko.observable();
 
@@ -251,6 +257,11 @@ $(document).ready(function() {
       self.chosenIndividualDetails(item);
     }
 
+    self.makeContact = function(){
+      self.chosenIndividualDetails(null);
+      self.showMakeContact(true);
+    }
+
     self.goToGetRid = function() {
       self.chosenDisplayId(null)
       self.chosenIndividualData(null);
@@ -261,9 +272,6 @@ $(document).ready(function() {
       self.showGetRidForm(true);
     }
 
-    // self.makeContact = function(){
-
-    // }
 
     if (token) {
       headers.Authorization = 'Bearer ' + token;
