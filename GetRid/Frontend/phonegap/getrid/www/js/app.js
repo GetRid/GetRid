@@ -1,16 +1,19 @@
 $(document).ready(function() {
 
+  var token = sessionStorage.getItem("getRidLoginToken");
+  var headers = {};
+
   function appViewModel() {
     var self = this;
 
     self.itemData = ko.observable();
 
     // VIEWS
-    self.showSplashScreen = ko.observable(true);
     self.showSignInSignUpForm = ko.observable(false);
     self.showGetRidForm = ko.observable(false);
     self.showNavBar = ko.observable(false);
     self.showSuccessfulGetRid = ko.observable(false);
+    self.showSplashScreen = ko.observable(false);
 
     // SIGN IN bindings
     self.UserName = ko.observable();
@@ -89,7 +92,7 @@ $(document).ready(function() {
         $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
             data: ko.toJSON({
               UserName: self.UserName,
-              Email: "dummy22@email.com",
+              Email: "dummy30@email.com",
               Suburb: "Mt. Vic",
               Password: self.Password,
               ConfirmPassword: self.Password
@@ -176,6 +179,13 @@ $(document).ready(function() {
     //   self.chosenIndividualDetails(null)
     //   self.makeContact(item)
     // }
+
+    if (token) {
+      self.browseNearYou("All");
+    }
+    else {
+      self.showSplashScreen(true);
+    }
 
     // Hammer JS
     imageSwipe = document.getElementById('imageSwipe');
