@@ -121,8 +121,11 @@
                                 <div>
                                 <div class="thumbnail">
                                     <h1 class="item-text" data-bind="text: Name"></h1>
-                                    <!-- <img id="imageSwipe" class="item-image" data-bind="attr: {src: image }" alt=""> -->
-                                    <img class="item-image" src="http://www.happy-wallpapers.com/wp-content/uploads/2015/06/Grumpy_Cat_No_03.jpg" alt="">
+                                    <img id="imageSwipe" class="item-image" data-bind="attr: {src: ImageURL }" alt="">
+
+
+
+                                   <!--  <img class="item-image" src="http://www.happy-wallpapers.com/wp-content/uploads/2015/06/Grumpy_Cat_No_03.jpg" alt=""> -->
                                     <div class="caption">
 
                                         <h4 class="item-text"><a href="#">5 km away</a>
@@ -164,6 +167,23 @@
                         </div>
                     </div>
 
+                    <!--CONTACT DISPLAY -->
+<!--                     <div data-bind="with: makeContact">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="thumbnail">
+
+                                        <h3 class="item-text" data-bind="text: Name"></h3>
+                                        <h1>Message Owner</h1>
+                                    </div>
+                                    <div class="ratings">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
                     <!-- GET RID FORM -->
                     <div data-bind="visible: showGetRidForm">
                         <div class="row item-text">
@@ -191,23 +211,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!--CONTACT DISPLAY -->
-<!--                     <div data-bind="with: makeContact">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="thumbnail">
-
-                                        <h3 class="item-text" data-bind="text: name"></h3>
-                                        <h1>Message Owner</h1>
-                                    </div>
-                                    <div class="ratings">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                 </div>
                 <!-- /.row -->

@@ -23,6 +23,7 @@ $(document).ready(function() {
     self.Name = ko.observable();
     self.Description = ko.observable();
     self.Category = ko.observable();
+    self.ImageURL = ko.observable()
 
     self.displays = [{label : "All"},
                      {label : "Category"},
@@ -37,7 +38,6 @@ $(document).ready(function() {
     self.chosenIndividualDetails = ko.observable();
     self.makeContact = ko.observable();
     self.getRidData = ko.observable();
-
 
     //Behaviours
     self.signIn = function(display) {
@@ -152,8 +152,16 @@ $(document).ready(function() {
       self.chosenIndividualDetails(null);
 
       $.getJSON('http://getridapi.azurewebsites.net/api/products', function(data) {
+          //console.log(data)
           self.itemData(data);
           self.chosenDisplayData(self.itemData());
+
+          // $.getJSON('http://edafinalprojects.blob.core.windows.net/getrid/2015%20June%2008-05:42:28', function(data) {
+          //     console.log(data);
+          //     self.itemData()[0]["imageAsBase64String"] = data;
+          //     console.log(self.itemData()[0]["imageAsBase64String"]);
+          // });
+
           self.goToItem(self.itemData()[0]);
       });
     }
@@ -175,7 +183,7 @@ $(document).ready(function() {
 
     self.goToDetails = function(item) {
       self.chosenIndividualData(null);
-      self.chosenIndividualDetails(item)
+      self.chosenIndividualDetails(item);
     }
 
     self.goToGetRid = function() {
@@ -188,9 +196,8 @@ $(document).ready(function() {
       self.showGetRidForm(true);
     }
 
-    // self.makeContact = function(item){
-    //   self.chosenIndividualDetails(null)
-    //   self.makeContact(item)
+    // self.makeContact = function(){
+
     // }
 
     if (token) {
