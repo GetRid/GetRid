@@ -256,6 +256,15 @@ ul.alert-dropdown {
   z-index: 10000;
 }
 
+#display-radius {
+  position: absolute;
+/*  margin-right: auto;
+  margin-left: auto;
+*/
+    right: 100px;
+    bottom: 100px;
+    z-index: 10000;
+}
 
 
 .item-text {

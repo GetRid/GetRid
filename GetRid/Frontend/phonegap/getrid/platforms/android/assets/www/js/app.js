@@ -9,46 +9,6 @@ $(document).ready(function() {
   var currentUserPosition;
   var productImage;
 
-  /* Map functionality */
-  // Provide your access token
-  L.mapbox.accessToken = 'pk.eyJ1IjoiZW52aW50YWdlIiwiYSI6Inh6U0p2bkEifQ.p6VrrwOc_w0Ij-iTj7Zz8A';
-  // Create a map in the div #map
-  var map = L.mapbox.map('map', 'envintage.i9eofp14');
-
-  var featureGroup = L.featureGroup().addTo(map);
-  // map.addLayer(featureGroup);
-
-  //set the helper text when drawing circle begins
-  L.drawLocal.draw.handlers.circle.tooltip.start = 'Pinch and drag to set your search radius';
-  L.drawLocal.draw.handlers.simpleshape.tooltip.end = 'Release to finish drawing'
-
-  var drawControl = new L.Control.Draw({
-    position: "topright",
-    draw: {
-      polyline: false,
-      polygon: false,
-      rectangle: false,
-      marker: false
-    }
-    // edit: {
-    //   featureGroup: featureGroup
-    // }
-  }).addTo(map);
-
-  map.on('draw:drawstart', function(e) {
-      featureGroup.clearLayers();
-  });
-
-  map.on('draw:created', function(e) {
-    console.log(e.layer._mRadius);
-    $('#radius-display').html(Math.round(e.layer._mRadius));
-      featureGroup.addLayer(e.layer);
-  });
-
-
-  /* Map functionality */
-
-
   function appViewModel() {
     var self = this;
 
@@ -260,6 +220,44 @@ $(document).ready(function() {
       self.showNavBar(true);
       self.showRadiusSelectorMap(true);
 
+      /* Map functionality */
+      // Provide your access token
+      L.mapbox.accessToken = 'pk.eyJ1IjoiZW52aW50YWdlIiwiYSI6Inh6U0p2bkEifQ.p6VrrwOc_w0Ij-iTj7Zz8A';
+      // Create a map in the div #map
+      var map = L.mapbox.map('map', 'envintage.i9eofp14');
+
+      var featureGroup = L.featureGroup().addTo(map);
+      // map.addLayer(featureGroup);
+
+      //set the helper text when drawing circle begins
+      L.drawLocal.draw.handlers.circle.tooltip.start = 'Pinch and drag to set your search radius';
+      L.drawLocal.draw.handlers.simpleshape.tooltip.end = 'Release to finish drawing'
+
+      var drawControl = new L.Control.Draw({
+        position: "topright",
+        draw: {
+          polyline: false,
+          polygon: false,
+          rectangle: false,
+          marker: false
+        }
+        // edit: {
+        //   featureGroup: featureGroup
+        // }
+      }).addTo(map);
+
+      map.on('draw:drawstart', function(e) {
+          featureGroup.clearLayers();
+      });
+
+      map.on('draw:created', function(e) {
+        console.log(e.layer._mRadius);
+        $('#radius-meters').html(Math.round(e.layer._mRadius));
+          featureGroup.addLayer(e.layer);
+      });
+
+
+      /* Map functionality */
 
     }
 

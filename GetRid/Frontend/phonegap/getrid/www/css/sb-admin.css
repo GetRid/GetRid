@@ -7,7 +7,6 @@
 /* Global Styles */
 
 body {
-    margin-top: 100px;
     /*background-color: #f5f5f5;*/
 }
 
@@ -33,10 +32,6 @@ body {
 }
 
 @media(min-width:768px) {
-    #wrapper {
-        padding-left: 225px;
-    }
-
     #page-wrapper {
         padding: 10px;
     }
