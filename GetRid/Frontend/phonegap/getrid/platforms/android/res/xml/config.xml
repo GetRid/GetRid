@@ -16,7 +16,7 @@
         <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
     </feature>
     <allow-intent href="market:*" />
-    <name>HelloWorld</name>
+    <name>Get / Rid</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
@@ -31,4 +31,5 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon src="res/GetRidCircle.png" />
 </widget>
