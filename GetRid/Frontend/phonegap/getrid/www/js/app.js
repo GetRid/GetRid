@@ -279,7 +279,12 @@ $(document).ready(function() {
 
     self.trash = function() {
       self.itemData().shift();
-       self.goToItem(self.itemData()[0]);
+      if (self.itemData().length > 0) {
+        self.goToItem(self.itemData()[0]);
+      }
+      else {
+        // no more items to trash
+      }
     }
 
     self.treasure = function() {
