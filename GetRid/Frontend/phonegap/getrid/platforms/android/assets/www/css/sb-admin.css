@@ -227,6 +227,37 @@ ul.alert-dropdown {
     color: #df8a13;
 }
 
+/* Radius Selector styles */
+.map-container {
+  position: relative;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:100%;
+}
+
+#back {
+  position: absolute;
+  left: 10px;
+  bottom: 50px;
+  z-index: 10000;
+}
+
+#confirm {
+  position: absolute;
+  right: 10px;
+  bottom: 50px;
+  z-index: 10000;
+}
+
+
+
 .item-text {
     text-align: center;
 }
