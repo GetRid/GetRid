@@ -306,11 +306,11 @@ ul.alert-dropdown {
     color: green;
 }
 
-.fa-trash-o {
+#trash{
     color: red;
 }
 
-.fa-shopping-cart {
+.fa-shopping-cart fa-5x{
     color: grey;
 }
 
@@ -318,7 +318,29 @@ ul.alert-dropdown {
     color: grey;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', sans-serif;
+}
+p, div {
+    font-family: 'Nunito', sans-serif;
+}
 
+.btn-primary {
+    background: #283A90;
+    color: #ffffff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
 
 
 

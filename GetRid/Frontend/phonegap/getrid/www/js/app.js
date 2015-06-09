@@ -372,4 +372,5 @@ $(document).ready(function() {
   }; //End of appViewModel
   ko.applyBindings(new appViewModel());
 
+
 }); //End of doc ready
