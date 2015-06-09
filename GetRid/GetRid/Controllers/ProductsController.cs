@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Spatial;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -26,9 +27,19 @@ namespace GetRid.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Products
-        public IQueryable<Product> GetProducts()
+        public IQueryable<Product> GetProducts(GoogleGeocodedAddressProvider.Location location, string category = "All", int radiusSearch = 10000)
         {
-            return db.Products.Where(x => x.Reserved == false);
+            var geoCoords = DbGeography.FromText(string.Format("POINT({0} {1})", location.lng, location.lat), 4326);
+
+            if (category == "All")
+            {
+                return db.Products.Where(x => geoCoords.Distance(x.Location) < radiusSearch)
+                    .Where(x => x.Reserved == false);
+            }
+            
+            return db.Products.Where(x => geoCoords.Distance(x.Location) < radiusSearch)
+                .Where(x => x.Reserved == false)
+                .Where(x => x.Category == category);
         }
 
         // GET: api/Products/5
