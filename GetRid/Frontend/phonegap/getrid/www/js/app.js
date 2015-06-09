@@ -123,13 +123,13 @@ $(document).ready(function() {
 
     self.takePhoto = function(formElement) {
       navigator.camera.getPicture(onSuccess, onFail, {
-        quality : 100,
+        quality : 80,
         destinationType : Camera.DestinationType.DATA_URL,
         sourceType : Camera.PictureSourceType.CAMERA,
         allowEdit : true,
         encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 500,
-        targetHeight: 500,
+        targetWidth: 200,
+        targetHeight: 200,
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: true
       });
@@ -197,6 +197,15 @@ $(document).ready(function() {
       self.goToDisplay(display);
     }
 
+    self.filterByCategory = function(searchCategory){
+      ko.utils.arrayFilter(self.itemData(), function(item){
+        return item.Category == searchCategory
+      })
+      console.log(category)
+      self.goToDisplay()
+
+    }
+
     self.goToDisplay = function(display) {
       self.chosenDisplayId(display);
       self.chosenIndividualData(null);
@@ -207,6 +216,7 @@ $(document).ready(function() {
           self.itemData(data);
           self.chosenDisplayData(self.itemData());
           self.goToItem(self.itemData()[0]);
+          console.log(self.itemData());
       });
 
       // onSuccess Callback
