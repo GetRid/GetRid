@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+// $("#logo-hide").click(function(){
+//   $('.logo-long').hide().show("slow");
+// });
+
   var token = sessionStorage.getItem("getRidLoginToken");
   var headers = {};
   var currentUserPosition;
