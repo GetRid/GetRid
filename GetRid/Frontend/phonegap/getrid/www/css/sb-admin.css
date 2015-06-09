@@ -251,14 +251,16 @@ ul.alert-dropdown {
   z-index: 10000;
 }
 
-#display-radius {
+#radius-display {
+  text-align: center;
+  width: 100px;
   position: absolute;
-/*  margin-right: auto;
   margin-left: auto;
-*/
-    right: 100px;
-    bottom: 100px;
-    z-index: 10000;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  z-index: 10000;
 }
 
 
