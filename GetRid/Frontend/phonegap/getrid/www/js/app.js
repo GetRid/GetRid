@@ -40,6 +40,7 @@ $(document).ready(function() {
     self.chosenDisplayData = ko.observable();
     self.chosenIndividualData = ko.observable();
     self.chosenIndividualDetails = ko.observable();
+    self.makeContactData = ko.observable();
 
     self.imageDisplay = ko.computed(function(){
       //check what the image type is (jpeg vs png)
@@ -54,7 +55,11 @@ $(document).ready(function() {
         return "data:image/jpeg;base64," + self.chosenIndividualDetails().ImageURL;
     });
 
-    self.makeContactData = ko.observable();
+    self.imageContactDisplay = ko.computed(function(){
+      if (self.makeContactData() == undefined || self.makeContactData().ImageURL == undefined) {return '';}
+        return "data:image/jpeg;base64," + self.makeContactData().ImageURL;
+    });
+
     self.getRidData = ko.observable();
 
     //Behaviours
@@ -196,11 +201,11 @@ $(document).ready(function() {
       self.chosenDisplayId(display);
       self.chosenIndividualData(null);
       self.chosenIndividualDetails(null);
+      self.makeContactData(null);
 
       $.getJSON('http://getridapi.azurewebsites.net/api/products', function(data) {
           self.itemData(data);
           self.chosenDisplayData(self.itemData());
-          console.log(self.itemData());
           self.goToItem(self.itemData()[0]);
       });
 
@@ -272,7 +277,6 @@ $(document).ready(function() {
             contentType: "application/json"
         })
         .done(function(result) {
-          alert('Update Successful');
           console.log("Update successful.. ", result);
           self.showMakeContact(true);
           console.log(item);

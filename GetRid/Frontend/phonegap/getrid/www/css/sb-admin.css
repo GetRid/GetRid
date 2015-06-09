@@ -231,9 +231,9 @@ ul.alert-dropdown {
     text-align: center;
 }
 
-.thumbnail {
+/*.thumbnail {
     height: 400px;
-}
+}*/
 
  .item-image {
     display: block;
@@ -243,14 +243,20 @@ ul.alert-dropdown {
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+    padding:5px;
+    border:1px solid #021a40;
+    background-color: #EDEDED;
  }
 
   .more-info-image {
     display: block;
     padding-top: 20px;
-    max-height: 100px;
-    max-width: 100px;
+    max-height: 50px;
+    max-width: 50px;
     align: left;
+    padding:1px;
+    border:1px solid #021a40;
+    background-color: #EDEDED;
  }
 
   .flash-image {
@@ -311,6 +317,7 @@ ul.alert-dropdown {
 .fa-arrow-circle-left {
     color: grey;
 }
+
 
 
 
