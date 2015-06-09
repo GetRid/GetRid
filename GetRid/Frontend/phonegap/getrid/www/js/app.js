@@ -28,6 +28,7 @@ $(document).ready(function() {
     self.Category = ko.observable();
     self.ImageURL = ko.observable();
     self.Id = ko.observable();
+    self.selectedCategory = ko.observable();
 
     self.displays = [{label : "All"},
                      {label : "Category"},
@@ -198,39 +199,46 @@ $(document).ready(function() {
     }
 
     self.filterByCategory = function(searchCategory){
-      self.itemData(ko.utils.arrayFilter(self.itemData(), function(item){
-        return item.Category == searchCategory
-      }))
-      console.log(searchCategory)
-      self.goToDisplay()
+      // self.itemData(ko.utils.arrayFilter(self.itemData(), function(item){
+      //   return item.Category == searchCategory
+      // }))
+      console.log(searchCategory);
+      self.selectedCategory(searchCategory);
+      self.goToDisplay();
     }
 
     self.goToDisplay = function(display) {
-      self.chosenDisplayId(display);
-      self.chosenIndividualData(null);
-      self.chosenIndividualDetails(null);
-      self.makeContactData(null);
-
-      $.getJSON('http://getridapi.azurewebsites.net/api/products', function(data) {
-          self.itemData(data);
-          self.chosenDisplayData(self.itemData());
-          self.goToItem(self.itemData()[0]);
-      });
 
       // onSuccess Callback
       // This method accepts a Position object, which contains the
       // current GPS coordinates
       //
       var onSuccess = function(position) {
-          alert('Latitude: '          + position.coords.latitude          + '\n' +
-                'Longitude: '         + position.coords.longitude         + '\n' +
-                'Altitude: '          + position.coords.altitude          + '\n' +
-                'Accuracy: '          + position.coords.accuracy          + '\n' +
-                'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-                'Heading: '           + position.coords.heading           + '\n' +
-                'Speed: '             + position.coords.speed             + '\n' +
-                'Timestamp: '         + position.timestamp                + '\n');
+          // alert('Latitude: '          + position.coords.latitude          + '\n' +
+          //       'Longitude: '         + position.coords.longitude         + '\n' +
+          //       'Altitude: '          + position.coords.altitude          + '\n' +
+          //       'Accuracy: '          + position.coords.accuracy          + '\n' +
+          //       'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+          //       'Heading: '           + position.coords.heading           + '\n' +
+          //       'Speed: '             + position.coords.speed             + '\n' +
+          //       'Timestamp: '         + position.timestamp                + '\n');
           currentUserPosition = position;
+
+          self.chosenDisplayId(display);
+          self.chosenIndividualData(null);
+          self.chosenIndividualDetails(null);
+          self.makeContactData(null);
+
+          $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
+              latitude: currentUserPosition.coords.latitude,
+              longitude: currentUserPosition.coords.longitude,
+              category: self.selectedCategory()
+            },
+            function(data) {
+              self.itemData(data);
+              self.chosenDisplayData(self.itemData());
+              self.goToItem(self.itemData()[0]);
+          });
       };
 
       // onError Callback receives a PositionError object
