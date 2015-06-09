@@ -198,12 +198,11 @@ $(document).ready(function() {
     }
 
     self.filterByCategory = function(searchCategory){
-      ko.utils.arrayFilter(self.itemData(), function(item){
+      self.itemData(ko.utils.arrayFilter(self.itemData(), function(item){
         return item.Category == searchCategory
-      })
-      console.log(category)
+      }))
+      console.log(searchCategory)
       self.goToDisplay()
-
     }
 
     self.goToDisplay = function(display) {
@@ -216,7 +215,6 @@ $(document).ready(function() {
           self.itemData(data);
           self.chosenDisplayData(self.itemData());
           self.goToItem(self.itemData()[0]);
-          console.log(self.itemData());
       });
 
       // onSuccess Callback
