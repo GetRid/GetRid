@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--     <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -57,7 +57,7 @@
                                     <div class="caption">
                                     </div>
                                     <div class="ratings">
-                                        <a data-bind="click: $root.browseNearYou"><h1><i class="fa fa-location-arrow"></i> </h1></a>
+                                        <a id="logo-hide" data-bind="click: $root.browseNearYou"><h1><i class="fa fa-location-arrow"></i> </h1></a>
                                         <a id="browseNearYou" data-bind="click: $root.browseNearYou"><h4>Browse Near You </h4></a>
                                     </div>
                                 </div>
@@ -129,21 +129,21 @@
                     <div data-bind="with: chosenIndividualDetails">
                         <!-- <div class="col-sm-12"> -->
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-xs-6">
                                         <img class="more-info-image" data-bind="attr: {src: $root.imageDetailsDisplay }" alt="">
                                 </div>
-                                <div class="col-sm-9">
+                                <div class="col-xs-6">
                                             <h3 data-bind="text: Name"></h3>
                                             <h4 data-bind="text: Description"></h4>
                                 </div>
 
-                                <div class="item-text">
+<!--                                 <div class="item-text">
                                     <a data-bind="click: $root.makeContact"></a>
                                     <button data-bind="click: $root.makeContact" class="btn btn-primary">Get</button>
                                 </div>
                                 <div>
                                     <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-5x"></i><br>Back</a>
-                                </div>
+                                </div> -->
                             </div>
                         <!-- </div> -->
                     </div>
@@ -214,13 +214,19 @@
                             <li>
                                 <a data-bind="click: function() { $root.filterByCategory('Misc')}"><i class="fa fa-meh-o"></i> Miscellaneous</a>
                             </li>
+
                         </ul>
                     </li>
                     <li>
                         <a data-bind="click: $root.goToGetRid"><i class="fa fa-trash-o fa-2x"></i></a>
                     </li>
-                    <li>
-                        <a data-bind="click: handleLogout"><i class="fa fa-user fa-2x"></i></a>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-2x"></i><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a data-bind="click: handleLogout"><i class="fa fa-fw fa-power-off fa-2x"></i> Log Out</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
