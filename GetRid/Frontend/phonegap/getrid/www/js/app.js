@@ -39,6 +39,7 @@ $(document).ready(function() {
 
     // Radius Selector binding, 1000m by default
     self.searchRadius = ko.observable("10000");
+    self.tempRadius = ko.observable(self.searchRadius());
 
     self.displays = [{label : "All"},
                      {label : "Category"},
@@ -224,7 +225,6 @@ $(document).ready(function() {
       self.showNavBar(true);
       self.showRadiusSelectorMap(true);
 
-      /* Map functionality */
       // Provide your access token
       L.mapbox.accessToken = 'pk.eyJ1IjoiZW52aW50YWdlIiwiYSI6Inh6U0p2bkEifQ.p6VrrwOc_w0Ij-iTj7Zz8A';
       // Create a map in the div #map
@@ -261,15 +261,18 @@ $(document).ready(function() {
         $('#radius-display').removeClass('panel-default').addClass('panel-success');
         $('#radius-meters').html(Math.round(e.layer._mRadius) + " meters");
         //assign e.layer._mRadius to global data-bound variable
-        self.searchRadius(e.layer._mRadius);
-  featureGroup.addLayer(e.layer);
+        self.tempRadius(e.layer._mRadius);
+        featureGroup.addLayer(e.layer);
       });
 
 
-      /* Map functionality */
 
     }
 
+    self.confirmRadius = function() {
+      self.searchRadius(self.tempRadius());
+      self.goToDisplay();
+    }
 
     self.filterByCategory = function(searchCategory){
       // self.itemData(ko.utils.arrayFilter(self.itemData(), function(item){
