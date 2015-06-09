@@ -34,3 +34,13 @@ headers:
 
 - x-www-form-urlencoded:
 	- {key}: {value}
+	- 
+	
+*Products Put*
+
+getridapi/azurewebsties.net/api/Products/5
+
+	- Content-Type: application/json
+	- Authorisation: Bearer {bearer token}
+(send the full product parameters back as a x-www-form-urlencoded - with status changed to True)       
+        
