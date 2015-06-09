@@ -324,6 +324,7 @@ $(document).ready(function() {
       self.chosenIndividualData(null);
       self.chosenIndividualDetails(null);
       self.makeContactData(null);
+      self.showRadiusSelectorMap(false);
 
 ///////////////////////////////////
       $.getJSON('http://getridapi.azurewebsites.net/api/products',  {

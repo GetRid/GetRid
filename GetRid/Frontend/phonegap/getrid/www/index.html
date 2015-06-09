@@ -197,9 +197,10 @@
                         </div>
                     </div>
 
+                    <!-- RADIUS SELECTOR MAP -->
                     <div data-bind="visible: showRadiusSelectorMap" class="map-container">
                       <div id="back">
-                        <button class="btn btn-primary">Back</button>
+                        <button data-bind="click: $root.goToDisplay" class="btn btn-primary">Back</button>
                       </div>
                       <div id="confirm">
                         <button class="btn btn-primary">Confirm</button>
