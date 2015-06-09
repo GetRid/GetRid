@@ -231,9 +231,9 @@ ul.alert-dropdown {
     text-align: center;
 }
 
-.thumbnail {
+/*.thumbnail {
     height: 400px;
-}
+}*/
 
  .item-image {
     display: block;
@@ -243,14 +243,20 @@ ul.alert-dropdown {
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+    padding:5px;
+    border:1px solid #021a40;
+    background-color: #EDEDED;
  }
 
   .more-info-image {
     display: block;
     padding-top: 20px;
-    max-height: 100px;
-    max-width: 100px;
+    max-height: 50px;
+    max-width: 50px;
     align: left;
+    padding:1px;
+    border:1px solid #021a40;
+    background-color: #EDEDED;
  }
 
   .flash-image {
@@ -261,6 +267,21 @@ ul.alert-dropdown {
     margin-top: 20px;
     margin-bottom: 20px;
  }
+
+.flash-image{
+/*    -moz-animation:.6s rotateRight infinite linear;*/
+    -webkit-animation:6s rotateRight infinite linear;
+}
+
+@-moz-keyframes rotateRight{
+    0%{ -moz-transform:rotate(0deg); -moz-transform-origin:50% 50%; }
+    100%{ -moz-transform:rotate(360deg); }
+}
+
+@-webkit-keyframes rotateRight{
+    0%{ -webkit-transform:rotate(0deg); -webkit-transform-origin:50% 50%; }
+    100%{ -webkit-transform:rotate(360deg); }
+}
 
 
   .logo-circles {
@@ -300,11 +321,11 @@ ul.alert-dropdown {
     color: green;
 }
 
-.fa-trash-o {
+#trash{
     color: red;
 }
 
-.fa-shopping-cart {
+.fa-shopping-cart fa-5x{
     color: grey;
 }
 
@@ -312,6 +333,29 @@ ul.alert-dropdown {
     color: grey;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', sans-serif;
+}
+p, div {
+    font-family: 'Nunito', sans-serif;
+}
+
+.btn-primary {
+    background: #283A90;
+    color: #ffffff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
 
 
 

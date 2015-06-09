@@ -21,6 +21,8 @@ $(document).ready(function() {
     // SIGN IN bindings
     self.UserName = ko.observable();
     self.Password = ko.observable();
+    self.Email = ko.observable();
+    self.Address = ko.observable();
 
     // GET RID bindings
     self.Name = ko.observable();
@@ -28,6 +30,7 @@ $(document).ready(function() {
     self.Category = ko.observable();
     self.ImageURL = ko.observable();
     self.Id = ko.observable();
+    self.selectedCategory = ko.observable();
 
     self.displays = [{label : "All"},
                      {label : "Category"},
@@ -40,6 +43,7 @@ $(document).ready(function() {
     self.chosenDisplayData = ko.observable();
     self.chosenIndividualData = ko.observable();
     self.chosenIndividualDetails = ko.observable();
+    self.makeContactData = ko.observable();
 
     self.imageDisplay = ko.computed(function(){
       //check what the image type is (jpeg vs png)
@@ -54,7 +58,11 @@ $(document).ready(function() {
         return "data:image/jpeg;base64," + self.chosenIndividualDetails().ImageURL;
     });
 
-    self.makeContactData = ko.observable();
+    self.imageContactDisplay = ko.computed(function(){
+      if (self.makeContactData() == undefined || self.makeContactData().ImageURL == undefined) {return '';}
+        return "data:image/jpeg;base64," + self.makeContactData().ImageURL;
+    });
+
     self.getRidData = ko.observable();
 
     //Behaviours
@@ -118,13 +126,13 @@ $(document).ready(function() {
 
     self.takePhoto = function(formElement) {
       navigator.camera.getPicture(onSuccess, onFail, {
-        quality : 100,
+        quality : 80,
         destinationType : Camera.DestinationType.DATA_URL,
         sourceType : Camera.PictureSourceType.CAMERA,
         allowEdit : true,
         encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 500,
-        targetHeight: 500,
+        targetWidth: 200,
+        targetHeight: 200,
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: true
       });
@@ -145,9 +153,9 @@ $(document).ready(function() {
         $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
             data: ko.toJSON({
               UserName: self.UserName,
-              Email: "dummy40@email.com",
-              Suburb: "Mt. Vic",
+              Address: self.Address,
               Password: self.Password,
+              Email: self.Email,
               ConfirmPassword: self.Password
             }),
             type: "post",
@@ -192,17 +200,16 @@ $(document).ready(function() {
       self.goToDisplay(display);
     }
 
-    self.goToDisplay = function(display) {
-      self.chosenDisplayId(display);
-      self.chosenIndividualData(null);
-      self.chosenIndividualDetails(null);
+    self.filterByCategory = function(searchCategory){
+      // self.itemData(ko.utils.arrayFilter(self.itemData(), function(item){
+      //   return item.Category == searchCategory
+      // }))
+      console.log(searchCategory);
+      self.selectedCategory(searchCategory);
+      self.goToDisplay();
+    }
 
-      $.getJSON('http://getridapi.azurewebsites.net/api/products', function(data) {
-          self.itemData(data);
-          self.chosenDisplayData(self.itemData());
-          console.log(self.itemData());
-          self.goToItem(self.itemData()[0]);
-      });
+    self.goToDisplay = function(display) {
 
       // onSuccess Callback
       // This method accepts a Position object, which contains the
@@ -218,21 +225,66 @@ $(document).ready(function() {
                 'Speed: '             + position.coords.speed             + '\n' +
                 'Timestamp: '         + position.timestamp                + '\n');
           currentUserPosition = position;
+
+          // Commented out for browser testing
+          // self.chosenDisplayId(display);
+          // self.chosenIndividualData(null);
+          // self.chosenIndividualDetails(null);
+          // self.makeContactData(null);
+
+          // $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
+          //     latitude: currentUserPosition.coords.latitude,
+          //     longitude: currentUserPosition.coords.longitude,
+          //     category: self.selectedCategory()
+          //   },
+          //   function(data) {
+          //     self.itemData(data);
+          //     self.chosenDisplayData(self.itemData());
+          //     self.goToItem(self.itemData()[0]);
+          // });
+          // console.log("dsgsdgg")
       };
 
       // onError Callback receives a PositionError object
-      //
+
       function onError(error) {
           alert('code: '    + error.code    + '\n' +
                 'message: ' + error.message + '\n');
       }
 
-      navigator.geolocation.getCurrentPosition(onSuccess, onError);
+      // Commented out for browser testing
+      // navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+      //
+      self.chosenDisplayId(display);
+      self.chosenIndividualData(null);
+      self.chosenIndividualDetails(null);
+      self.makeContactData(null);
+
+///////////////////////////////////
+      $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
+          latitude: "-41.279576",
+          longitude: "174.776066",
+          category: self.selectedCategory()
+        },
+        function(data) {
+          self.itemData(data);
+          self.chosenDisplayData(self.itemData());
+          console.log(self.itemData())
+          self.goToItem(self.itemData()[0]);
+      });
+
+      ///////////////////////////////////////////////////
     }
 
     self.trash = function() {
       self.itemData().shift();
-       self.goToItem(self.itemData()[0]);
+      if (self.itemData().length > 0) {
+        self.goToItem(self.itemData()[0]);
+      }
+      else {
+        // no more items to trash
+      }
     }
 
     self.treasure = function() {
@@ -272,7 +324,6 @@ $(document).ready(function() {
             contentType: "application/json"
         })
         .done(function(result) {
-          alert('Update Successful');
           console.log("Update successful.. ", result);
           self.showMakeContact(true);
           console.log(item);
@@ -320,5 +371,6 @@ $(document).ready(function() {
 
   }; //End of appViewModel
   ko.applyBindings(new appViewModel());
+
 
 }); //End of doc ready
