@@ -415,16 +415,20 @@ p, div {
     margin-top: 100px;
 }
 
-.fa-arrow-left {
-    color: grey;
-}
-
-.fa-arrow-right {
-    color: grey;
-}
-
 .caption {
     clear: left;
+}
+
+.glyphicon {
+    color: grey;
+}
+
+.glyphicon-chevron-left:hover {
+    color: red;
+}
+
+.glyphicon-chevron-right:hover {
+    color: green;
 }
 
 
