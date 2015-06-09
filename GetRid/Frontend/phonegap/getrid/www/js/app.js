@@ -21,6 +21,8 @@ $(document).ready(function() {
     // SIGN IN bindings
     self.UserName = ko.observable();
     self.Password = ko.observable();
+    self.Email = ko.observable();
+    self.Address = ko.observable();
 
     // GET RID bindings
     self.Name = ko.observable();
@@ -151,9 +153,9 @@ $(document).ready(function() {
         $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
             data: ko.toJSON({
               UserName: self.UserName,
-              Email: "dummy40@email.com",
-              Suburb: "Mt. Vic",
+              Address: self.Address,
               Password: self.Password,
+              Email: self.Email,
               ConfirmPassword: self.Password
             }),
             type: "post",
@@ -224,32 +226,55 @@ $(document).ready(function() {
                 'Timestamp: '         + position.timestamp                + '\n');
           currentUserPosition = position;
 
-          self.chosenDisplayId(display);
-          self.chosenIndividualData(null);
-          self.chosenIndividualDetails(null);
-          self.makeContactData(null);
+          // Commented out for browser testing
+          // self.chosenDisplayId(display);
+          // self.chosenIndividualData(null);
+          // self.chosenIndividualDetails(null);
+          // self.makeContactData(null);
 
-          $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
-              latitude: currentUserPosition.coords.latitude,
-              longitude: currentUserPosition.coords.longitude,
-              category: self.selectedCategory()
-            },
-            function(data) {
-              self.itemData(data);
-              self.chosenDisplayData(self.itemData());
-              self.goToItem(self.itemData()[0]);
-          });
-          console.log("dsgsdgg")
+          // $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
+          //     latitude: currentUserPosition.coords.latitude,
+          //     longitude: currentUserPosition.coords.longitude,
+          //     category: self.selectedCategory()
+          //   },
+          //   function(data) {
+          //     self.itemData(data);
+          //     self.chosenDisplayData(self.itemData());
+          //     self.goToItem(self.itemData()[0]);
+          // });
+          // console.log("dsgsdgg")
       };
 
       // onError Callback receives a PositionError object
-      //
+
       function onError(error) {
           alert('code: '    + error.code    + '\n' +
                 'message: ' + error.message + '\n');
       }
 
-      navigator.geolocation.getCurrentPosition(onSuccess, onError);
+      // Commented out for browser testing
+      // navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+      //
+      self.chosenDisplayId(display);
+      self.chosenIndividualData(null);
+      self.chosenIndividualDetails(null);
+      self.makeContactData(null);
+
+///////////////////////////////////
+      $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
+          latitude: "-41.279576",
+          longitude: "174.776066",
+          category: self.selectedCategory()
+        },
+        function(data) {
+          self.itemData(data);
+          self.chosenDisplayData(self.itemData());
+          console.log(self.itemData())
+          self.goToItem(self.itemData()[0]);
+      });
+
+      ///////////////////////////////////////////////////
     }
 
     self.trash = function() {
