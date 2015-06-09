@@ -37,11 +37,15 @@ $(document).ready(function() {
     self.Id = ko.observable();
     self.selectedCategory = ko.observable();
 
+    // Radius Selector binding, 1000m by default
+    self.searchRadius = ko.observable("10000");
+
     self.displays = [{label : "All"},
                      {label : "Category"},
                      {label : "Search Location"},
                      {label : "Get Rid"},
                     ];
+
 
     // Display Data bindings
     self.chosenDisplayId = ko.observable();
@@ -256,6 +260,8 @@ $(document).ready(function() {
         console.log(e.layer._mRadius);
         $('#radius-display').removeClass('panel-default').addClass('panel-success');
         $('#radius-meters').html(Math.round(e.layer._mRadius) + " meters");
+        //assign e.layer._mRadius to global data-bound variable
+        self.searchRadius(e.layer._mRadius);
   featureGroup.addLayer(e.layer);
       });
 
@@ -263,6 +269,7 @@ $(document).ready(function() {
       /* Map functionality */
 
     }
+
 
     self.filterByCategory = function(searchCategory){
       // self.itemData(ko.utils.arrayFilter(self.itemData(), function(item){
@@ -299,7 +306,8 @@ $(document).ready(function() {
           // $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
           //     latitude: currentUserPosition.coords.latitude,
           //     longitude: currentUserPosition.coords.longitude,
-          //     category: self.selectedCategory()
+          //     category: self.selectedCategory(),
+          //    radius: self.searchRadius()
           //   },
           //   function(data) {
           //     self.itemData(data);
@@ -330,7 +338,8 @@ $(document).ready(function() {
       $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
           latitude: "-41.279576",
           longitude: "174.776066",
-          category: self.selectedCategory()
+          category: self.selectedCategory(),
+          radius: self.searchRadius()
         },
         function(data) {
           self.itemData(data);
