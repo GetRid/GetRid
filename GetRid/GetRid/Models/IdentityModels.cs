@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Spatial;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -12,7 +13,7 @@ namespace GetRid.Models
     public class ApplicationUser : IdentityUser
     {
         public virtual List<Product> Products { get; set; }
-        public virtual Location Location { get; set; }
+        public virtual DbGeography Location { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
