@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
 using System.Linq;
 using System.Web;
 
@@ -19,7 +20,7 @@ namespace GetRid.Models
         public virtual ApplicationUser User { get; set; }
         [Required]
         public virtual string Category { get; set; }
-        public virtual Location Location { get; set; }
+        public virtual DbGeography Location { get; set; }
         public string ImageURL { get; set; }
     }
 }

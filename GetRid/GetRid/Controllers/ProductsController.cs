@@ -28,7 +28,7 @@ namespace GetRid.Controllers
         // GET: api/Products
         public IQueryable<Product> GetProducts()
         {
-            return db.Products;
+            return db.Products.Where(x => x.Reserved == false);
         }
 
         // GET: api/Products/5
@@ -84,7 +84,7 @@ namespace GetRid.Controllers
         [ResponseType(typeof(Product))]
         public IHttpActionResult PostProduct(Product product)
         {
-            BlobStorage blobStorage = new BlobStorage();
+            //BlobStorage blobStorage = new BlobStorage();
             if (User.Identity.IsAuthenticated)
             {
                 if (!ModelState.IsValid)

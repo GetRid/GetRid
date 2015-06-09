@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Spatial;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -25,6 +26,7 @@ namespace GetRid.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private readonly GeoCoderProvider _geoCoderProvider = new GeoCoderProvider();
 
         public AccountController()
         {
@@ -328,7 +330,9 @@ namespace GetRid.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Location = new Location(){Suburb = model.Suburb} };
+            DbGeography longLat = _geoCoderProvider.addressToDbGeography(model.Address);
+           
+            var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Location = longLat };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -339,6 +343,7 @@ namespace GetRid.Controllers
 
             return Ok();
         }
+
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
