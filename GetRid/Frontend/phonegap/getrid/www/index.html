@@ -165,13 +165,15 @@
                     </div>
 
                     <!--CONTACT DISPLAY -->
-                    <div data-bind="with: chosenIndividualDetails">
+                    <div data-bind="visible: showMakeContact, with: makeContactData">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="thumbnail">
 
                                         <h3 class="item-text" data-bind="text: Name"></h3>
-                                        <h1>Message Owner</h1>
+                                        <h3 class="item-text" data-bind="text: $data.User.Email"></h3>
+
+
                                     </div>
                                     <div class="ratings">
 

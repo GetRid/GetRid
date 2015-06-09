@@ -27,6 +27,7 @@ $(document).ready(function() {
     self.Description = ko.observable();
     self.Category = ko.observable();
     self.ImageURL = ko.observable();
+    self.Id = ko.observable();
 
     self.displays = [{label : "All"},
                      {label : "Category"},
@@ -53,7 +54,7 @@ $(document).ready(function() {
         return "data:image/jpeg;base64," + self.chosenIndividualDetails().ImageURL;
     });
 
-    self.makeContact = ko.observable();
+    self.makeContactData = ko.observable();
     self.getRidData = ko.observable();
 
     //Behaviours
@@ -197,18 +198,10 @@ $(document).ready(function() {
       self.chosenIndividualDetails(null);
 
       $.getJSON('http://getridapi.azurewebsites.net/api/products', function(data) {
-          console.log(data[0]["ImageURL"])
           self.itemData(data);
           self.chosenDisplayData(self.itemData());
-
-          // $.getJSON('http://edafinalprojects.blob.core.windows.net/getrid/2015%20June%2008-05:42:28', function(data) {
-          //     console.log(data);
-          //     self.itemData()[0]["imageAsBase64String"] = data;
-          //     console.log(self.itemData()[0]["imageAsBase64String"]);
-          // });
-
+          console.log(self.itemData());
           self.goToItem(self.itemData()[0]);
-          console.log(self.itemData()[10])
       });
 
       // onSuccess Callback
@@ -257,9 +250,40 @@ $(document).ready(function() {
       self.chosenIndividualDetails(item);
     }
 
-    self.makeContact = function(){
+    self.getButtonHandler = function() {
+      self.makeContact(itemData()[0]);
+    }
+
+    self.makeContact = function(item) {
       self.chosenIndividualDetails(null);
-      self.showMakeContact(true);
+      self.makeContactData(item);
+
+      $.ajax("http://getridapi.azurewebsites.net/api/products/" + item.Id,
+        {
+            data: ko.toJSON({
+              Name: item.Name,
+              Description: item.Description,
+              Category: item.Category,
+              Reserved: 'true',
+              Id: item.Id
+            }),
+            type: "put",
+            headers: headers,
+            contentType: "application/json"
+        })
+        .done(function(result) {
+          alert('Update Successful');
+          console.log("Update successful.. ", result);
+          self.showMakeContact(true);
+          console.log(item);
+        })
+        .fail(function(result) {
+          alert('Update failed:' + result);
+            console.log("Update FAILED", result);
+        });
+
+
+
     }
 
     self.goToGetRid = function() {
