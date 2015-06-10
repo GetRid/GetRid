@@ -231,8 +231,8 @@ $(document).ready(function() {
     self.browseNearYou = function(display) {
       //self.showSplashScreen(false);
       self.clearViews();
-      self.showNavBar(true);
       self.goToDisplay(display);
+      self.showNavBar(true);
     }
 
     self.selectRadius = function() {
@@ -415,7 +415,7 @@ $(document).ready(function() {
     }
 
     self.makeContact = function(item) {
-      //self.chosenIndividualDetails(null);
+      self.chosenIndividualDetails(null);
 
       if (sessionStorage.getItem("getRidLoginToken")) {
         self.makeContactData(item);

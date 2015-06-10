@@ -41,7 +41,7 @@ body {
 /* Top Navigation */
 
 .top-nav {
-    padding: 0 15px;
+    /*padding: 0 15px;*/
     background-color: #EDEDED;
 }
 
@@ -269,14 +269,10 @@ ul.alert-dropdown {
     text-align: center;
 }
 
-/*.thumbnail {
-    height: 400px;
-}*/
-
  .item-image {
     display: block;
     max-height: 200px;
-    max-width: 200px;
+    max-width: 150px;
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
@@ -288,11 +284,13 @@ ul.alert-dropdown {
 
   .more-info-image {
     display: block;
-    padding-top: 20px;
-    max-height: 50px;
-    max-width: 50px;
-    align: left;
-    padding:1px;
+    max-height: 150px;
+    max-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: auto;
+    padding:4px;
     border:1px solid #021a40;
     background-color: #EDEDED;
  }
@@ -307,7 +305,6 @@ ul.alert-dropdown {
  }
 
 .flash-image{
-/*    -moz-animation:.6s rotateRight infinite linear;*/
     -webkit-animation:6s rotateRight infinite linear;
 }
 
@@ -335,7 +332,7 @@ ul.alert-dropdown {
  }
 
     .logo-long {
-    width: 130px;
+    width: 160px;
     margin-left: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -369,13 +366,18 @@ ul.alert-dropdown {
 
 .fa-arrow-circle-left {
     color: grey;
+    padding: 20px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Nunito', sans-serif;
+h1 {
+    font-family: 'Lato', sans-serif;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans', sans-serif;
 }
 p, div {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .btn-primary {
@@ -397,9 +399,30 @@ p, div {
 
 .title-div {
     display: block;
-    height: 70px;
+    height: 90px;
     overflow: hidden;
     padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.display-title-div {
+    margin-top: 20px;
+    height: 195px;
+    overflow: hidden;
+}
+
+.reserved-title-div {
+    padding-top: 10px;
+}
+
+.more-info {
+    text-align: center;
+}
+
+.btn-default {
+    background-color: grey;
+    margin-bottom: 20px;
 }
 
 .image-div {
@@ -413,6 +436,7 @@ p, div {
 
 #arrow-right {
     margin-top: 100px;
+    text-align: right;
 }
 
 .caption {
@@ -421,6 +445,8 @@ p, div {
 
 .glyphicon {
     color: grey;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .glyphicon-chevron-left:hover {
@@ -428,8 +454,37 @@ p, div {
 }
 
 .glyphicon-chevron-right:hover {
-    color: green;
+    color: #00FF00;
 }
+
+p2 {
+    font-size: 3;
+    color: grey;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.top-nav {
+    text-align: center;
+}
+
+p3 {
+    font-size: 1;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-pad {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+
 
 
 

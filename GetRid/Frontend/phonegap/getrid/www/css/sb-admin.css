@@ -41,7 +41,7 @@ body {
 /* Top Navigation */
 
 .top-nav {
-    padding: 0 15px;
+    /*padding: 0 15px;*/
     background-color: #EDEDED;
 }
 
@@ -399,7 +399,7 @@ p, div {
 
 .title-div {
     display: block;
-    height: 70px;
+    height: 90px;
     overflow: hidden;
     padding-top: 10px;
     padding-left: 30px;
@@ -408,17 +408,39 @@ p, div {
 
 .display-title-div {
     margin-top: 20px;
-    height: 180px;
+    height: 190px;
     overflow: hidden;
+}
+
+.reserved-title-div {
+    padding-top: 10px;
 }
 
 .more-info {
     text-align: center;
+    padding-top: 20px;
 }
 
 .btn-default {
     background-color: grey;
-    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    font-size: 30px;
+}
+
+#owner {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.panel {
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .image-div {
@@ -476,6 +498,12 @@ p3 {
     padding-right: 10px;
 }
 
+h1 {
+    font-size: 50px;
+}
+h2 {
+    font-size: 30px;
+}
 
 
 

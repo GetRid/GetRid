@@ -121,9 +121,15 @@
                                         <img class="more-info-image" data-bind="attr: {src: $root.imageDetailsDisplay }" alt="">
                                 </div>
                                 <div class="col-xs-6 display-title-div">
-                                            <h3 data-bind="text: Name"></h3>
+                                            <h2 data-bind="text: Name"></h2>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
                                 <h4 class="more-info" data-bind="text: Description"></h4><br>
+                                </div>
+                            </div>
+                            <div class="row">
 
                                 <div class="col-xs-12 more-info">
                                     <a data-bind="click: $root.makeContact"></a>
@@ -145,16 +151,26 @@
                                 <div class="col-xs-6">
                                         <img class="more-info-image" data-bind="attr: {src: $root.imageContactDisplay }" alt="">
                                 </div>
-                                <div class="display-title-div">
-                                        <h3 class="item-text" data-bind="text: Name"></h3>
+                                <div class="col-xs-6 reserved-title-div">
+                                        <h2 class="item-text" data-bind="text: Name"></h2>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12" id="owner">
+                                        <h3 class="btn btn-default btn-lg .more-info-text" id="owner">RESERVED</h3>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-xs-12">
-                                        <h3 class="btn btn-default btn-lg">RESERVED</h3>
+                                   <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title .more-info-text" id="owner">Contact the owner:</h3>
+
+                                        </div>
+                                    <h2 data-bind="text: $data.User.Email" id="owner"></h2></div>
                                 </div>
-
-
-                                        <h3 class="item-text" data-bind="text: $data.User.Email"></h3>
-                                        <a class="more-info" data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-3x"></i></a>
+                                        <!-- <h3 class="item-text" data-bind="text: $data.User.Email"></h3>
+                                        <a class="more-info" data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-3x"></i></a> -->
                             </div>
                         </div>
                     </div>
