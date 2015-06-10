@@ -142,7 +142,7 @@
                                     <button data-bind="click: $root.makeContact" class="btn btn-primary">Get</button>
                                 </div>
                                 <div class="col-xs-12 more-info">
-                                    <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-3x"></i><br>Back</a>
+                                    <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-3x"></i></a>
                                 </div>
                             </div>
                         <!-- </div> -->
@@ -153,12 +153,20 @@
                     <!--CONTACT DISPLAY -->
                     <div data-bind="visible: showMakeContact, with: makeContactData">
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12 more-info">
+                                <div class="col-xs-6">
                                         <img class="more-info-image" data-bind="attr: {src: $root.imageContactDisplay }" alt="">
+                                </div>
+                                <div class="display-title-div">
                                         <h3 class="item-text" data-bind="text: Name"></h3>
-                                        <h3 class="item-text">RESERVED</h3>
+                                </div>
+                                <div class="col-xs-12">
+                                        <h3 class="btn btn-default btn-lg">RESERVED</h3>
+                                <div/>
+
+
                                         <h3 class="item-text" data-bind="text: $data.User.Email"></h3>
-                                        <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-5x"></i><br>Back</a>
+                                        <a class="more-info" data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-3x"></i></a>
 
 
                             </div>

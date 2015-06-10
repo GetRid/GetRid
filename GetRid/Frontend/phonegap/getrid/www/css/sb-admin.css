@@ -276,7 +276,7 @@ ul.alert-dropdown {
  .item-image {
     display: block;
     max-height: 200px;
-    max-width: 200px;
+    max-width: 150px;
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
@@ -337,7 +337,7 @@ ul.alert-dropdown {
  }
 
     .logo-long {
-    width: 130px;
+    width: 160px;
     margin-left: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -408,12 +408,18 @@ p, div {
 }
 
 .display-title-div {
-    height: 200px;
+    margin-top: 20px;
+    height: 180px;
     overflow: hidden;
 }
 
 .more-info {
     text-align: center;
+}
+
+.btn-default {
+    background-color: grey;
+    margin-bottom: 20px;
 }
 
 .image-div {
