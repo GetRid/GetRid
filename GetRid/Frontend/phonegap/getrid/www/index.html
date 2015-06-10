@@ -21,7 +21,8 @@
     <link href="css/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
@@ -210,21 +211,17 @@
         </div>
         <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" data-bind="visible: showNavBar">
             <ul class="nav top-nav">
-                <li class="nav-pad">
-                    <a data-bind="click: $root.selectRadius"><i class="fa fa-location-arrow  fa-2x"></i></a><p3>Search</p3>
-                </li>
-
                 <li class="dropdown nav-pad">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cloud fa-2x"></i></a><p3>Categories</p3>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cloud fa-2x"></i><b class="caret"></b></a><p3>Get</p3>
                     <ul id="demo" class="dropdown-menu">
                         <li>
-                            <a data-bind="click: function() {  $root.filterByCategory('Furniture')}"><i class="fa fa-cloud fa-2x"></i> Furniture</a>
+                            <a data-bind="click: function() {  $root.filterByCategory('Furniture')}"><i class="fa fa-bed fa-2x"></i> Furniture</a>
                         </li>
                         <li>
-                            <a data-bind="click: function() { $root.filterByCategory('Appliances')}"><i class="fa fa-coffee fa-2x"></i> Appliances</a>
+                            <a data-bind="click: function() { $root.filterByCategory('Appliances')}"><i class="fa fa-desktop fa-2x"></i> Appliances</a>
                         </li>
                         <li>
-                            <a data-bind="click: function() { $root.filterByCategory('Clothing')}"><i class="fa fa-home fa-2x"></i> Clothing</a>
+                            <a data-bind="click: function() { $root.filterByCategory('Clothing')}"><i class="fa fa-child fa-2x"></i> Clothing</a>
                         </li>
                         <li>
                             <a data-bind="click: function() { $root.filterByCategory('Misc')}"><i class="fa fa-meh-o fa-2x"></i> Misc</a>
@@ -233,15 +230,13 @@
                     </ul>
                 </li>
                 <li class="nav-pad">
-                    <a data-bind="click: $root.goToGetRid"><i class="fa fa-trash-o fa-2x"></i></a><p3>Get Rid</p3>
+                    <a data-bind="click: $root.goToGetRid"><i class="fa fa-trash-o fa-2x"></i></a><p3>Rid</p3>
                 </li>
-                <li class="dropdown nav-pad">
-                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-2x"></i><b class="caret"></b></a><p3>Log Out</p3>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a data-bind="click: handleLogout"><i class="fa fa-fw fa-power-off fa-2x"></i> Log Out</a>
-                        </li>
-                    </ul>
+                <li class="nav-pad">
+                    <a data-bind="click: $root.selectRadius"><i class="fa fa-location-arrow  fa-2x"></i></a><p3>Search</p3>
+                </li>
+                <li class="nav-pad">
+                    <a data-bind="click: handleLogout"><i class="fa fa-fw fa-power-off fa-2x"></i></a><p3>Log Out</p3>
                 </li>
             </ul>
         </nav>
