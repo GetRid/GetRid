@@ -97,13 +97,11 @@ $(document).ready(function() {
       self.getRidData(null);
     }
 
-    /*
     self.signIn = function(display) {
       //self.showSplashScreen(false);
       self.clearViews();
-      self.showSignInSignUpForm(true);
+      self.showSignInScreen(true);
     }
-    */
 
     self.signUp = function(display) {
       //self.showSplashScreen(false);
