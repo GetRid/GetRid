@@ -258,12 +258,13 @@ $(document).ready(function() {
       L.mapbox.accessToken = 'pk.eyJ1IjoiZW52aW50YWdlIiwiYSI6Inh6U0p2bkEifQ.p6VrrwOc_w0Ij-iTj7Zz8A';
       // Create a map in the div #map
       var map = L.mapbox.map('map', 'envintage.i9eofp14');
+      var circle;
 
       map.setView([currentUserPosition.coords.latitude, currentUserPosition.coords.longitude], 13);
       L.marker([currentUserPosition.coords.latitude, currentUserPosition.coords.longitude]).addTo(map);
-
+      circle = L.circle([currentUserPosition.coords.latitude, currentUserPosition.coords.longitude], 10000);
       var featureGroup = L.featureGroup().addTo(map);
-      // map.addLayer(featureGroup);
+      featureGroup.addLayer(circle);
 
       //set the helper text when drawing circle begins
       L.drawLocal.draw.handlers.circle.tooltip.start = 'Pinch and drag to set your search radius';
@@ -271,36 +272,31 @@ $(document).ready(function() {
 
       var drawControl = new L.Control.Draw({
         position: "topleft",
-        draw: {
-          polyline: false,
-          polygon: false,
-          rectangle: false,
-          marker: false
-        }
-        // edit: {
-        //   featureGroup: featureGroup
+        // draw: {
+        //   polyline: false,
+        //   polygon: false,
+        //   rectangle: false,
+        //   marker: false
         // }
+        draw: false,
+        edit: {
+          featureGroup: featureGroup,
+          remove: false
+        }
       }).addTo(map);
 
       map.dragging.disable();
 
-      map.on('draw:drawstart', function(e) {
-        $('#radius-display').removeClass('panel-success').addClass('panel-default');
-        $('#radius-meters').html('');
-        featureGroup.clearLayers();
+      map.on('draw:edited', function(e) {
+        console.log('editing', e);
+        $('#radius-display').removeClass('panel-default').addClass('panel-success');
+        $('#radius-meters').html(Math.round(e.layers._layers[38]._mRadius) + " meters");
+        self.tempRadius(e.layer._mRadius);
       });
 
-      map.on('draw:stop', function(e) {
-        e.layer._latlng.lat = currentUserPosition.coords.latitude;
-        e.layer._latlng.lng = currentUserPosition.coords.longitude;
-
-        console.log(e.layer._mRadius);
-        $('#radius-display').removeClass('panel-default').addClass('panel-success');
-        $('#radius-meters').html(Math.round(e.layer._mRadius) + " meters");
-        //assign e.layer._mRadius to global data-bound variable
-        self.tempRadius(e.layer._mRadius);
-        alert(self.tempRadius());
-        featureGroup.addLayer(e.layer);
+      map.on('draw:editstart', function(e) {
+        $('#radius-display').removeClass('panel-success').addClass('panel-default');
+        $('#radius-meters').html('');
       });
 
       // map.on('draw:created', function(e) {
