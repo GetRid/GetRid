@@ -120,10 +120,7 @@
                                 <div id="arrow-right" class="col-xs-3">
                                     <a data-bind="click: $root.treasure"><span style="font-size:3em;" class="glyphicon glyphicon-chevron-right"></span></a><br><p2>Treasure<p2>
                                 </div>
-                                    <div class="caption">
-                                        <h4 class="item-text"><a href="#">5 km away</a>
-                                        </h4>
-                                    </div>
+
                             </div>
                         </div>
                     </div>
@@ -135,17 +132,17 @@
                                 <div class="col-xs-6">
                                         <img class="more-info-image" data-bind="attr: {src: $root.imageDetailsDisplay }" alt="">
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-6 display-title-div">
                                             <h3 data-bind="text: Name"></h3>
-                                            <h4 data-bind="text: Description"></h4>
                                 </div>
+                                <h4 class="more-info" data-bind="text: Description"></h4><br>
 
-                                <div class="col-xs-6">
-                                    <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-5x"></i><br>Back</a>
-                                </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-12 more-info">
                                     <a data-bind="click: $root.makeContact"></a>
                                     <button data-bind="click: $root.makeContact" class="btn btn-primary">Get</button>
+                                </div>
+                                <div class="col-xs-12 more-info">
+                                    <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-3x"></i><br>Back</a>
                                 </div>
                             </div>
                         <!-- </div> -->
@@ -221,38 +218,33 @@
                 <!-- /.row -->
                 <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" data-bind="visible: showNavBar">
                 <ul class="nav top-nav">
-<!--                     <li>
-                        <a data-bind="click: $root.browseNearYou"><i class="fa fa-location-arrow  fa-2x"></i></a>
-                    </li>
- -->
-
-                    <li>
-                        <a data-bind="click: $root.selectRadius"><i class="fa fa-location-arrow  fa-2x"></i></a>
+                    <li class="nav-pad">
+                        <a data-bind="click: $root.selectRadius"><i class="fa fa-location-arrow  fa-2x"></i></a><p3>Search</p3>
                     </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart fa-2x"></i></a>
+                    <li class="dropdown nav-pad">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cloud fa-2x"></i></a><p3>Categories</p3>
                         <ul id="demo" class="dropdown-menu">
                             <li>
-                                <a data-bind="click: function() {  $root.filterByCategory('Furniture')}"><i class="fa fa-cloud"></i> Furniture</a>
+                                <a data-bind="click: function() {  $root.filterByCategory('Furniture')}"><i class="fa fa-cloud fa-2x"></i> Furniture</a>
                             </li>
                             <li>
-                                <a data-bind="click: function() { $root.filterByCategory('Appliances')}"><i class="fa fa-coffee"></i> Appliances</a>
+                                <a data-bind="click: function() { $root.filterByCategory('Appliances')}"><i class="fa fa-coffee fa-2x"></i> Appliances</a>
                             </li>
                             <li>
-                                <a data-bind="click: function() { $root.filterByCategory('Clothing')}"><i class="fa fa-home"></i> Clothing</a>
+                                <a data-bind="click: function() { $root.filterByCategory('Clothing')}"><i class="fa fa-home fa-2x"></i> Clothing</a>
                             </li>
                             <li>
-                                <a data-bind="click: function() { $root.filterByCategory('Misc')}"><i class="fa fa-meh-o"></i> Miscellaneous</a>
+                                <a data-bind="click: function() { $root.filterByCategory('Misc')}"><i class="fa fa-meh-o fa-2x"></i> Misc</a>
                             </li>
 
                         </ul>
                     </li>
-                    <li>
-                        <a data-bind="click: $root.goToGetRid"><i class="fa fa-trash-o fa-2x"></i></a>
+                    <li class="nav-pad">
+                        <a data-bind="click: $root.goToGetRid"><i class="fa fa-trash-o fa-2x"></i></a><p3>Get Rid</p3>
                     </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-2x"></i><b class="caret"></b></a>
+                    <li class="dropdown nav-pad">
+                        <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-2x"></i><b class="caret"></b></a><p3>Log Out</p3>
                         <ul class="dropdown-menu">
                             <li>
                                 <a data-bind="click: handleLogout"><i class="fa fa-fw fa-power-off fa-2x"></i> Log Out</a>

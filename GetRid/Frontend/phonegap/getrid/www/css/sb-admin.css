@@ -371,6 +371,7 @@ ul.alert-dropdown {
 
 .fa-arrow-circle-left {
     color: grey;
+    padding: 20px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -402,6 +403,17 @@ p, div {
     height: 70px;
     overflow: hidden;
     padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.display-title-div {
+    height: 200px;
+    overflow: hidden;
+}
+
+.more-info {
+    text-align: center;
 }
 
 .image-div {
@@ -415,6 +427,7 @@ p, div {
 
 #arrow-right {
     margin-top: 100px;
+    text-align: right;
 }
 
 .caption {
@@ -441,6 +454,24 @@ p2 {
     margin-left: auto;
     margin-right: auto;
 }
+
+.top-nav {
+    text-align: center;
+}
+
+p3 {
+    font-size: 1;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-pad {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
 
 
 
