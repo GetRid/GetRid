@@ -39,7 +39,7 @@ namespace GetRid.Controllers
                         (double) product.Location.Longitude);
                     var locB = new GeoCoordinate((double) geoCoords.Latitude, (double) geoCoords.Longitude);
                     double distance = locA.GetDistanceTo(locB); // metres
-                    dto.DistanceToUser = distance;
+                    dto.DistanceToUser = distance.ToString();
                     productDTOs.Add(dto);
                 }
 
@@ -58,7 +58,7 @@ namespace GetRid.Controllers
                     (double) product.Location.Longitude);
                 var locB = new GeoCoordinate((double) geoCoords.Latitude, (double) geoCoords.Longitude);
                 double distance = locA.GetDistanceTo(locB); // metres
-                dto.DistanceToUser = distance;
+                dto.DistanceToUser = distance.ToString();
                 productDTOs.Add(dto);
             }
             return productDTOs;

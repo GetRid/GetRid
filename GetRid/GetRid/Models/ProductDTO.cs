@@ -18,6 +18,6 @@ namespace GetRid.Models
         public virtual string Category { get; set; }
         public virtual DbGeography Location { get; set; }
         public string ImageURL { get; set; }
-        public double DistanceToUser { get; set; }
+        public string DistanceToUser { get; set; }
     }
 }
