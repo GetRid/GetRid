@@ -1,4 +1,7 @@
+
 $(document).ready(function() {
+
+
 
 // $("#logo-hide").click(function(){
 //   $('.logo-long').hide().show("slow");
@@ -21,9 +24,10 @@ $(document).ready(function() {
     self.showGetRidForm = ko.observable(false);
     self.showNavBar = ko.observable(false);
     self.showSuccessfulGetRid = ko.observable(false);
-    //self.showSplashScreen = ko.observable(false);
+    self.showSplashScreen = ko.observable(false);
     self.showMakeContact = ko.observable(false);
     self.showRadiusSelectorMap = ko.observable(false);
+
 
     // SIGN IN bindings
     self.UserName = ko.observable();
@@ -330,14 +334,14 @@ $(document).ready(function() {
       // current GPS coordinates
       //
       var onSuccess = function(position) {
-          alert('Latitude: '          + position.coords.latitude          + '\n' +
-                'Longitude: '         + position.coords.longitude         + '\n' +
-                'Altitude: '          + position.coords.altitude          + '\n' +
-                'Accuracy: '          + position.coords.accuracy          + '\n' +
-                'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-                'Heading: '           + position.coords.heading           + '\n' +
-                'Speed: '             + position.coords.speed             + '\n' +
-                'Timestamp: '         + position.timestamp                + '\n');
+          // alert('Latitude: '          + position.coords.latitude          + '\n' +
+          //       'Longitude: '         + position.coords.longitude         + '\n' +
+          //       'Altitude: '          + position.coords.altitude          + '\n' +
+          //       'Accuracy: '          + position.coords.accuracy          + '\n' +
+          //       'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+          //       'Heading: '           + position.coords.heading           + '\n' +
+          //       'Speed: '             + position.coords.speed             + '\n' +
+          //       'Timestamp: '         + position.timestamp                + '\n');
           currentUserPosition = position;
 
           // Commented out for browser testing
@@ -486,6 +490,14 @@ $(document).ready(function() {
     }
 
 
+    var bouncer = function(){
+      $('#techLogo').effect( "bounce", {times:5, direction:'right'}, 550 );
+    };
+    var slider = function(){
+      $('#techLogo').animate({right: "140px"}, 200);
+    };
+
+
     if (token) {
       self.clearViews(true);
       headers.Authorization = 'Bearer ' + token;
@@ -493,7 +505,21 @@ $(document).ready(function() {
     }
     else {
       self.clearViews(true);
-      self.showSignInScreen(true);
+      self.showSplashScreen(true);
+      setTimeout(function(){
+            $('#taborLogo').fadeIn(800);
+          }, 0);
+
+      setTimeout(function(){
+            slider();
+            bouncer();
+          }, 1750);
+
+      setTimeout(function(){
+            $('#copyright').fadeIn(800);
+            self.showSplashScreen(false);
+            self.showSignInScreen(true);
+          }, 3500);
     }
 
     // Hammer JS

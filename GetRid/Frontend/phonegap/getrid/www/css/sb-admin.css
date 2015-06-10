@@ -520,8 +520,56 @@ h2 {
 
 
 
+/*SplashScreen*/
 
+#splash{
+    position:absolute;
+    left:50%;
+    margin-left:-250px;
+    top:50%;
+    margin-top: 70px;
+    width:500px;
+    height:250px;
+    /*background-color: #666;*/
+    overflow: hidden;
+}
 
+#taborLogo{
+    font-family: 'Fugaz One', cursive;
+    font-size: 64px;
+    color: #2E4172;
+    text-shadow: #EDEDED;
+    position: absolute;
+    bottom: 2.5px;
+    margin-left: 70px;
+    text-align:center;
+    line-height:250px;
+    width:100px;
+    display: none;
+    margin-top: 70px;
+}
+
+#techLogo{
+    font-family: 'Black Ops One', cursive;
+    font-size: 64px;
+    color: #333;
+    text-shadow: #EDEDED;
+    position: absolute;
+    right: -100px;
+    float: right;
+    text-align:center;
+    line-height:250px;
+    width:100px;
+    height:200px;
+   /* margin-top: 70px;*/
+}
+
+#copyright{
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 425px;
+    display: none;
+}
 
 
 
