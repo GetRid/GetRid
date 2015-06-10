@@ -40,7 +40,7 @@ namespace GetRid.Controllers
                         (double) product.Location.Longitude);
                     var locB = new GeoCoordinate((double) geoCoords.Latitude, (double) geoCoords.Longitude);
                     double distance = locA.GetDistanceTo(locB); // metres
-                    var distanceRound = Math.Round(distance) / 1000;
+                    var distanceRound = Math.Ceiling(distance) / 1000;
                     dto.DistanceToUser = distanceRound.ToString() + " km";
                     productDTOs.Add(dto);
                 }
@@ -60,7 +60,7 @@ namespace GetRid.Controllers
                     (double) product.Location.Longitude);
                 var locB = new GeoCoordinate((double) geoCoords.Latitude, (double) geoCoords.Longitude);
                 double distance = locA.GetDistanceTo(locB); // metres
-                var distanceRound = Math.Round(distance)/1000;
+                var distanceRound = Math.Ceiling(distance)/1000;
                 dto.DistanceToUser = distanceRound.ToString() + " km";
                 productDTOs.Add(dto);
             }
