@@ -415,7 +415,7 @@ $(document).ready(function() {
     }
 
     self.makeContact = function(item) {
-      //self.chosenIndividualDetails(null);
+      self.chosenIndividualDetails(null);
 
       if (sessionStorage.getItem("getRidLoginToken")) {
         self.makeContactData(item);
