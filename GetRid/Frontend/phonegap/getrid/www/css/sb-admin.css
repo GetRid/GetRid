@@ -305,7 +305,6 @@ ul.alert-dropdown {
  }
 
 .flash-image{
-/*    -moz-animation:.6s rotateRight infinite linear;*/
     -webkit-animation:6s rotateRight infinite linear;
 }
 
