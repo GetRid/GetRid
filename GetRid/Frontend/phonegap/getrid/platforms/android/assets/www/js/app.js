@@ -37,11 +37,16 @@ $(document).ready(function() {
     self.Id = ko.observable();
     self.selectedCategory = ko.observable();
 
+    // Radius Selector binding, 1000m by default
+    self.searchRadius = ko.observable("10000");
+    self.tempRadius = ko.observable(self.searchRadius());
+
     self.displays = [{label : "All"},
                      {label : "Category"},
                      {label : "Search Location"},
                      {label : "Get Rid"},
                     ];
+
 
     // Display Data bindings
     self.chosenDisplayId = ko.observable();
@@ -71,13 +76,32 @@ $(document).ready(function() {
     self.getRidData = ko.observable();
 
     //Behaviours
-    self.signIn = function(display) {
+    self.clearViews = function() {
+      self.showSignInSignUpForm(false);
+      self.showGetRidForm(false);
+      self.showNavBar(false);
+      self.showSuccessfulGetRid(false);
       self.showSplashScreen(false);
+      self.showMakeContact(false);
+      self.showRadiusSelectorMap(false);
+
+      self.chosenDisplayId(null);
+      self.chosenDisplayData(null);
+      self.chosenIndividualData(null);
+      self.chosenIndividualDetails(null);
+      self.makeContactData(null);
+      self.getRidData(null);
+    }
+
+    self.signIn = function(display) {
+      //self.showSplashScreen(false);
+      self.clearViews();
       self.showSignInSignUpForm(true);
     }
 
     self.signUp = function(display) {
-      self.showSplashScreen(false);
+      //self.showSplashScreen(false);
+      self.clearViews();
       self.showSignInSignUpForm(true);
     }
 
@@ -97,7 +121,8 @@ $(document).ready(function() {
         console.log("sign in successful.")
         sessionStorage.setItem("getRidLoginToken", result.access_token);
         headers.Authorization = 'Bearer ' + result.access_token;
-        self.showSignInSignUpForm(false);
+        //self.showSignInSignUpForm(false);
+        self.clearViews();
         self.showNavBar(true);
         self.goToDisplay("All");
       })
@@ -121,6 +146,8 @@ $(document).ready(function() {
         .done(function(result) {
           alert('post successful');
           console.log("Add product successful.. ", result);
+          self.clearViews();
+          self.showNavBar(true);
           self.showSuccessfulGetRid(true);
         })
         .fail(function(result) {
@@ -196,31 +223,33 @@ $(document).ready(function() {
     self.handleLogout = function() {
       console.log("logging out..");
       sessionStorage.removeItem("getRidLoginToken");
+      self.clearViews();
+      self.showNavBar(true);
       self.showSplashScreen(true);
     }
 
     self.browseNearYou = function(display) {
-      self.showSplashScreen(false);
+      //self.showSplashScreen(false);
+      self.clearViews();
       self.showNavBar(true);
       self.goToDisplay(display);
     }
 
     self.selectRadius = function() {
-      self.showSignInSignUpForm(false);
-      self.showGetRidForm(false);
-      self.showSuccessfulGetRid(false);
-      self.showSplashScreen(false);
-      self.showMakeContact(false);
-
-      self.chosenDisplayId(null)
-      self.chosenIndividualData(null);
-      self.chosenIndividualDetails(null);
-      self.chosenDisplayData(null);
+      // self.showSignInSignUpForm(false);
+      // self.showGetRidForm(false);
+      // self.showSuccessfulGetRid(false);
+      // self.showSplashScreen(false);
+      // self.showMakeContact(false);
+      // self.chosenDisplayId(null)
+      // self.chosenIndividualData(null);
+      // self.chosenIndividualDetails(null);
+      // self.chosenDisplayData(null);
+      self.clearViews();
 
       self.showNavBar(true);
       self.showRadiusSelectorMap(true);
 
-      /* Map functionality */
       // Provide your access token
       L.mapbox.accessToken = 'pk.eyJ1IjoiZW52aW50YWdlIiwiYSI6Inh6U0p2bkEifQ.p6VrrwOc_w0Ij-iTj7Zz8A';
       // Create a map in the div #map
@@ -234,7 +263,7 @@ $(document).ready(function() {
       L.drawLocal.draw.handlers.simpleshape.tooltip.end = 'Release to finish drawing'
 
       var drawControl = new L.Control.Draw({
-        position: "topright",
+        position: "topleft",
         draw: {
           polyline: false,
           polygon: false,
@@ -247,26 +276,36 @@ $(document).ready(function() {
       }).addTo(map);
 
       map.on('draw:drawstart', function(e) {
-          featureGroup.clearLayers();
+        $('#radius-display').removeClass('panel-success').addClass('panel-default');
+        $('#radius-meters').html('');
+        featureGroup.clearLayers();
       });
 
       map.on('draw:created', function(e) {
         console.log(e.layer._mRadius);
-        $('#radius-meters').html(Math.round(e.layer._mRadius));
-          featureGroup.addLayer(e.layer);
+        $('#radius-display').removeClass('panel-default').addClass('panel-success');
+        $('#radius-meters').html(Math.round(e.layer._mRadius) + " meters");
+        //assign e.layer._mRadius to global data-bound variable
+        self.tempRadius(e.layer._mRadius);
+        featureGroup.addLayer(e.layer);
       });
+    }
 
-
-      /* Map functionality */
-
+    self.confirmRadius = function() {
+      self.clearViews();
+      self.searchRadius(self.tempRadius());
+      self.showNavBar(true);
+      self.goToDisplay();
     }
 
     self.filterByCategory = function(searchCategory){
       // self.itemData(ko.utils.arrayFilter(self.itemData(), function(item){
       //   return item.Category == searchCategory
       // }))
+      self.clearViews();
       console.log(searchCategory);
       self.selectedCategory(searchCategory);
+      self.showNavBar(true);
       self.goToDisplay();
     }
 
@@ -296,7 +335,8 @@ $(document).ready(function() {
           // $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
           //     latitude: currentUserPosition.coords.latitude,
           //     longitude: currentUserPosition.coords.longitude,
-          //     category: self.selectedCategory()
+          //     category: self.selectedCategory(),
+          //    radius: self.searchRadius()
           //   },
           //   function(data) {
           //     self.itemData(data);
@@ -316,17 +356,20 @@ $(document).ready(function() {
       // Commented out for browser testing
       // navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
-      //
+      self.clearViews();
+      self.showNavBar(true);
       self.chosenDisplayId(display);
-      self.chosenIndividualData(null);
-      self.chosenIndividualDetails(null);
-      self.makeContactData(null);
+      // self.chosenIndividualData(null);
+      // self.chosenIndividualDetails(null);
+      // self.makeContactData(null);
+      // self.showRadiusSelectorMap(false);
 
 ///////////////////////////////////
       $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
           latitude: "-41.279576",
           longitude: "174.776066",
-          category: self.selectedCategory()
+          category: self.selectedCategory(),
+          radius: self.searchRadius()
         },
         function(data) {
           self.itemData(data);
@@ -345,6 +388,9 @@ $(document).ready(function() {
       }
       else {
         // no more items to trash
+        self.clearViews();
+        self.showNavBar(true);
+        self.goToDisplay();
       }
     }
 
@@ -354,12 +400,13 @@ $(document).ready(function() {
 
     self.goToItem = function(item) {
       self.chosenDisplayId(item.display);
-      self.chosenDisplayData(null);
+      //self.chosenDisplayData(null);
       self.chosenIndividualData(item);
     }
 
     self.goToDetails = function(item) {
       self.chosenIndividualData(null);
+      //self.clearViews();
       self.chosenIndividualDetails(item);
     }
 
@@ -368,52 +415,68 @@ $(document).ready(function() {
     }
 
     self.makeContact = function(item) {
-      self.chosenIndividualDetails(null);
-      self.makeContactData(item);
+      //self.chosenIndividualDetails(null);
 
-      $.ajax("http://getridapi.azurewebsites.net/api/products/" + item.Id,
-        {
-            data: ko.toJSON({
-              Name: item.Name,
-              Description: item.Description,
-              Category: item.Category,
-              Reserved: 'true',
-              Id: item.Id
-            }),
-            type: "put",
-            headers: headers,
-            contentType: "application/json"
-        })
-        .done(function(result) {
-          console.log("Update successful.. ", result);
-          self.showMakeContact(true);
-          console.log(item);
-        })
-        .fail(function(result) {
-          alert('Update failed:' + result);
-            console.log("Update FAILED", result);
-        });
+      if (sessionStorage.getItem("getRidLoginToken")) {
+        self.makeContactData(item);
 
-
+        $.ajax("http://getridapi.azurewebsites.net/api/products/" + item.Id,
+          {
+              data: ko.toJSON({
+                Name: item.Name,
+                Description: item.Description,
+                Category: item.Category,
+                Reserved: 'true',
+                Id: item.Id
+              }),
+              type: "put",
+              headers: headers,
+              contentType: "application/json"
+          })
+          .done(function(result) {
+            console.log("Update successful.. ", result);
+            //self.clearViews();
+            self.showNavBar(true);
+            self.showMakeContact(true);
+            console.log(item);
+          })
+          .fail(function(result) {
+            alert('Update failed:' + result);
+              console.log("Update FAILED", result);
+          });
+      } else {
+        self.clearViews();
+        self.showSignInSignUpForm(true);
+      }
 
     }
 
     self.goToGetRid = function() {
-      self.chosenDisplayId(null)
-      self.chosenIndividualData(null);
-      self.chosenIndividualDetails(null);
-      self.chosenDisplayData(null);
-      self.getRidData();
-      self.showSplashScreen(false);
-      self.showGetRidForm(true);
+      // self.chosenDisplayId(null)
+      // self.chosenIndividualData(null);
+      // self.chosenIndividualDetails(null);
+      // self.chosenDisplayData(null);
+      // self.getRidData();
+      // self.showSplashScreen(false);
+
+      if (sessionStorage.getItem("getRidLoginToken")) {
+        self.clearViews();
+        self.showNavBar(true);
+        self.showGetRidForm(true);
+      } else {
+        self.clearViews();
+        self.showSignInSignUpForm(true);
+      }
     }
 
 
     if (token) {
+      self.clearViews(true);
       headers.Authorization = 'Bearer ' + token;
       self.browseNearYou("All");
     }
     else {
+      self.clearViews(true);
       self.showSplashScreen(true);
     }
 
