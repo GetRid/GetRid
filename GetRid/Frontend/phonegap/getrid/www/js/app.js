@@ -231,8 +231,8 @@ $(document).ready(function() {
     self.browseNearYou = function(display) {
       //self.showSplashScreen(false);
       self.clearViews();
-      self.showNavBar(true);
       self.goToDisplay(display);
+      self.showNavBar(true);
     }
 
     self.selectRadius = function() {
