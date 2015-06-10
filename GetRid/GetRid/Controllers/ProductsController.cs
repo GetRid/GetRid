@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Spatial;
 using System.Device.Location;
@@ -39,6 +40,8 @@ namespace GetRid.Controllers
                         (double) product.Location.Longitude);
                     var locB = new GeoCoordinate((double) geoCoords.Latitude, (double) geoCoords.Longitude);
                     double distance = locA.GetDistanceTo(locB); // metres
+                    var distanceRound = Math.Round(distance) / 1000;
+                    dto.DistanceToUser = distanceRound.ToString() + " km";
                     dto.DistanceToUser = distance.ToString();
                     productDTOs.Add(dto);
                 }
@@ -58,7 +61,8 @@ namespace GetRid.Controllers
                     (double) product.Location.Longitude);
                 var locB = new GeoCoordinate((double) geoCoords.Latitude, (double) geoCoords.Longitude);
                 double distance = locA.GetDistanceTo(locB); // metres
-                dto.DistanceToUser = distance.ToString();
+                var distanceRound = Math.Round(distance)/1000;
+                dto.DistanceToUser = distanceRound.ToString() + " km";
                 productDTOs.Add(dto);
             }
             return productDTOs;
