@@ -66,28 +66,31 @@
 
                     <!-- SIGN IN SCREEN -->
                     <div data-bind="visible: showSignInScreen">
+                        <div class="row" id="circle-row">
+                            <div id="circle" class="col-sm-12">
+                                <img id="rolling-circle" src="img/GetRidCircle.png">
+                            </div>
+                        </div>
+
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" style="clear: left;">
                                 <div class="item-text">
-                                    <img class="flash-image" src="img/GetRidCircle.png" alt="">
+                                    <!-- <img class="flash-image" src="img/GetRidCircle.png" alt=""> -->
+                                            <form id="sign-in-form">
+                                                <p><input type="text" data-bind="value: UserName" placeholder="Username"></p>
+                                                <p><input type="password" data-bind="value: Password" placeholder="Password"></p>
 
-                                    <form>
-                                        <p><input type="text" data-bind="value: UserName" placeholder="Username"></p>
-                                        <p><input type="password" data-bind="value: Password" placeholder="Password"></p>
+                                                <!-- p><button data-bind="click: $root.signIn" class="btn btn-primary">SIGN IN</button></p -->
+                                                <p><input type="submit" id="sign-in" data-bind="click: $root.handleSignIn" value="Sign In" class="btn btn-primary"></p>
+                                            </form>
 
-                                        <!-- p><button data-bind="click: $root.signIn" class="btn btn-primary">SIGN IN</button></p -->
-                                        <p><input type="submit" id="sign-in" data-bind="click: $root.handleSignIn" value="Sign In" class="btn btn-primary"></p>
-                                    </form>
+                                            <p><a id="signup" data-bind="click: $root.signUp">Not registered? Sign up here.</a></p>
 
-                                    <p><a id="signup" data-bind="click: $root.signUp">Not registered? Sign up here.</a></p>
 
-                                    <div class="caption">
-                                    </div>
-
-                                    <div class="ratings">
-                                        <a id="logo-hide" data-bind="click: $root.browseNearYou"><h1><i class="fa fa-location-arrow"></i> </h1></a>
-                                        <a id="browseNearYou" data-bind="click: $root.browseNearYou"><h4>Browse Near You </h4></a>
-                                    </div>
+                                            <div class="ratings">
+                                                <a id="logo-hide" data-bind="click: $root.browseNearYou"><h1><i class="fa fa-location-arrow"></i> </h1></a>
+                                                <a id="browseNearYou" data-bind="click: $root.browseNearYou"><h4>Browse Near You </h4></a>
+                                            </div>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +141,10 @@
                                 <div id="arrow-right" class="col-xs-3">
                                     <a data-bind="click: $root.treasure"><span style="font-size:3em;" class="glyphicon glyphicon-chevron-right"></span></a><br><p2>Treasure<p2>
                                 </div>
-
+                                <div class="col-xs-12">
+                                    <h3 class="item-text" data-bind="text: DistanceToUser"></h3>
+                                    <h4 class="item-text">away from you!</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
