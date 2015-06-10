@@ -76,13 +76,32 @@ $(document).ready(function() {
     self.getRidData = ko.observable();
 
     //Behaviours
-    self.signIn = function(display) {
+    self.clearViews = function() {
+      self.showSignInSignUpForm(false);
+      self.showGetRidForm(false);
+      self.showNavBar(false);
+      self.showSuccessfulGetRid(false);
       self.showSplashScreen(false);
+      self.showMakeContact(false);
+      self.showRadiusSelectorMap(false);
+
+      self.chosenDisplayId(null);
+      self.chosenDisplayData(null);
+      self.chosenIndividualData(null);
+      self.chosenIndividualDetails(null);
+      self.makeContactData(null);
+      self.getRidData(null);
+    }
+
+    self.signIn = function(display) {
+      //self.showSplashScreen(false);
+      self.clearViews();
       self.showSignInSignUpForm(true);
     }
 
     self.signUp = function(display) {
-      self.showSplashScreen(false);
+      //self.showSplashScreen(false);
+      self.clearViews();
       self.showSignInSignUpForm(true);
     }
 
@@ -102,7 +121,8 @@ $(document).ready(function() {
         console.log("sign in successful.")
         sessionStorage.setItem("getRidLoginToken", result.access_token);
         headers.Authorization = 'Bearer ' + result.access_token;
-        self.showSignInSignUpForm(false);
+        //self.showSignInSignUpForm(false);
+        self.clearViews();
         self.showNavBar(true);
         self.goToDisplay("All");
       })
@@ -126,6 +146,8 @@ $(document).ready(function() {
         .done(function(result) {
           alert('post successful');
           console.log("Add product successful.. ", result);
+          self.clearViews();
+          self.showNavBar(true);
           self.showSuccessfulGetRid(true);
         })
         .fail(function(result) {
@@ -201,26 +223,29 @@ $(document).ready(function() {
     self.handleLogout = function() {
       console.log("logging out..");
       sessionStorage.removeItem("getRidLoginToken");
+      self.clearViews();
+      self.showNavBar(true);
       self.showSplashScreen(true);
     }
 
     self.browseNearYou = function(display) {
-      self.showSplashScreen(false);
+      //self.showSplashScreen(false);
+      self.clearViews();
       self.showNavBar(true);
       self.goToDisplay(display);
     }
 
     self.selectRadius = function() {
-      self.showSignInSignUpForm(false);
-      self.showGetRidForm(false);
-      self.showSuccessfulGetRid(false);
-      self.showSplashScreen(false);
-      self.showMakeContact(false);
-
-      self.chosenDisplayId(null)
-      self.chosenIndividualData(null);
-      self.chosenIndividualDetails(null);
-      self.chosenDisplayData(null);
+      // self.showSignInSignUpForm(false);
+      // self.showGetRidForm(false);
+      // self.showSuccessfulGetRid(false);
+      // self.showSplashScreen(false);
+      // self.showMakeContact(false);
+      // self.chosenDisplayId(null)
+      // self.chosenIndividualData(null);
+      // self.chosenIndividualDetails(null);
+      // self.chosenDisplayData(null);
+      self.clearViews();
 
       self.showNavBar(true);
       self.showRadiusSelectorMap(true);
@@ -264,13 +289,12 @@ $(document).ready(function() {
         self.tempRadius(e.layer._mRadius);
         featureGroup.addLayer(e.layer);
       });
-
-
-
     }
 
     self.confirmRadius = function() {
+      self.clearViews();
       self.searchRadius(self.tempRadius());
+      self.showNavBar(true);
       self.goToDisplay();
     }
 
@@ -278,8 +302,10 @@ $(document).ready(function() {
       // self.itemData(ko.utils.arrayFilter(self.itemData(), function(item){
       //   return item.Category == searchCategory
       // }))
+      self.clearViews();
       console.log(searchCategory);
       self.selectedCategory(searchCategory);
+      self.showNavBar(true);
       self.goToDisplay();
     }
 
@@ -330,12 +356,13 @@ $(document).ready(function() {
       // Commented out for browser testing
       // navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
-      //
+      self.clearViews();
+      self.showNavBar(true);
       self.chosenDisplayId(display);
-      self.chosenIndividualData(null);
-      self.chosenIndividualDetails(null);
-      self.makeContactData(null);
-      self.showRadiusSelectorMap(false);
+      // self.chosenIndividualData(null);
+      // self.chosenIndividualDetails(null);
+      // self.makeContactData(null);
+      // self.showRadiusSelectorMap(false);
 
 ///////////////////////////////////
       $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
@@ -370,12 +397,13 @@ $(document).ready(function() {
 
     self.goToItem = function(item) {
       self.chosenDisplayId(item.display);
-      self.chosenDisplayData(null);
+      //self.chosenDisplayData(null);
       self.chosenIndividualData(item);
     }
 
     self.goToDetails = function(item) {
       self.chosenIndividualData(null);
+      //self.clearViews();
       self.chosenIndividualDetails(item);
     }
 
@@ -384,7 +412,7 @@ $(document).ready(function() {
     }
 
     self.makeContact = function(item) {
-      self.chosenIndividualDetails(null);
+      //self.chosenIndividualDetails(null);
 
       if (sessionStorage.getItem("getRidLoginToken")) {
         self.makeContactData(item);
@@ -404,6 +432,8 @@ $(document).ready(function() {
           })
           .done(function(result) {
             console.log("Update successful.. ", result);
+            self.clearViews();
+            self.showNavBar(true);
             self.showMakeContact(true);
             console.log(item);
           })
@@ -412,32 +442,38 @@ $(document).ready(function() {
               console.log("Update FAILED", result);
           });
       } else {
+        self.clearViews();
         self.showSignInSignUpForm(true);
       }
 
     }
 
     self.goToGetRid = function() {
-      self.chosenDisplayId(null)
-      self.chosenIndividualData(null);
-      self.chosenIndividualDetails(null);
-      self.chosenDisplayData(null);
-      self.getRidData();
-      self.showSplashScreen(false);
+      // self.chosenDisplayId(null)
+      // self.chosenIndividualData(null);
+      // self.chosenIndividualDetails(null);
+      // self.chosenDisplayData(null);
+      // self.getRidData();
+      // self.showSplashScreen(false);
 
       if (sessionStorage.getItem("getRidLoginToken")) {
+        self.clearViews();
+        self.showNavBar(true);
         self.showGetRidForm(true);
       } else {
+        self.clearViews();
         self.showSignInSignUpForm(true);
       }
     }
 
 
     if (token) {
+      self.clearViews(true);
       headers.Authorization = 'Bearer ' + token;
       self.browseNearYou("All");
     }
     else {
+      self.clearViews(true);
       self.showSplashScreen(true);
     }
 
