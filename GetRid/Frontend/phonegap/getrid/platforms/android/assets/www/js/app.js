@@ -6,7 +6,7 @@ $(document).ready(function() {
 
   var token = sessionStorage.getItem("getRidLoginToken");
   var headers = {};
-  var currentUserPosition;
+  //var currentUserPosition;
   var productImage;
 
   function appViewModel() {
@@ -261,6 +261,9 @@ $(document).ready(function() {
       // Create a map in the div #map
       var map = L.mapbox.map('map', 'envintage.i9eofp14');
 
+      map.setView([currentUserPosition.latitude, currentUserPosition.longitude], 13);
+      L.marker([currentUserPosition.latitude, currentUserPosition.longitude]).addTo(map);
+
       var featureGroup = L.featureGroup().addTo(map);
       // map.addLayer(featureGroup);
 
@@ -281,6 +284,8 @@ $(document).ready(function() {
         // }
       }).addTo(map);
 
+      map.dragging.disable();
+
       map.on('draw:drawstart', function(e) {
         $('#radius-display').removeClass('panel-success').addClass('panel-default');
         $('#radius-meters').html('');
@@ -288,6 +293,9 @@ $(document).ready(function() {
       });
 
       map.on('draw:created', function(e) {
+        e.layer._latlng.lat = currentUserPosition.latitude;
+        e.layer._latlng.lng = currentUserPosition.longitude;
+
         console.log(e.layer._mRadius);
         $('#radius-display').removeClass('panel-default').addClass('panel-success');
         $('#radius-meters').html(Math.round(e.layer._mRadius) + " meters");
@@ -360,7 +368,7 @@ $(document).ready(function() {
       }
 
       // Commented out for browser testing
-      // navigator.geolocation.getCurrentPosition(onSuccess, onError);
+      // navigator.currentUserPosition.getCurrentPosition(onSuccess, onError);
 
       self.clearViews();
       self.showNavBar(true);
