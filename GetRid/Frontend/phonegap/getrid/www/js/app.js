@@ -421,7 +421,12 @@ $(document).ready(function() {
       self.chosenDisplayData(null);
       self.getRidData();
       self.showSplashScreen(false);
-      self.showGetRidForm(true);
+
+      if (sessionStorage.getItem("getRidLoginToken")) {
+        self.showGetRidForm(true);
+      } else {
+        self.showSignInSignUpForm(true);
+      }
     }
 
 

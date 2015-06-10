@@ -37,11 +37,16 @@ $(document).ready(function() {
     self.Id = ko.observable();
     self.selectedCategory = ko.observable();
 
+    // Radius Selector binding, 1000m by default
+    self.searchRadius = ko.observable("10000");
+    self.tempRadius = ko.observable(self.searchRadius());
+
     self.displays = [{label : "All"},
                      {label : "Category"},
                      {label : "Search Location"},
                      {label : "Get Rid"},
                     ];
+
 
     // Display Data bindings
     self.chosenDisplayId = ko.observable();
@@ -220,7 +225,6 @@ $(document).ready(function() {
       self.showNavBar(true);
       self.showRadiusSelectorMap(true);
 
-      /* Map functionality */
       // Provide your access token
       L.mapbox.accessToken = 'pk.eyJ1IjoiZW52aW50YWdlIiwiYSI6Inh6U0p2bkEifQ.p6VrrwOc_w0Ij-iTj7Zz8A';
       // Create a map in the div #map
@@ -234,7 +238,7 @@ $(document).ready(function() {
       L.drawLocal.draw.handlers.simpleshape.tooltip.end = 'Release to finish drawing'
 
       var drawControl = new L.Control.Draw({
-        position: "topright",
+        position: "topleft",
         draw: {
           polyline: false,
           polygon: false,
@@ -247,18 +251,27 @@ $(document).ready(function() {
       }).addTo(map);
 
       map.on('draw:drawstart', function(e) {
-          featureGroup.clearLayers();
+        $('#radius-display').removeClass('panel-success').addClass('panel-default');
+        $('#radius-meters').html('');
+        featureGroup.clearLayers();
       });
 
       map.on('draw:created', function(e) {
         console.log(e.layer._mRadius);
-        $('#radius-meters').html(Math.round(e.layer._mRadius));
-          featureGroup.addLayer(e.layer);
+        $('#radius-display').removeClass('panel-default').addClass('panel-success');
+        $('#radius-meters').html(Math.round(e.layer._mRadius) + " meters");
+        //assign e.layer._mRadius to global data-bound variable
+        self.tempRadius(e.layer._mRadius);
+        featureGroup.addLayer(e.layer);
       });
 
 
-      /* Map functionality */
 
+    }
+
+    self.confirmRadius = function() {
+      self.searchRadius(self.tempRadius());
+      self.goToDisplay();
     }
 
     self.filterByCategory = function(searchCategory){
@@ -296,7 +309,8 @@ $(document).ready(function() {
           // $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
           //     latitude: currentUserPosition.coords.latitude,
           //     longitude: currentUserPosition.coords.longitude,
-          //     category: self.selectedCategory()
+          //     category: self.selectedCategory(),
+          //    radius: self.searchRadius()
           //   },
           //   function(data) {
           //     self.itemData(data);
@@ -321,12 +335,14 @@ $(document).ready(function() {
       self.chosenIndividualData(null);
       self.chosenIndividualDetails(null);
       self.makeContactData(null);
+      self.showRadiusSelectorMap(false);
 
 ///////////////////////////////////
       $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
           latitude: "-41.279576",
           longitude: "174.776066",
-          category: self.selectedCategory()
+          category: self.selectedCategory(),
+          radius: self.searchRadius()
         },
         function(data) {
           self.itemData(data);

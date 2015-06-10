@@ -105,15 +105,23 @@
 
                     <!--INDIVIDUAL ITEM -->
                     <div id="imageSwipe" data-bind="with: chosenIndividualData">
-                        <div  class="row">
-                            <div class="col-sm-12">
+                        <div  class="row col-xs-12">
+                            <div>
                                 <!-- move id=imageSwipe to img -->
                                 <!-- <div class="thumbnail"> -->
+                                <div class="title-div">
                                     <h1 class="item-text" data-bind="text: Name"></h1>
-
-                                    <object>
+                                </div>
+                                <div id="arrow-left" class="col-xs-2">
+                                    <i class="fa fa-arrow-left fa-2x"></i>
+                                </div>
+                                <div class="image-div col-xs-8">
                                     <img id="imageSwipe" class="item-image" data-bind="attr: {src: $root.imageDisplay }" alt="">
-                                    </object>
+                                </div>
+                                <div id="arrow-right" class="col-xs-2">
+                                    <i class="fa fa-arrow-right fa-2x"></i>
+                                </div>
+
 
                                     <div class="caption">
                                         <h4 class="item-text"><a href="#">5 km away</a>
@@ -140,13 +148,13 @@
                                             <h4 data-bind="text: Description"></h4>
                                 </div>
 
-<!--                                 <div class="item-text">
+                                <div class="item-text">
                                     <a data-bind="click: $root.makeContact"></a>
                                     <button data-bind="click: $root.makeContact" class="btn btn-primary">Get</button>
                                 </div>
                                 <div>
                                     <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-5x"></i><br>Back</a>
-                                </div> -->
+                                </div>
                             </div>
                         <!-- </div> -->
                     </div>
@@ -197,12 +205,13 @@
                         </div>
                     </div>
 
+                    <!-- RADIUS SELECTOR MAP -->
                     <div data-bind="visible: showRadiusSelectorMap" class="map-container">
                       <div id="back">
-                        <button class="btn btn-primary">Back</button>
+                        <button data-bind="click: $root.goToDisplay" class="btn btn-primary">Back</button>
                       </div>
                       <div id="confirm">
-                        <button class="btn btn-primary">Confirm</button>
+                        <button data-bind="click: $root.confirmRadius" class="btn btn-primary">Confirm</button>
                       </div>
                       <div id="radius-display" class="panel panel-default">
                         <div class="panel-heading">
