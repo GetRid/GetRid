@@ -385,32 +385,35 @@ $(document).ready(function() {
 
     self.makeContact = function(item) {
       self.chosenIndividualDetails(null);
-      self.makeContactData(item);
 
-      $.ajax("http://getridapi.azurewebsites.net/api/products/" + item.Id,
-        {
-            data: ko.toJSON({
-              Name: item.Name,
-              Description: item.Description,
-              Category: item.Category,
-              Reserved: 'true',
-              Id: item.Id
-            }),
-            type: "put",
-            headers: headers,
-            contentType: "application/json"
-        })
-        .done(function(result) {
-          console.log("Update successful.. ", result);
-          self.showMakeContact(true);
-          console.log(item);
-        })
-        .fail(function(result) {
-          alert('Update failed:' + result);
-            console.log("Update FAILED", result);
-        });
+      if (sessionStorage.getItem("getRidLoginToken")) {
+        self.makeContactData(item);
 
-
+        $.ajax("http://getridapi.azurewebsites.net/api/products/" + item.Id,
+          {
+              data: ko.toJSON({
+                Name: item.Name,
+                Description: item.Description,
+                Category: item.Category,
+                Reserved: 'true',
+                Id: item.Id
+              }),
+              type: "put",
+              headers: headers,
+              contentType: "application/json"
+          })
+          .done(function(result) {
+            console.log("Update successful.. ", result);
+            self.showMakeContact(true);
+            console.log(item);
+          })
+          .fail(function(result) {
+            alert('Update failed:' + result);
+              console.log("Update FAILED", result);
+          });
+      } else {
+        self.showSignInSignUpForm(true);
+      }
 
     }
 
