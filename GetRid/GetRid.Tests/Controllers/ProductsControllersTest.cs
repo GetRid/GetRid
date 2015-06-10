@@ -29,9 +29,7 @@ namespace GetRid.Tests.Controllers
            ProductsController productsController = new ProductsController();
 
            var ressult = productsController.GetProducts("-41.2966591", "174.7741981");
-
-
-           var something = 2;
+           
            //Arrange
            //ProductsController productsController = new ProductsController();
            //IQueryable<Product> expect;
