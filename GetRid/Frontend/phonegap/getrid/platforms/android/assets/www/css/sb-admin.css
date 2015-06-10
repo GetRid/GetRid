@@ -408,21 +408,48 @@ p, div {
 
 .display-title-div {
     margin-top: 20px;
-    height: 195px;
+    height: 190px;
     overflow: hidden;
 }
 
 .reserved-title-div {
-    padding-top: 10px;
+    /*padding-top: 10px;*/
+    margin-top: 20px;
+    height: 190px;
+    overflow: hidden;
 }
 
 .more-info {
     text-align: center;
+    padding-top: 10px;
 }
 
 .btn-default {
-    background-color: grey;
+    background-color: #009900;
+    margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    font-size: 30px;
+}
+
+.btn-default:hover {
+    background-color: #009900;
+}
+
+.get-rid-page {
+    margin-top: 40px;
+}
+
+#owner {
+    text-align: center;
+}
+
+.panel {
+    max-width: 270px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .image-div {
@@ -454,7 +481,7 @@ p, div {
 }
 
 .glyphicon-chevron-right:hover {
-    color: #00FF00;
+    color: #009900;
 }
 
 p2 {
@@ -483,7 +510,9 @@ p3 {
 h1 {
     font-size: 50px;
 }
-
+h2 {
+    font-size: 30px;
+}
 
 
 

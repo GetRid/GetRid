@@ -50,16 +50,26 @@
     <div class="container">
         <div id="page-wrapper">
 
-                    <!-- SPLASH SCREEN -->
-                    <div data-bind="visible: showSplashScreen">
+                    <!-- SIGN IN SCREEN -->
+                    <div data-bind="visible: showSignInScreen">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="item-text">
                                     <img class="flash-image" src="img/GetRidCircle.png" alt="">
-                                    <p><button data-bind="click: $root.signIn" class="btn btn-primary">SIGN IN</button></p>
-                                    <p><button id="signup"data-bind="click: $root.signUp" class="btn btn-primary">SIGN UP</button></p>
+
+                                    <form>
+                                        <p><input type="text" data-bind="value: UserName" placeholder="Username"></p>
+                                        <p><input type="password" data-bind="value: Password" placeholder="Password"></p>
+
+                                        <!-- p><button data-bind="click: $root.signIn" class="btn btn-primary">SIGN IN</button></p -->
+                                        <p><input type="submit" id="sign-in" data-bind="click: $root.handleSignIn" value="Sign In" class="btn btn-primary"></p>
+                                    </form>
+
+                                    <p><a id="signup" data-bind="click: $root.signUp">Not registered? Sign up here.</a></p>
+
                                     <div class="caption">
                                     </div>
+
                                     <div class="ratings">
                                         <a id="logo-hide" data-bind="click: $root.browseNearYou"><h1><i class="fa fa-location-arrow"></i> </h1></a>
                                         <a id="browseNearYou" data-bind="click: $root.browseNearYou"><h4>Browse Near You </h4></a>
@@ -69,19 +79,25 @@
                         </div>
                     </div>
 
-                    <!-- SIGN UP / SIGN IN FORM -->
-                    <div data-bind="visible: showSignInSignUpForm"> <!-- data-bind="with: getRidData" -->
+                    <!-- SIGN UP FORM -->
+                    <div data-bind="visible: showSignUpForm"> <!-- data-bind="with: getRidData" -->
                         <div class="row item-text">
                             <div class="col-sm-12">
-                                <img class="logo-name" src="img/GetRidName.png">
+                                <img class="logo-name" src="img/GetRidLong.png">
                                 <form>
                                     <p><input type="text" data-bind="value: UserName" placeholder="Username"></p>
                                     <p><input type="password" data-bind="value: Password" placeholder="Password"></p>
                                     <p><input type="text" data-bind="value: Address" placeholder="Address"></p>
                                     <p><input type="text" data-bind="value: Email" placeholder="Email"></p>
-                                    <p><input type="submit" id="sign-in" data-bind="click: $root.handleSignIn" value="Sign In" class="btn btn-primary"></p>
                                     <p><input type="submit" id="sign-up" data-bind="click: $root.handleSignUp" value="Sign Up" class="btn btn-primary"></p>
                                 </form>
+
+                                <p><a id="signin" data-bind="click: $root.signIn">Already registered? Sign in here.</a></p>
+
+                                <div class="ratings">
+                                    <a id="logo-hide" data-bind="click: $root.browseNearYou"><h1><i class="fa fa-location-arrow"></i> </h1></a>
+                                    <a id="browseNearYou" data-bind="click: $root.browseNearYou"><h4>Browse Near You </h4></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -121,7 +137,7 @@
                                         <img class="more-info-image" data-bind="attr: {src: $root.imageDetailsDisplay }" alt="">
                                 </div>
                                 <div class="col-xs-6 display-title-div">
-                                            <h1 data-bind="text: Name"></h1>
+                                            <h2 data-bind="text: Name"></h2>
                                 </div>
                             </div>
                             <div class="row">
@@ -147,22 +163,28 @@
                     <!--CONTACT DISPLAY -->
                     <div data-bind="visible: showMakeContact, with: makeContactData">
                         <div class="row">
-                            <div class="col-sm-12 more-info">
                                 <div class="col-xs-6">
                                         <img class="more-info-image" data-bind="attr: {src: $root.imageContactDisplay }" alt="">
                                 </div>
                                 <div class="col-xs-6 reserved-title-div">
-                                        <h1 class="item-text" data-bind="text: Name"></h1>
+                                        <h2 class="item-text" data-bind="text: Name"></h2>
+                                </div>
+                            <div class="row">
+                                <div class="col-xs-12" id="owner">
+                                        <h3 class="btn btn-default btn-lg .more-info-text" id="owner">RESERVED</h3>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                        <h3 class="btn btn-default btn-lg">RESERVED</h3>
+                                   <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title .more-info-text" id="owner">Contact the owner:</h3>
+
+                                        </div>
+                                    <h2 data-bind="text: $data.User.Email" id="owner"></h2></div>
                                 </div>
-
-
-                                        <h3 class="item-text" data-bind="text: $data.User.Email"></h3>
-                                        <a class="more-info" data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-3x"></i></a>
+                                        <!-- <h3 class="item-text" data-bind="text: $data.User.Email"></h3>
+                                        <a class="more-info" data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-3x"></i></a> -->
                             </div>
                         </div>
                     </div>
@@ -171,12 +193,17 @@
                     <div data-bind="visible: showGetRidForm">
                         <div class="row item-text">
                             <div class="col-sm-12">
-                                <img class="logo-circles" src="img/GetRidCircles.png"><br>
+                                <h2 class="get-rid-page">Get Rid Of Something!</h2><br>
                                 <p><button data-bind="click: $root.takePhoto" value="Take Photo" class="btn btn-primary">Take Photo</button></p>
                                 <form id="get-rid-form">
                                     <p><input type="text" data-bind="value: Name" placeholder="Item Name"></p>
                                     <p><input type="textarea" data-bind="value: Description" placeholder="Description"></p>
-                                    <p><input type="text" data-bind="value: Category" placeholder="Category"></p>
+                                    <p><select name="Category" data-bind="value: Category">
+                                    <option value="Appliances">Appliances</option>
+                                    <option value="Furniture">Furniture</option>
+                                    <option value="Clothing">Clothing</option>
+                                    <option value="Misc">Misc</option>
+                                    </select></p>
                                       <p><input type="submit" id="get-rid" data-bind="click: $root.handleGetRid" value="Submit" class="btn btn-primary"></p>
                                 </form>
                             </div>
@@ -222,6 +249,9 @@
                 <li class="dropdown nav-pad">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cloud fa-2x"></i><b class="caret"></b></a><p3>Get</p3>
                     <ul id="demo" class="dropdown-menu">
+                        <li>
+                            <a data-bind="click: function() { $root.filterByCategory('All')}"><i class="fa fa-asterisk fa-2x"></i>All</a>
+                        </li>
                         <li>
                             <a data-bind="click: function() {  $root.filterByCategory('Furniture')}"><i class="fa fa-bed fa-2x"></i> Furniture</a>
                         </li>

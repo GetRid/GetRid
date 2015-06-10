@@ -163,14 +163,12 @@
                     <!--CONTACT DISPLAY -->
                     <div data-bind="visible: showMakeContact, with: makeContactData">
                         <div class="row">
-                            <div class="col-sm-12 more-info">
                                 <div class="col-xs-6">
                                         <img class="more-info-image" data-bind="attr: {src: $root.imageContactDisplay }" alt="">
                                 </div>
                                 <div class="col-xs-6 reserved-title-div">
                                         <h2 class="item-text" data-bind="text: Name"></h2>
                                 </div>
-                            </div>
                             <div class="row">
                                 <div class="col-xs-12" id="owner">
                                         <h3 class="btn btn-default btn-lg .more-info-text" id="owner">RESERVED</h3>
@@ -195,12 +193,17 @@
                     <div data-bind="visible: showGetRidForm">
                         <div class="row item-text">
                             <div class="col-sm-12">
-                                <img class="logo-circles" src="img/GetRidCircles.png"><br>
+                                <h2 class="get-rid-page">Get Rid Of Something!</h2><br>
                                 <p><button data-bind="click: $root.takePhoto" value="Take Photo" class="btn btn-primary">Take Photo</button></p>
                                 <form id="get-rid-form">
                                     <p><input type="text" data-bind="value: Name" placeholder="Item Name"></p>
                                     <p><input type="textarea" data-bind="value: Description" placeholder="Description"></p>
-                                    <p><input type="text" data-bind="value: Category" placeholder="Category"></p>
+                                    <p><select name="Category" data-bind="value: Category">
+                                    <option value="Appliances">Appliances</option>
+                                    <option value="Furniture">Furniture</option>
+                                    <option value="Clothing">Clothing</option>
+                                    <option value="Misc">Misc</option>
+                                    </select></p>
                                       <p><input type="submit" id="get-rid" data-bind="click: $root.handleGetRid" value="Submit" class="btn btn-primary"></p>
                                 </form>
                             </div>
@@ -246,6 +249,9 @@
                 <li class="dropdown nav-pad">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cloud fa-2x"></i><b class="caret"></b></a><p3>Get</p3>
                     <ul id="demo" class="dropdown-menu">
+                        <li>
+                            <a data-bind="click: function() { $root.filterByCategory('All')}"><i class="fa fa-asterisk fa-2x"></i>All</a>
+                        </li>
                         <li>
                             <a data-bind="click: function() {  $root.filterByCategory('Furniture')}"><i class="fa fa-bed fa-2x"></i> Furniture</a>
                         </li>

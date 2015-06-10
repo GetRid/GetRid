@@ -15,11 +15,13 @@ $(document).ready(function() {
     self.itemData = ko.observable();
 
     // VIEWS
-    self.showSignInSignUpForm = ko.observable(false);
+    //self.showSignInSignUpForm = ko.observable(false);
+    self.showSignInScreen = ko.observable(false);
+    self.showSignUpForm = ko.observable(false);
     self.showGetRidForm = ko.observable(false);
     self.showNavBar = ko.observable(false);
     self.showSuccessfulGetRid = ko.observable(false);
-    self.showSplashScreen = ko.observable(false);
+    //self.showSplashScreen = ko.observable(false);
     self.showMakeContact = ko.observable(false);
     self.showRadiusSelectorMap = ko.observable(false);
 
@@ -77,11 +79,13 @@ $(document).ready(function() {
 
     //Behaviours
     self.clearViews = function() {
-      self.showSignInSignUpForm(false);
+      //self.showSignInSignUpForm(false);
+      self.showSignInScreen(false);
+      self.showSignUpForm(false);
       self.showGetRidForm(false);
       self.showNavBar(false);
       self.showSuccessfulGetRid(false);
-      self.showSplashScreen(false);
+      //self.showSplashScreen(false);
       self.showMakeContact(false);
       self.showRadiusSelectorMap(false);
 
@@ -96,13 +100,13 @@ $(document).ready(function() {
     self.signIn = function(display) {
       //self.showSplashScreen(false);
       self.clearViews();
-      self.showSignInSignUpForm(true);
+      self.showSignInScreen(true);
     }
 
     self.signUp = function(display) {
       //self.showSplashScreen(false);
       self.clearViews();
-      self.showSignInSignUpForm(true);
+      self.showSignUpForm(true);
     }
 
     self.handleSignIn = function(formElement) {
@@ -210,6 +214,9 @@ $(document).ready(function() {
             console.log("TOKEN REQUEST DONE: ", result);
             //self.username(data.UserName)
             sessionStorage.setItem("getRidLoginToken", result.access_token)
+            self.clearViews();
+            self.showNavBar(true);
+            self.goToDisplay("All");
           })
           .fail(function(result) {
             console.log("TOKEN REQUEST FAILED ", result);
@@ -224,8 +231,7 @@ $(document).ready(function() {
       console.log("logging out..");
       sessionStorage.removeItem("getRidLoginToken");
       self.clearViews();
-      self.showNavBar(true);
-      self.showSplashScreen(true);
+      self.showSignInScreen(true);
     }
 
     self.browseNearYou = function(display) {
@@ -446,7 +452,8 @@ $(document).ready(function() {
           });
       } else {
         self.clearViews();
-        self.showSignInSignUpForm(true);
+        //self.showSignInSignUpForm(true);
+        self.showSignInScreen(true);
       }
 
     }
@@ -465,7 +472,8 @@ $(document).ready(function() {
         self.showGetRidForm(true);
       } else {
         self.clearViews();
-        self.showSignInSignUpForm(true);
+        //self.showSignInSignUpForm(true);
+        self.showSignInScreen(true);
       }
     }
 
@@ -477,7 +485,7 @@ $(document).ready(function() {
     }
     else {
       self.clearViews(true);
-      self.showSplashScreen(true);
+      self.showSignInScreen(true);
     }
 
     // Hammer JS

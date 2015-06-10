@@ -414,31 +414,39 @@ p, div {
 
 .reserved-title-div {
     padding-top: 10px;
+    height: 190px;
+    overflow: hidden;
 }
 
 .more-info {
     text-align: center;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 .btn-default {
-    background-color: grey;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    background-color: #009900;
+    margin-top: 20px;
+    margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
-    padding: 20px;
+    padding: 10px;
     font-size: 30px;
+}
+
+.btn-default:hover {
+    background-color: #009900;
+}
+
+.get-rid-page {
+    margin-top: 40px;
 }
 
 #owner {
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 .panel {
-    max-width: 250px;
+    max-width: 270px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -472,7 +480,7 @@ p, div {
 }
 
 .glyphicon-chevron-right:hover {
-    color: #00FF00;
+    color: #009900;
 }
 
 p2 {
