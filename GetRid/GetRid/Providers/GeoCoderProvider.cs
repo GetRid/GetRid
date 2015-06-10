@@ -13,7 +13,7 @@ namespace GetRid.Providers
 {
     public class GeoCoderProvider
     {
-        public DbGeography addressToDbGeography(string address)
+        public DbGeography AddressToDbGeography(string address)
         {
             using (HttpClient client = new HttpClient())
             {

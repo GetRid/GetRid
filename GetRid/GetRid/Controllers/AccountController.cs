@@ -330,7 +330,7 @@ namespace GetRid.Controllers
                 return BadRequest(ModelState);
             }
 
-            DbGeography longLat = _geoCoderProvider.addressToDbGeography(model.Address);
+            DbGeography longLat = _geoCoderProvider.AddressToDbGeography(model.Address);
            
             var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Location = longLat };
 

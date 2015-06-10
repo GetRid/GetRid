@@ -1,34 +1,48 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Spatial;
+using System.Linq;
+using System.Runtime.Remoting;
+using System.Web.Http;
+using System.Web.Http.Results;
+using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GetRid;
 using GetRid.Controllers;
 using GetRid.Models;
 using GetRid.Providers;
+
 using Newtonsoft.Json;
+using NUnit.Framework;
+
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace GetRid.Tests.Controllers
+
 {
-    [TestClass]
-    public class ProductsControllersTest
+    [TestFixture]
+    public class ProductControllerTests
     {
-            [TestMethod]
-            public void Index()
-            {
-                // Arrange
-                //ProductsController productsController = new ProductsController();
+       [Test]
+       public void GetProducts()
+        {
+           ProductsController productsController = new ProductsController();
 
-                GeoCoderProvider geoCoderProvider = new GeoCoderProvider();
-                geoCoderProvider.addressToDbGeography("107 Thorndon Quay, Pipitea, Wellington 6011");
+           var ressult = productsController.GetProducts("-41.2966591", "174.7741981");
 
-                
-                //geoCoderProvider.
-                // Act
-                //ViewResult result = controller.Index() as ViewResult;
-                //productsController.BlobStorage();
-                // Assert
-                //Assert.IsNotNull(result);
-                //Assert.AreEqual("Home Page", result.ViewBag.Title);
-            }
+
+           var something = 2;
+           //Arrange
+           //ProductsController productsController = new ProductsController();
+           //IQueryable<Product> expect;
+           //var expect = new EnumerableQuery<Product>();
+           //Act
+           //IQueryable<Product> result = productsController.GetProducts("-41.2966591", "174.7741981");
+
+           //Assert
+           //NUnit.Framework.Assert.That(expect, Is.TypeOf(result.GetType()));
+           //NUnit.Framework.Assert.That();
         }
-    
+
+    }
 }

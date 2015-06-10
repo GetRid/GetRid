@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Spatial;
-using System.IO;
+using System.Device.Location;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using AutoMapper;
 using GetRid.Models;
-using GetRid.Results;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
+
 
 namespace GetRid.Controllers
 {
@@ -27,22 +21,51 @@ namespace GetRid.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Products
-        public IQueryable<Product> GetProducts(string latitude, string longitude, string category = "All", int radius = 10000)
+        public List<ProductDTO> GetProducts(string latitude, string longitude, string category = "All",
+            int radius = 10000)
         {
             var geoCoords = DbGeography.FromText(string.Format("POINT({0} {1})", longitude, latitude), 4326);
-
+            Mapper.CreateMap<Product, ProductDTO>();
+            var productDTOs = new List<ProductDTO>();
             if (category == "All")
             {
-                return db.Products.Where(x => geoCoords.Distance(x.Location) < radius)
-                    .Where(x => x.Reserved == false);
-            }
-            
-            return db.Products.Where(x => geoCoords.Distance(x.Location) < radius)
-                .Where(x => x.Reserved == false)
-                .Where(x => x.Category == category);
-        }
+                var productsList = db.Products.Where(x => geoCoords.Distance(x.Location) < radius).Where(x => x.Reserved == false).ToList();
 
-        // GET: api/Products/5
+                foreach (var product in productsList)
+                {
+                    ProductDTO dto = Mapper.Map<ProductDTO>(product);
+
+                    GeoCoordinate locA = new GeoCoordinate((double) product.Location.Latitude,
+                        (double) product.Location.Longitude);
+                    var locB = new GeoCoordinate((double) geoCoords.Latitude, (double) geoCoords.Longitude);
+                    double distance = locA.GetDistanceTo(locB); // metres
+                    dto.DistanceToUser = distance;
+                    productDTOs.Add(dto);
+                }
+
+                return productDTOs;
+            }
+
+            var productsListElse = db.Products.Where(x => geoCoords.Distance(x.Location) < radius)
+                .Where(x => x.Reserved == false)
+                .Where(x => x.Category == category).ToList();
+
+            foreach (var product in productsListElse)
+            {
+                ProductDTO dto = Mapper.Map<ProductDTO>(product);
+
+                GeoCoordinate locA = new GeoCoordinate((double) product.Location.Latitude,
+                    (double) product.Location.Longitude);
+                var locB = new GeoCoordinate((double) geoCoords.Latitude, (double) geoCoords.Longitude);
+                double distance = locA.GetDistanceTo(locB); // metres
+                dto.DistanceToUser = distance;
+                productDTOs.Add(dto);
+            }
+            return productDTOs;
+        }
+    
+
+    // GET: api/Products/5
         [ResponseType(typeof(Product))]
         public IHttpActionResult GetProduct(int id)
         {
@@ -102,7 +125,7 @@ namespace GetRid.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-               
+
                 var id = HttpContext.Current.User.Identity.GetUserId();
                 var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
 
@@ -111,7 +134,7 @@ namespace GetRid.Controllers
                 product.Location = user.Location;
                 //var blobURL = blobStorage.BlobingTheStorage(product.ImageURL);
                 //product.ImageURL = blobURL;
-               
+
                 db.Products.Add(product);
                 db.SaveChanges();
                 return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
@@ -177,6 +200,5 @@ namespace GetRid.Controllers
             return db.Products.Count(e => e.Id == id) > 0;
         }
 
-        
     }
 }
