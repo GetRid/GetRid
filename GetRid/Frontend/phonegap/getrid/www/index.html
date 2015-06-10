@@ -105,20 +105,20 @@
 
                     <!--INDIVIDUAL ITEM -->
                     <div id="imageSwipe" data-bind="with: chosenIndividualData">
-                        <div  class="row col-xs-12">
+                        <div  class="row">
                             <div>
                                 <div class="title-div">
                                     <h1 class="item-text" data-bind="text: Name"></h1>
                                 </div>
 
-                                <div id="arrow-left" class="col-xs-2">
-                                    <a data-bind="click: $root.trash"><span style="font-size:3em;" class="glyphicon glyphicon-chevron-left"></span></a>
+                                <div id="arrow-left" class="col-xs-3">
+                                    <a data-bind="click: $root.trash"><span style="font-size:3em;" class="glyphicon glyphicon-chevron-left"></span></a><br><p2>Trash<p2>
                                 </div>
-                                <div class="image-div col-xs-8">
+                                <div class="image-div col-xs-6">
                                     <img id="imageSwipe" class="item-image" data-bind="attr: {src: $root.imageDisplay }" alt="">
                                 </div>
-                                <div id="arrow-right" class="col-xs-2">
-                                    <a data-bind="click: $root.treasure"><span style="font-size:3em;" class="glyphicon glyphicon-chevron-right"></span></a>
+                                <div id="arrow-right" class="col-xs-3">
+                                    <a data-bind="click: $root.treasure"><span style="font-size:3em;" class="glyphicon glyphicon-chevron-right"></span></a><br><p2>Treasure<p2>
                                 </div>
                                     <div class="caption">
                                         <h4 class="item-text"><a href="#">5 km away</a>
@@ -140,12 +140,12 @@
                                             <h4 data-bind="text: Description"></h4>
                                 </div>
 
-                                <div class="item-text">
+                                <div class="col-xs-6">
+                                    <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-5x"></i><br>Back</a>
+                                </div>
+                                <div class="col-xs-6">
                                     <a data-bind="click: $root.makeContact"></a>
                                     <button data-bind="click: $root.makeContact" class="btn btn-primary">Get</button>
-                                </div>
-                                <div>
-                                    <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-5x"></i><br>Back</a>
                                 </div>
                             </div>
                         <!-- </div> -->

@@ -288,11 +288,13 @@ ul.alert-dropdown {
 
   .more-info-image {
     display: block;
-    padding-top: 20px;
-    max-height: 50px;
-    max-width: 50px;
-    align: left;
-    padding:1px;
+    max-height: 150px;
+    max-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: auto;
+    padding:4px;
     border:1px solid #021a40;
     background-color: #EDEDED;
  }
@@ -421,6 +423,8 @@ p, div {
 
 .glyphicon {
     color: grey;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .glyphicon-chevron-left:hover {
@@ -428,7 +432,14 @@ p, div {
 }
 
 .glyphicon-chevron-right:hover {
-    color: green;
+    color: #00FF00;
+}
+
+p2 {
+    font-size: 3;
+    color: grey;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
