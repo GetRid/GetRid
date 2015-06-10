@@ -388,6 +388,9 @@ $(document).ready(function() {
       }
       else {
         // no more items to trash
+        self.clearViews();
+        self.showNavBar(true);
+        self.goToDisplay();
       }
     }
 
@@ -432,7 +435,7 @@ $(document).ready(function() {
           })
           .done(function(result) {
             console.log("Update successful.. ", result);
-            self.clearViews();
+            //self.clearViews();
             self.showNavBar(true);
             self.showMakeContact(true);
             console.log(item);
