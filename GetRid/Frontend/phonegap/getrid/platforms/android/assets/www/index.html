@@ -107,31 +107,23 @@
                     <div id="imageSwipe" data-bind="with: chosenIndividualData">
                         <div  class="row col-xs-12">
                             <div>
-                                <!-- move id=imageSwipe to img -->
-                                <!-- <div class="thumbnail"> -->
                                 <div class="title-div">
                                     <h1 class="item-text" data-bind="text: Name"></h1>
                                 </div>
+
                                 <div id="arrow-left" class="col-xs-2">
-                                    <i class="fa fa-arrow-left fa-2x"></i>
+                                    <a data-bind="click: $root.trash"><span style="font-size:3em;" class="glyphicon glyphicon-chevron-left"></span></a>
                                 </div>
                                 <div class="image-div col-xs-8">
                                     <img id="imageSwipe" class="item-image" data-bind="attr: {src: $root.imageDisplay }" alt="">
                                 </div>
                                 <div id="arrow-right" class="col-xs-2">
-                                    <i class="fa fa-arrow-right fa-2x"></i>
+                                    <a data-bind="click: $root.treasure"><span style="font-size:3em;" class="glyphicon glyphicon-chevron-right"></span></a>
                                 </div>
-
-
                                     <div class="caption">
                                         <h4 class="item-text"><a href="#">5 km away</a>
                                         </h4>
                                     </div>
-                                    <div class="ratings">
-                                        <a data-bind="click: $root.trash"><i class="fa fa-trash-o fa-5x" id="trash"></i></a>
-                                        <a class="pull-right" id="font-awesome" data-bind="click: $root.treasure"><i class="fa fa-check-circle-o fa-5x"></i></a>
-                                    </div>
-                               <!--  </div> -->
                             </div>
                         </div>
                     </div>
