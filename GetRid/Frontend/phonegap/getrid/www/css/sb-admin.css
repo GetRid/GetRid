@@ -460,6 +460,11 @@ p, div {
    margin-top: 100px;
 }
 
+#middle-button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #arrow-right {
     margin-top: 100px;
     text-align: right;

@@ -183,8 +183,6 @@
                                         </div>
                                     <h2 data-bind="text: $data.User.Email" id="owner"></h2></div>
                                 </div>
-                                        <!-- <h3 class="item-text" data-bind="text: $data.User.Email"></h3>
-                                        <a class="more-info" data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-3x"></i></a> -->
                             </div>
                         </div>
                     </div>
@@ -204,7 +202,7 @@
                                     <option value="Clothing">Clothing</option>
                                     <option value="Misc">Misc</option>
                                     </select></p>
-                                      <p><input type="submit" id="get-rid" data-bind="click: $root.handleGetRid" value="Submit" class="btn btn-primary"></p>
+                                      <p><input type="submit" id="owner" data-bind="click: $root.handleGetRid" value="Submit" class="btn btn-primary"></p>
                                 </form>
                             </div>
                         </div>
@@ -214,10 +212,8 @@
                     <div data-bind="visible: showSuccessfulGetRid">
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="thumbnail">
-                                    <h1 class="item-text">Your Item has been successfully added</h1>
-                                    <a data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-5x"></i><br>Back</a>
-                                </div>
+                                    <h2 class="item-text">Your Item has been successfully added</h2>
+                                    <a id="middle-button" data-bind="click: $root.goToDisplay"><i class="fa fa-arrow-circle-left fa-5x"></i></a>
                             </div>
                         </div>
                     </div>

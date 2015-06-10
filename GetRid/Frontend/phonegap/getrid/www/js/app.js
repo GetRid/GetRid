@@ -148,7 +148,7 @@ $(document).ready(function() {
             contentType: "application/json"
         })
         .done(function(result) {
-          alert('post successful');
+          //alert('post successful');
           console.log("Add product successful.. ", result);
           self.clearViews();
           self.showNavBar(true);
