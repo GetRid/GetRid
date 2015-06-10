@@ -290,7 +290,7 @@ $(document).ready(function() {
         featureGroup.clearLayers();
       });
 
-      map.on('draw:created', function(e) {
+      map.on('draw:stop', function(e) {
         e.layer._latlng.lat = currentUserPosition.coords.latitude;
         e.layer._latlng.lng = currentUserPosition.coords.longitude;
 
@@ -302,6 +302,19 @@ $(document).ready(function() {
         alert(self.tempRadius());
         featureGroup.addLayer(e.layer);
       });
+
+      // map.on('draw:created', function(e) {
+      //   e.layer._latlng.lat = currentUserPosition.coords.latitude;
+      //   e.layer._latlng.lng = currentUserPosition.coords.longitude;
+
+      //   console.log(e.layer._mRadius);
+      //   $('#radius-display').removeClass('panel-default').addClass('panel-success');
+      //   $('#radius-meters').html(Math.round(e.layer._mRadius) + " meters");
+      //   //assign e.layer._mRadius to global data-bound variable
+      //   self.tempRadius(e.layer._mRadius);
+      //   //alert(self.tempRadius());
+      //   featureGroup.addLayer(e.layer);
+      // });
     }
 
     self.confirmRadius = function() {
