@@ -1,12 +1,6 @@
 
 $(document).ready(function() {
 
-
-
-// $("#logo-hide").click(function(){
-//   $('.logo-long').hide().show("slow");
-// });
-
   var token = sessionStorage.getItem("getRidLoginToken");
   var headers = {};
   //var currentUserPosition;
@@ -265,8 +259,8 @@ $(document).ready(function() {
       // Create a map in the div #map
       var map = L.mapbox.map('map', 'envintage.i9eofp14');
 
-      map.setView([currentUserPosition.latitude, currentUserPosition.longitude], 13);
-      L.marker([currentUserPosition.latitude, currentUserPosition.longitude]).addTo(map);
+      map.setView([currentUserPosition.coords.latitude, currentUserPosition.coords.longitude], 13);
+      L.marker([currentUserPosition.coords.latitude, currentUserPosition.coords.longitude]).addTo(map);
 
       var featureGroup = L.featureGroup().addTo(map);
       // map.addLayer(featureGroup);
@@ -297,14 +291,15 @@ $(document).ready(function() {
       });
 
       map.on('draw:created', function(e) {
-        e.layer._latlng.lat = currentUserPosition.latitude;
-        e.layer._latlng.lng = currentUserPosition.longitude;
+        e.layer._latlng.lat = currentUserPosition.coords.latitude;
+        e.layer._latlng.lng = currentUserPosition.coords.longitude;
 
         console.log(e.layer._mRadius);
         $('#radius-display').removeClass('panel-default').addClass('panel-success');
         $('#radius-meters').html(Math.round(e.layer._mRadius) + " meters");
         //assign e.layer._mRadius to global data-bound variable
         self.tempRadius(e.layer._mRadius);
+        //alert(self.tempRadius());
         featureGroup.addLayer(e.layer);
       });
     }
@@ -334,33 +329,25 @@ $(document).ready(function() {
       // current GPS coordinates
       //
       var onSuccess = function(position) {
-          // alert('Latitude: '          + position.coords.latitude          + '\n' +
-          //       'Longitude: '         + position.coords.longitude         + '\n' +
-          //       'Altitude: '          + position.coords.altitude          + '\n' +
-          //       'Accuracy: '          + position.coords.accuracy          + '\n' +
-          //       'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-          //       'Heading: '           + position.coords.heading           + '\n' +
-          //       'Speed: '             + position.coords.speed             + '\n' +
-          //       'Timestamp: '         + position.timestamp                + '\n');
           currentUserPosition = position;
 
           // Commented out for browser testing
-          // self.chosenDisplayId(display);
-          // self.chosenIndividualData(null);
-          // self.chosenIndividualDetails(null);
-          // self.makeContactData(null);
+          self.chosenDisplayId(display);
+          self.chosenIndividualData(null);
+          self.chosenIndividualDetails(null);
+          self.makeContactData(null);
 
-          // $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
-          //     latitude: currentUserPosition.coords.latitude,
-          //     longitude: currentUserPosition.coords.longitude,
-          //     category: self.selectedCategory(),
-          //    radius: self.searchRadius()
-          //   },
-          //   function(data) {
-          //     self.itemData(data);
-          //     self.chosenDisplayData(self.itemData());
-          //     self.goToItem(self.itemData()[0]);
-          // });
+          $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
+              latitude: currentUserPosition.coords.latitude,
+              longitude: currentUserPosition.coords.longitude,
+              category: self.selectedCategory(),
+             radius: self.searchRadius()
+            },
+            function(data) {
+              self.itemData(data);
+              self.chosenDisplayData(self.itemData());
+              self.goToItem(self.itemData()[0]);
+          });
           // console.log("dsgsdgg")
       };
 
@@ -372,7 +359,7 @@ $(document).ready(function() {
       }
 
       // Commented out for browser testing
-      // navigator.currentUserPosition.getCurrentPosition(onSuccess, onError);
+      navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
       self.clearViews();
       self.showNavBar(true);
@@ -383,18 +370,18 @@ $(document).ready(function() {
       // self.showRadiusSelectorMap(false);
 
 ///////////////////////////////////
-      $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
-          latitude: "-41.279576",
-          longitude: "174.776066",
-          category: self.selectedCategory(),
-          radius: self.searchRadius()
-        },
-        function(data) {
-          self.itemData(data);
-          self.chosenDisplayData(self.itemData());
-          console.log(self.itemData())
-          self.goToItem(self.itemData()[0]);
-      });
+      // $.getJSON('http://getridapi.azurewebsites.net/api/products',  {
+      //     latitude: "-41.279576",
+      //     longitude: "174.776066",
+      //     category: self.selectedCategory(),
+      //     radius: self.searchRadius()
+      //   },
+      //   function(data) {
+      //     self.itemData(data);
+      //     self.chosenDisplayData(self.itemData());
+      //     console.log(self.itemData())
+      //     self.goToItem(self.itemData()[0]);
+      // });
 
       ///////////////////////////////////////////////////
     }
