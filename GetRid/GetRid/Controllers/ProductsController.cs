@@ -42,7 +42,6 @@ namespace GetRid.Controllers
                     double distance = locA.GetDistanceTo(locB); // metres
                     var distanceRound = Math.Round(distance) / 1000;
                     dto.DistanceToUser = distanceRound.ToString() + " km";
-                    dto.DistanceToUser = distance.ToString();
                     productDTOs.Add(dto);
                 }
 
