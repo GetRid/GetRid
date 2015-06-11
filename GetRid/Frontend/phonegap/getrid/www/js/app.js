@@ -1,7 +1,11 @@
 $(document).ready(function() {
 
+  //you should define the function outside of the ready block and just create it here
   function appViewModel() {
-    var self = this;
+    //instead of a blanket self it is better to use this in the constructor and just create a local self variable when you need to 
+    //(e.g. when you create an ajaax call)
+    var self = this; 
+
     self.itemData = ko.observable();
     self.showSplashScreen = ko.observable(true);
     self.showSignInSignUpForm = ko.observable(false);
@@ -25,6 +29,7 @@ $(document).ready(function() {
     self.getRidData = ko.observable();
 
 
+    //these should be on the prototype
     //Behaviours
     self.signIn = function(display) {
       self.showSplashScreen(false);
@@ -45,6 +50,7 @@ $(document).ready(function() {
     self.handleSignUp = function(formElement) {
       /* Your data in JSON format - see below */
 
+        //the url component (http://getridapi.azurewebsites.net/api) should be stored in one spot instead of duplicated
         $.ajax("http://getridapi.azurewebsites.net/api/Account/Register", {
             data: ko.toJSON({
               UserName: self.UserName,
@@ -62,6 +68,8 @@ $(document).ready(function() {
               "username": self.UserName,
               "Password": self.Password
             });
+          //you should only have console.logs turned on when you are debugging
+          //either comment out or only display this if a global $debug var is set then you can just set that in the console to see the messages
           console.log("REGISTRATION REQUESET DONE: ", data);
 
           $.ajax("http://getridapi.azurewebsites.net/token", {
